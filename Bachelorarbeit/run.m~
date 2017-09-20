@@ -74,8 +74,6 @@ hold on;
 x_points = [1+j 1-j -1+j -1-j 3+j 3-j 3+3j 3-3j 1+3j 1-3j -1+3j -1-3j -3+3j -3-3j -3-1j -3+1j];
 n = length(x_points);
 h_N = log2(pi*exp(1));
-scale = sum(abs(x_points).^2)/length(x_points);
-x_points = x_points./sqrt(scale);
 
 for l = 1:length(snr_power)
     level = round((n-1)*rand(1,N)+1);
@@ -84,6 +82,7 @@ for k = 1:N
     level_matrix(k,level(k)) = 1;
 end
 
+x_points = x_points./sqrt(10);
 x_points_t = transpose(x_points);
 Amplitude = sqrt(snr_power(l));
 x_out= Amplitude*level_matrix*x_points_t;
@@ -117,8 +116,7 @@ desc = strcat('16-QAM');
 x_points = [-7-7j -7-5j -7-3j -7-1j -7+1j -7+3j -7+5j -7+7j -5-7j -5-5j -5-3j -5-1j -5+1j -5+3j -5+5j -5+7j -3-7j -3-5j -3-3j -3-1j -3+1j -3+3j -3+5j -3+7j -1-7j -1-5j -1-3j -1-1j -1+1j -1+3j -1+5j -1+7j 1-7j 1-5j 1-3j 1-1j 1+1j 1+3j 1+5j 1+7j 3-7j 3-5j 3-3j 3-1j 3+1j 3+3j 3+5j 3+7j 5-7j 5-5j 5-3j 5-1j 5+1j 5+3j 5+5j 5+7j 7-7j 7-5j 7-3j 7-1j 7+1j 7+3j 7+5j 7+7j];
 n = length(x_points);
 h_N = log2(pi*exp(1));
-scale = sum(abs(x_points).^2)/length(x_points);
-x_points = x_points./sqrt(scale);
+
 for l = 1:length(snr_power)
     level = round((n-1)*rand(1,N)+1);
     level_matrix = zeros(N,n);
@@ -126,6 +124,7 @@ for k = 1:N
     level_matrix(k,level(k)) = 1;
 end
 
+x_points = x_points./sqrt(42);
 x_points_t = transpose(x_points);
 Amplitude = sqrt(snr_power(l));
 x_out = Amplitude*level_matrix*x_points_t;
