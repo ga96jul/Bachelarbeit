@@ -10,10 +10,10 @@ clear all;
 tic;
 h = waitbar(0,'Calculating...');
 n = 2304;                                                                   % 576:96:2304
-rate = (2/3);
+rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 2:0.5:5;
+snr_dB = 12:0.5:15;
 cnt = 1;
 Frame_errors = 0;
 
@@ -28,7 +28,7 @@ frames = 100000;
 % WiMax supports code rates of 1/2, 2/3, 3/4 and 5/6  and a code length of
 % 576 upto 2304
 
-[H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n, ind);                   % creating LP-H-Matrix r x n
+[H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                   % creating LP-H-Matrix r x n
 
 k = length( H_cols) - length(P);
 
@@ -41,7 +41,7 @@ for iterations = 1:frames                                                  % num
     codeword = LdpcEncode(data, H_rows, P);                                % codewords c
 
 %% Mapping
-QPSK = CreateConstellation( 'QPSK');                                       % QAM, PSK, FSK, etc. possible
+QPSK = CreateConstellation( 'QAM', 16);                                       % QAM, PSK, FSK, etc. possible
 
 symbols = Modulate(codeword,QPSK);
 
@@ -86,13 +86,13 @@ end
 close(h);
 figure;
 sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(2,5,30000);
+inter = linspace(12,15,30000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 snr_FER = find(pFER < 0.001);
-snr_FER = snr_FER(1)/10000 + 2;
+snr_FER = snr_FER(1)/10000 + 12;
 
-save('FER_2_3_QPSK_001.mat','Frame_error_rate');
-save('FER_plot_2_3_QPSK_001.fig','sem');
-save('snr_FER_2_3_QPSK_001.mat','snr_FER');
+save('FER_1_2_QAM16_001.mat','Frame_error_rate');
+save('FER_plot_1_2_QAM16_001.fig','sem');
+save('snr_FER_1_2_QAM16_001.mat','snr_FER');
 
 toc;
