@@ -13,7 +13,7 @@ n = 2304;                                                                   % 57
 rate = (5/6);
 ind = 0;
 % R = k/n
-snr_dB = 15:0.5:16;
+snr_dB = 18:0.5:21;
 cnt = 1;
 Frame_errors = 0;
 T = 4;
@@ -89,13 +89,13 @@ end
 close(h);
 figure;
 sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(18,23,5000);
+inter = linspace(18,21,3000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 snr_FER = find(pFER < 0.01);
 snr_FER = snr_FER(1)/1000 + 18;
 
-save('FER_5_6_QAM64.mat','Frame_error_rate');
-save('FER_plot_5_6_QAM64.fig','sem');
-save('snr_FER_5_6_QAM64.mat','snr_FER');
+save('FER_5_6_QPSK_Fad.mat','Frame_error_rate');
+save('FER_plot_5_6_QPSK_Fad.fig','sem');
+save('snr_FER_5_6_QPSK_Fad.mat','snr_FER');
 
 toc;
