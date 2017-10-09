@@ -10,10 +10,10 @@ clear all;
 tic;
 h = waitbar(0,'Calculating...');
 n = 2304;                                                                   % 576:96:2304
-rate = (1/2);
+rate = (5/6);
 ind = 0;
 % R = k/n
-snr_dB = 30:0.5:35;
+snr_dB = 25:0.5:35;
 cnt = 1;
 Frame_errors = 0;
 EsNo = 10.^(snr_dB/10);
@@ -35,7 +35,7 @@ data = round(rand(1,k));
 codeword = LdpcEncode(data, H_rows, P);                                    % codewords c
 
 %% Mapping
-QPSK = CreateConstellation( 'QPSK'); % QAM, PSK, FSK, etc. possible
+QPSK = CreateConstellation( 'QPSK'); % QAM, PSK,save('snr_FER_1_2_QPSK_10_3.mat','snr_FER'); FSK, etc. possible
 symbols = [];
 symbols = Modulate(codeword,QPSK);
 
@@ -59,14 +59,14 @@ noise = (sqrt(variance))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,
 
 r = block_sym*fading + noise;
 
-est_fad = r(1)/(amplitude);
+est_fad = r(1);
 est_sym = r/est_fad;
 l_sym = length(est_sym);
 real_sym = est_sym(2:l_sym);
 receiv_sym = real_sym;
 
 p = abs(est_fad);
-E_fad = p^2*(p*exp(-(p/2)));
+E_fad = p^2*(p*exp(-((p^2)/2)));
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% new
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,13 +99,13 @@ end
 close(h);
 figure;
 sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(30,35,5000);
+inter = linspace(25,35,10000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 snr_FER = find(pFER < 0.01);
-snr_FER = snr_FER(1)/1000 + 30;
+snr_FER = snr_FER(1)/1000 + 25;
 
-save('FER_1_2_QPSK_10_3.mat','Frame_error_rate');
-save('FER_plot_1_2_QPSK_10_3.fig','sem');
-save('snr_FER_1_2_QPSK_10_3.mat','snr_FER');
+save('FER_5_6_QPSK_fad_TFull.mat','Frame_error_rate');
+save('FER_plot_5_6_QPSK_fad_TFull.fig','sem');
+save('snr_FER_5_6_QPSK_fad_TFull.mat','snr_FER');
 
 toc;
