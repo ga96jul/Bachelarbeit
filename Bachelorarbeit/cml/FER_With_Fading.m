@@ -8,17 +8,17 @@
 %CmlStartup;
 clear all;
 tic;
-h = waitbar(0,'Calculating...');noise = [];
+h = waitbar(0,'Calculating...');
 n = 576;                                                                   % 576:96:2304
 rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 0:0.5:35;
+snr_dB = 0:0.5:40;
 cnt = 1;
 Frame_errors = 0;
 EsNo = 10.^(snr_dB/10);
 
-T = n/16;
+T = 4;
 E_sum = 0;
 noise = [];
 
@@ -37,12 +37,16 @@ k = length( H_cols) - length(P);
 for iterations = 1:frames 
 data = round(rand(1,k));
 
-codeword = LdpcEncode(data, H_rows, P);                                    % codewords c
+codeword = LdpcEncode(data, H_rows, P);                                     % codewords c
+
+perm = randperm(length(codeword));
+
+interleaver = intrlv(codeword,perm);
 
 %% Mapping
-QPSK = CreateConstellation( 'QPSK'); % QAM, PSK, FSK, etc. possible
+QPSK = CreateConstellation( 'QAM', 16); % QAM, PSK, FSK, etc. possible
 symbols = [];
-symbols = Modulate(codeword,QPSK);
+symbols = Modulate(interleaver,QPSK);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%% new
@@ -68,7 +72,7 @@ noise(p,:) = (sqrt(variance))*(randn(size(block_sym(1,:)))+1i*randn(size(block_s
 
 r(p,:) = block_sym(p,:)*fading(p) + noise(p,:);
 
-est_fad(p) = r(p,1);
+est_fad(p) = fading(p); %r(p,1);
 est_sym(p,:) = r(p,:)/est_fad(p);
 l_sym = length(est_sym(p,:));
 real_sym(p,:) = est_sym(p,2:l_sym);
@@ -82,24 +86,26 @@ receiv_sym = [];
 receiv_sym = reshape(real_sym.',1,length(symbols));
 sum_f = sum(abs_f);
 for cnt = 1:1:length(symbols)/T
-E_fad = abs_f(cnt)^2*(abs_f(cnt)*exp(-((abs_f(cnt)^2)/2)));
-E_sum = E_sum + E_fad;
-temp = E_sum;
+E_fad(cnt) = 2*abs_f(cnt)^2*(abs_f(cnt)*exp(-((abs_f(cnt)^2)/2)));
 end
+E_sum = sum(E_fad);over Wi-Fi now), use a VPN as an 
+E_fin = E_sum/(length(symbols)/T);
+temp = E_fin;
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% new
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
     
     
 % %% Demapping
- sym_ll = Demod2D(receiv_sym, QPSK_A , EsNo(l)*(E_sum/(length(symbols)/T)));    
- E_sum = 0;
+ sym_ll = Demod2D(receiv_sym, QPSK_A , EsNo(l)*E_fin);    
  % transforms received symbols into log-likelihoods
 % 
- llr = Somap(sym_ll);                                                       % soft demapping
+ llr = Somap(sym_ll);                       % soft demapping
+ 
+ deinterleaver = deintrlv(llr,perm);
 % 
 % %% Decoder
- [output, errors] = MpDecode(-llr, H_rows, H_cols, 50, 0, 1, 1, data );     % decoder
+ [output, errors] = MpDecode(-deinterleaver, H_rows, H_cols, 50, 0, 1, 1, data );     % decoder
 
 if (errors(50) > 0)
     Frame_errors = Frame_errors + 1;
@@ -118,13 +124,13 @@ end
 close(h);
 figure;
 sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(20,35,15000);
+inter = linspace(0,40,40000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 snr_FER = find(pFER < 0.01);
-snr_FER = snr_FER(1)/1000 + 20;
+snr_FER = snr_FER(1)/1000 + 0;
 
-%save('FER_1_2_QPSK_fad_T12.mat','Frame_error_rate');
-%save('FER_plot_3_4_QPSK_fad_T12.fig','sem');
-%save('snr_FER_1_2_QPSK_fad_T12.mat','snr_FER');
+save('FER_R12_QAM16_576_T4.mat','Frame_error_rate');
+%save('FER_plot_3_4_QPSK_fad_T12.fig','sem');l
+save('snr_R12_QAM16_576_T4.mat','snr_FER');
 
 toc;
