@@ -13,7 +13,7 @@ n = 576;                                                                   % 576
 rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 0:0.5:40;
+snr_dB = 0:1:50;
 cnt = 1;
 Frame_errors = 0;
 EsNo = 10.^(snr_dB/10);
@@ -30,7 +30,7 @@ frames = 10000;
 k = length( H_cols) - length(P);
 
 for iterations = 1:frames 
-data = round(rand(1,k));
+data = (randi(1,k));
 
 codeword = LdpcEncode(data, H_rows, P);                                    % codewords c
 
@@ -38,7 +38,7 @@ perm = randperm(length(codeword));
 
 interleaver = intrlv(codeword,perm);
 %% Mapping
-QPSK = CreateConstellation( 'QAM', 16); % QAM, PSK,save('snr_FER_1_2_QPSK_10_3.mat','snr_FER'); FSK, etc. possible
+QPSK = CreateConstellation( 'QPSK'); % QAM, PSK, FSK, etc. possible
 symbols = [];
 symbols = Modulate(interleaver,QPSK);
 
@@ -58,9 +58,9 @@ QPSK_A = QPSK;
 block_sym = [1 sym_temp];
 
 %% channel
-noise = (sqrt(variance))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
+noise = (1/sqrt(2))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
 
-r = block_sym*fading + noise;
+r = amplitude* block_sym* fading + noise;
 
 est_fad = fading;
 est_sym = r/est_fad;
@@ -69,14 +69,17 @@ real_sym = est_sym(2:l_sym);
 receiv_sym = real_sym;
 
 p = abs(est_fad);
-E_fad = 2*p^2*(p*exp(-((p^2)/2)));
+
+E_fad = p^2*(p*exp(-((p^2)/2)));
+
+fade_coeff = ones(1,length(receiv_sym))*fading;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% new
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     
     
 % %% Demapping
- sym_ll = Demod2D(receiv_sym, QPSK_A , EsNo(l)*E_fad);                                 % transforms received symbols into log-likelihoods
+ sym_ll = Demod2D(receiv_sym, amplitude*QPSK_A , 1);                                 % transforms received symbols into log-likelihoods
 % 
  llr = Somap(sym_ll);                                                       % soft demapping
 % 
@@ -102,10 +105,21 @@ end
 close(h);
 figure;
 sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(0,40,40000);
+inter = linspace(0,50,50000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
+semilogy(inter,pFER);
 snr_FER = find(pFER < 0.01);
 snr_FER = snr_FER(1)/1000 + 0;
+hold on;
+grid on;
+plot(snr_FER, 0.01, 'r*');
+try
+    snr_FER_001 = find(pFER < 0.001);
+    snr_FER_001 = snr_FER_001(1)/1000 + 0;
+    plot(snr_FER_001, 0.001, 'g*');
+catch
+    disp('No FER under 0.001');
+end
 
 save('FER_R12_QAM16_576_TFull.mat','Frame_error_rate');
 %save('FER_plot_5_6_QPSK_fad_TFull.fig','sem');

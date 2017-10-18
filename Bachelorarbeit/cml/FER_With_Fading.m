@@ -86,7 +86,7 @@ receiv_sym = [];
 receiv_sym = reshape(real_sym.',1,length(symbols));
 sum_f = sum(abs_f);
 for cnt = 1:1:length(symbols)/T
-E_fad(cnt) = 2*abs_f(cnt)^2*(abs_f(cnt)*exp(-((abs_f(cnt)^2)/2)));
+E_fad(cnt) = 2*(abs_f(cnt)^2)*(abs_f(cnt)*exp(-((abs_f(cnt)^2)/2)));
 end
 E_sum = sum(E_fad);over Wi-Fi now), use a VPN as an 
 E_fin = E_sum/(length(symbols)/T);

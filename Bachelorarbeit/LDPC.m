@@ -51,7 +51,7 @@ sym_ll = Demod2D(r, QPSK, EsNo);                                           % tra
 
 llr = Somap(sym_ll);                                                       % soft demapping
 x = [1 j -j -1];
-for s = 1:k
+for s = 1:k/4
 s1(s) = -EsNo*(abs(r(s)-x(1)).^2);
 s2(s) = -EsNo*(abs(r(s)-x(2)).^2);
 s3(s) = -EsNo*(abs(r(s)-x(3)).^2);
