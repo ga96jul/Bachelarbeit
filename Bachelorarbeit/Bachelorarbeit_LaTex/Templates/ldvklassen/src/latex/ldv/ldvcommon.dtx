@@ -1,0 +1,2656 @@
+%
+% \section{Implementierung}
+% \label{sec:implementierung}
+%
+%
+% \subsection*{Roadmap/Todo}
+%
+% \paragraph*{Version 2.0}
+%
+% \begin{itemize}
+% \item Umschlag
+%   \begin{itemize}
+%   \item Umschlagseite als PDF-Datei einbindbar.
+%   \item Overful hbox in Design1 (tb\_vielMeta.tex)
+%   \end{itemize}
+%
+% \item Impressumsseite
+%   \begin{itemize}
+%   \item Impressumsseite wird standardmäßig mit \verb|\maketitle| bei
+%     doppelseitigem Layout generiert. Siehe Kapitel 6.3 dieser
+%     Dokumentation.
+%   \item Parse Jahr aus Datum, egal welche Sprache
+%   \item Lizenzen in Impressum integrieren. Lokalisiert.
+%   \end{itemize}
+%
+% \item Underful hbox im Inhaltsverzeichnis (tb.tex)
+%
+% \item Literaturverzeichnis
+%   \begin{itemize} 
+%   \item Eigenen Bibliographiestil -- Fertig
+%   \item ldv.bst und \verb|\citestyle{plain}| in ldvguide
+%   dokumentieren. -- Fertig
+%   \end{itemize}
+%
+% \item Windows-Installation neu dokumentieren und Aufbau der
+%   Distribution an übliche Konvention anpassen.
+%
+% \item \verb|\tolerance|-Wert und sonstige Satzoptionen neu
+%   justieren. -- Fertig
+%
+% \item Implementierung
+%   \begin{itemize}
+%   \item Vorgabewerte nicht in eigenem Kapitel sondern dort, wo sie
+%     genutzt werden. -- Fertig
+%   \item Pakete für Referenzen abschaltbar machen wegen
+%     Kompatibilitätsproblemen. -- Fertig
+%   \end{itemize}
+% \end{itemize}
+%
+% \paragraph*{Version 3.0}
+%
+% \begin{itemize}
+% \item Auf ifthen-Paket umstellen
+% \item Kopfzeile passt auf Kapitelseite nicht (Abstand). Neu machen
+%   mit scrheadings, so dass auch die Seitenzahl in der Kopfzeile ist.
+% \item Titelseite für Doktorarbeit
+% \item Weitere Umschlagdesigns anbieten
+% \item Schlüsselwörter in Titelei integrieren und \verb|makekeywords|
+%   für einspaltiges Layout anpassen.
+% \item Feld für den Herausgeber (Editor), der ediert. ?? sinnvoll
+%   und nötig?
+% \item Verhältnis Version, Auflage klären und umsetzen
+% \item Das Makro \verb|\and| so umsetzen, dass es mit vorausgehenden
+%   Leerzeichen umgehen kann und passend Kommas sowie "`und"' einfügt.
+% \item Kurzreferenz schreiben.
+% \item Formeldarstellung im Zusammenhang mit helvet-Option
+%   verbessern. Soll Helvetica dann die Standardschrift werden oder
+%   doch die serif-Option? sfmath.sty integrieren
+% \end{itemize}
+%
+% \paragraph*{Version 4.0}
+%
+% \begin{itemize}
+% \item Integration mit \KOMAScript Version 3
+% \item Diplomarbeitsanleitung schreiben.
+% \item Literatur-Typen www und media (mit IEEE-Stil vergleichen).
+% \item Farbiges Layout
+% \item Gesamtlayout überarbeiten und fixieren
+% \item Verbesserter Blindtext
+% \item Vorlagen für LyX
+% \item Dynamisches Layout, welches auch für DIN A3 und A5, sowie
+%   (angelsächsische) Zwischengrößen funktioniert.
+% \end{itemize}
+%
+%
+% \subsection*{Anforderungen}
+%
+% Die Testdokumente nutzen das Paket \emph{blindtext},
+% welches bei vielen Distributionen nachinstalliert werden muss.
+%
+%
+%
+%
+% \subsection{Initialisierung der Dokumentenklasse}
+%
+% \subsubsection{Identifizierungsabschnitt der Dokumentenklasse}
+%
+% \begin{macro}{\ldv@classversion}
+%   Die Quelldatei kann drei \LaTeX-Klassendateien erzeugen, eine
+%   Artikel-, eine Berichts- und eine Buchklasse. Die Versionsangabe
+%   ist für alle gleich.
+%
+%    \begin{macrocode}
+\NeedsTeXFormat{LaTeX2e}
+\newcommand*\ldv@classversion{2011/02/23 Dokumentenklasse des LDV -
+  Version 2.0}
+%<+article>\ProvidesClass{ldvarticle}[\ldv@classversion]
+%<+article>\newcommand*\ldv@komaclass{scrartcl}
+%<+book>\ProvidesClass{ldvbook}[\ldv@classversion]
+%<+book>\newcommand*\ldv@komaclass{scrbook}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \subsubsection{Deklaration der Klassenoptionen}
+% \label{sec:deklaration-optionen}
+%
+% Unsere Dokumentenklassen arbeiten mit dem Paket \emph{xkeyval}. Alle
+% Optionen werden also -- anders als in den Standardklassen, aber
+% ähnlich wie in vielen neuen Paketen -- durch ein Schlüssel-Wert-Paar
+% vom Benutzer eingestellt. 
+%
+% \begin{macro}{ldv@choicekeyval}
+% \begin{macro}{ldv@choicekeynr}
+%   xkeyval erzeugt beim Laden automatisch eine interne Kopie der
+%   Optionenliste (also von \verb|\@classoptionslist|). Danach können
+%   alle Optionen eingestellt werden.
+%
+%   Die Makros \verb|ldv@choicekeyval| und \verb|ldv@choicekeynr|
+%   verwende ich später zur Auswertung aller choice
+%   key-Optionen. Ersteres beinhaltet dabei den textuellen Wert und
+%   letzteres den numerischen Wert, welcher gemäß der Reihenfolge in
+%   der Optionen-Definition bestimmt ist.
+%
+%    \begin{macrocode}
+\RequirePackage{xkeyval}
+\newcommand*\ldv@choicekeyval\@empty
+\newcommand*\ldv@choicekeynr\@empty
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% 
+% Im Folgenden sind die Optionen in alphabetischer Reihenfolge definiert.
+%
+% \begin{option}{DIV}
+% \begin{macro}{\ifldv@isDivSet}
+% \begin{macro}{\ldv@isDivSettrue}
+% \begin{macro}{\ldv@isDivSetfalse}
+%   Unterschiedliche Schriftarten benötigen unterschiedliche
+%   Satzspiegel. Deshalb muss ich je nach gewählter Schriftart der
+%   vorgegebenen Satzspiegel anpassen. Dies darf ich aber nur, solange
+%   der Benutzer keinen eigenen DIV-Wert vorgibt. Um diesen Fall
+%   erkennen zu können, muss ich die Option "`DIV"' überwachen. Die
+%   Bedingung \verb|\ifldv@isDivSet| ist wahr, falls der Benutzer
+%   einen DIV-Wert über die Klassenoptionen festgelegt hat.
+%
+%    \begin{macrocode}
+\newif\ifldv@isDivSet
+\DeclareOptionX<ldv>{DIV}{\ldv@isDivSettrue}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+% 
+% \begin{option}{doctype}
+% \begin{macro}{\ifldv@studthesis}
+% \begin{macro}{\ldv@studthesistrue}
+% \begin{macro}{\ldv@studthesisfalse}
+% \begin{macro}{\ldv@doctype}
+%   Die Option \verb|doctype| aktiviert die Einstellungen und Makros für
+%   eine studentische Abschlussarbeit. Dazu gibt es zum einen den
+%   globalen Wahrheitswert \verb|\ifldv@studthesis|. Er wird überall
+%   benutzt, wo geprüft werden soll, ob gerade irgendeine studentische
+%   Abschlussarbeit gesetzt wird. Zum anderen speichert das Makro
+%   \verb|ldv@doctype| den konkreten Typ der Abschlussarbeit in
+%   Kleinschreibung (durch das Sternchen von
+%   \verb|define@choicekey*|).
+%   
+%    \begin{macrocode}
+%<*book>
+\newif\ifldv@studthesis
+\newif\ifldv@phdthesis
+\define@choicekey*+{ldv}{doctype}[\ldv@doctype]{%
+  phdthesis,diplomarbeit,mastersthesis,studienarbeit,bachelorsthesis,idp%
+}{%
+  \newcommand*\tempa{phdthesis}%
+  \ifx\ldv@doctype\tempa \ldv@phdthesistrue\else\ldv@studthesistrue\fi%
+}{%
+  \ClassWarning{\ClassName}{%
+    The value given for the option doctype is not known.%
+  }
+}
+%</book>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+% 
+% \begin{option}{fontstyle}
+% \begin{macro}{\ldv@fontstyle}
+% \begin{macro}{\ldv@fontstylenr}
+%   Mit der Option \emph{fontstyle} kann der Benutzer eine von drei
+%   Schriftarten auswählen. Die Makros \verb|ldv@fontstyle| und
+%   \verb|\ldv@fontstylenr| speichern diese, Ersteres in wörtlicher,
+%   Zweiteres in numerischer Form. Die Änderung der Schriftart
+%   passiert tatsächlich in Kapitel~\ref{sec:layout}; dort finden sich
+%   auch die genauen Werte dieser Option. Zusätzlich hängt auch die
+%   Wahl des DIV-Faktors für den Satzspiegel von dieser Option
+%   ab. Diese Einstellung kann erst nach dem Verarbeiten der
+%   Klassenoptionen vorgenommen werden
+%   (Abschnitt~\ref{sec:impl:seitenlayout}), weil beide Optionen,
+%   "`fontstyle"' und "`DIV"', hierfür geparst sein müssen.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@fontstylenr\@empty
+\define@choicekey*+{ldv}{fontstyle}[\ldv@fontstyle\ldv@fontstylenr]
+{serif,sans,helvet}{}{%
+  \ClassWarning{\ClassName}{%
+    The value given for the option fontstyle is not known.%
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{option}
+%
+% \begin{option}{inputenc}
+% \begin{macro}{\ldv@inputenc}
+% \begin{macro}{\ldv@defaultinputenc}
+%   Die Option \emph{inputenc} setzt das Makro \verb|\ldv@inputenc|
+%   auf den zu verwendenden Zeichensatz für das Paket
+%   \emph{inputenc}. Der Standardwert ist UTF-8
+%   (\verb|\ldv@defaultinputenc|).
+%
+%    \begin{macrocode}
+\newcommand*\ldv@defaultinputenc{utf8}
+\DeclareOptionX<ldv>{inputenc}[\ldv@defaultinputenc]{\def\ldv@inputenc{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{option}
+% 
+% \begin{option}{lang}
+% \begin{option}{english}
+% \begin{option}{ngerman}
+% \begin{macro}{\ldv@lang}
+%   Mit der Option \emph{lang} kann der Benutzer die Textsprache
+%   einstellen. Der Vorgabewert muss als globale Klassenoption in die
+%   Optionenliste eingetragen werden, damit er von anderen Paketen
+%   (z.B. babel und varioref) genutzt wird. Dadurch dass der
+%   Vorgabewert hier ganz am Anfang der Optionenliste steht,
+%   überschreiben Sprachoptionen des Benutzers diese
+%   Vorgabe. (Tatsächlich lädt Babel alle Sprachen die in der
+%   Optionenliste stehen; die letzte bleibt dann aktiv.)
+%
+%   Diese Klassen laden deutsch und englisch. Deutsch wird im Falle
+%   einer Dissertation für die Titelseite gebraucht. Englisch wird als
+%   zweites geladen, so dass es die standardmäßig aktive Sprache ist.
+%
+%   Das Makro \verb|\ldv@lang| speichert die vom Benutzer zuletzt
+%   ausgewählte Sprache, damit sie nach dem Laden des Babel-Pakets
+%   aktiviert werden kann. Denn Babel aktiviert eine Sprache kein
+%   zweites Mal. Wählt der Benutzer also ngerman mit
+%   \verb|lang=ngerman| aus, bleibt das ohne Effekt. Durch die
+%   zusätzliche Aktivierung weiter unten hat \verb|lang=ngerman| dann
+%   doch den vom Benutzer gewünschten Effekt. 
+%
+%   Die zusätzlichen Optionen \emph{ngerman} und \emph{english} sind
+%   nötig, damit diese Sprachen auch mit dem neuen Mechanismus
+%   behandelt werden.  Das heißt, beide Sprachen werden automatisch
+%   von Babel aufgrund der hier erweiterten Liste an Klassenoptionen
+%   geladen, egal welche Optionen der Benutzer eingibt.  Mit den
+%   zusätzlich deklarierten Optionen ngerman und english werden
+%   Benutzerangaben der Form
+% \begin{verbatim}
+% \documentclass[ngerman]{ldvbook}
+% \documentclass[lang=ngerman,english]{ldvbook}
+% \end{verbatim}
+%   auch korrekt verarbeitet.  Die jeweils zuletzt angegebene Sprache
+%   wird am Dokumentenanfang schließlich aktiviert.
+%
+%    \begin{macrocode}
+\edef\@classoptionslist{ngerman,english,\@classoptionslist}
+\newcommand*\ldv@lang{}
+\DeclareOptionX<ldv>{lang}[english]{%
+  \XKV@addtolist@n\@classoptionslist{#1}%
+  \renewcommand*\ldv@lang{#1}
+}
+\DeclareOptionX<ldv>{english}{%
+  \renewcommand*\ldv@lang{english}
+}
+\DeclareOptionX<ldv>{ngerman}{%
+  \renewcommand*\ldv@lang{ngerman}
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{option}
+% \end{option}
+% \end{option}
+% 
+% \begin{option}{omitpackage}
+%   Die Pakete hyperref und varioref führen manchmal zu
+%   Kompatibilitäts\-problemen mit anderen Paketen. Mit der Option
+%   omitpackage kann man angeben, welches Paket nicht automatisch
+%   geladen werden soll. Die Option kann mehrmals erscheinen, um das
+%   Laden mehrerer Pakete zu verhindern. Beispielsweise bewirkt
+%\begin{verbatim}
+%\documentclass[omitpackage=hyperref,omitpackage=varioref]{ldvbook}
+%\end{verbatim}
+%   dass die Pakete hyperref und varioref nicht automatisch geladen
+%   werden.
+%
+%    \begin{macrocode}
+\newif\ifldv@doloadhyperref
+\ldv@doloadhyperreftrue
+\newif\ifldv@doloadvarioref
+\ldv@doloadvarioreftrue
+\define@choicekey*+{ldv}{omitpackage}[\ldv@choicekeyval\ldv@choicekeynr]{hyperref,varioref}{%
+  \ifcase\ldv@choicekeynr\relax
+    \ldv@doloadhyperreffalse
+  \or
+    \ldv@doloadvarioreffalse
+  \fi
+}{%
+  \ClassWarning{\ClassName}{%
+    You can only omit the packages hyperref and varioref.%
+  }%
+}
+%    \end{macrocode}
+% \end{option}
+% 
+% Als Letztes wird der Mechnismus gesetzt, dass alle Optionen, die von
+% dieser Klassendatei nicht bearbeitet wurden, an die jeweilige
+% \KOMAScript-Klasse weitergeleitet werden. Damit ist das Verhalten
+% für alle Optionen konfiguriert.
+% 
+%    \begin{macrocode}
+\DeclareOptionX*{\PassOptionsToClass{\CurrentOption}{\ldv@komaclass}}
+%    \end{macrocode}
+%
+%
+% \subsubsection{Ausführung der Optionen}
+%
+% In diesem Abschnitt werden zuerst Standardwerte für bestimmte
+% Optionen ausgeführt. Das heißt, dass die jeweils für eine bestimmte
+% Option deklarierte Aktion ausgeführt wird, falls die Option nicht
+% schon vom Benutzer gesetzt wurde. Schließlich verarbeitet der Befehl
+% \verb|\ProcessOptionsX| die Optionenliste des Benutzers.
+%
+%    \begin{macrocode}
+\ExecuteOptionsX<ldv>{%
+  inputenc=\ldv@defaultinputenc,%
+  fontstyle=helvet%
+}
+\ProcessOptionsX<ldv>\relax
+%    \end{macrocode}
+%
+%
+%
+% \subsubsection{Seitenlayout bestimmen}
+% \label{sec:impl:seitenlayout}
+%
+% Falls die Schriftart Helvetica ausgewählt wurde und der Benutzer
+% keinen DIV-Wert vorgegeben hat, stelle ich hier den Wert 9 als
+% Vorgabe ein. Für die anderen Schriften behalten ich den Standardwert
+% 10 der \KOMAScript-Klassen bei.
+%
+%    \begin{macrocode}
+\ifnum\ldv@fontstylenr=2%
+  \ifldv@isDivSet\else
+    \PassOptionsToClass{DIV=9}{\ldv@komaclass}%
+    \ClassInfo{ldvklassen}{Set DIV to 9}%
+  \fi
+\fi
+%    \end{macrocode}
+%
+% Der folgende Code berechnet ähnlich wie die Option DIV=calc der
+% \KOMAScript-Klassen einen Schriftart- und Blattgrößen-abhängigen
+% DIV-Wert, jedoch für eine größere mittlere Zeilenbreite. Dies kann
+% an dieser Stelle aber noch nicht geschehen, weil die
+% Schriftgrößendateien erst von den \KOMAScript-Klassen geladen
+% werden. Bisher kann ich mich nicht geeignet in die
+% \KOMAScript-Klassen einklinken. Deshalb bleibt dieser Code vorerst
+% ungenutzt, auch wenn er schon passende DIV-Werte berechnet.
+%
+% \begin{macro}{\ldv@laxLineWidth}
+% \begin{macro}{\ldv@bcor}
+% \begin{macro}{\ldv@div}
+%   \verb|\ldv@laxLineWidth| speichert die berechnete mittlere
+%   Zeilenlänge für den laxen Berechnungsalgorithmus, \verb|\ldv@bcor|
+%   die vom Benutzer gewünschte Bindekorrektur und \verb|\ldv@div| den
+%   berechneten oder vom Benutzer vorgegebenen DIV-Wert
+%   (Teilungsfaktor für den Satzspiegel).
+%
+%    \begin{macrocode}
+\newlength\ldv@laxLineWidth
+\newlength\ldv@bcor  %% TODO
+\newcount\ldv@div
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ldv@roundeddiv}
+%   Berechnet die gerundete ganzzahlige Division zweier Dimensionen.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@roundeddiv[2]{
+  \newlength\ldv@tempdima
+  \setlength\ldv@tempdima{#1}
+  \divide\ldv@tempdima by#2
+  \ldv@div\ldv@tempdima
+  \ifnum \ldv@div<4
+    \ldv@div=4
+  \else
+    \newlength\ldv@tempdimb
+    \setlength\ldv@tempdimb{#1}%
+    \divide\ldv@tempdimb by\ldv@div
+    \addtolength\ldv@tempdima{\ldv@tempdima}%
+    \addtolength\ldv@tempdima{-\ldv@tempdimb}%
+    \advance\ldv@div by\@ne
+    \setlength\ldv@tempdimb{#1}%
+    \divide\ldv@tempdimb by\ldv@div
+    \ifdim \ldv@tempdima<\ldv@tempdimb
+      \advance\ldv@div by\m@ne
+    \fi
+  \fi
+}
+%    \end{macrocode}
+% \end{macro}
+% 
+%    \begin{macrocode}
+\newif\ifldv@mincl  %% TODO
+\ldv@minclfalse
+%    \end{macrocode}
+% 
+% \begin{macro}{\ldv@getLaxLineWidth}
+%   Der \verb|DIV=calc|-Algorithmus des typearea-Pakets berechnet ein
+%   Seitenlayout für eine optimale mittlere Zeilenbreite von etwas
+%   über 70 Zeichen pro Zeile (\verb|\ta@temp@goodwidth|). Das
+%   entspricht zwar guter typografischer Praxis, führt aber für ein
+%   DIN A4-Blatt zu sehr großen Rändern (DIV-Wert von 8 oder kleiner),
+%   insbesondere bei Helvetica in 11pt.  \verb|\ldv@getLaxLineWidth|
+%   berechnet dagegen eine etwas laxere mittlere Zeilenbreite von etwa
+%   85 Zeichen. Bei CMR führt dies zu einem DIV-Wert von 10. Damit
+%   kann die Berechnungsautomatik für den Seitenspiegel als
+%   Standardeinstellung genutzt werden, weil sie kompatibel mit der
+%   Standardeinstellung der \KOMAScript-Klassen ist.
+%    \begin{macrocode}
+\newcommand*\ldv@getLaxLineWidth{%
+  \settowidth\ldv@laxLineWidth{\normalfont%
+%    \end{macrocode}
+% Zur Bestimmung der mittleren Zeichenlänge berücksichtige ich die
+% Häufig\-keits\-verteilung der Zeichen in der deutschen und
+% englischen Sprache (einschließlich Leerzeichen, beide Verteilungen
+% gemäß http://en.wikipedia.org/ wiki/Letter\_frequencies);
+% Buchstaben, welche hier nicht erscheinen haben, eine Häufigkeit von
+% unter 1\%. Zuerst nun die Buchstabenverteilung in der deutschen
+% Sprache:
+%    \begin{macrocode}
+eeeeeeeeeeeeeeeee nnnnnnnnnn iiiiiiii sssssss rrrrrrr aaaaaaa tttttt ddddd hhhhh uuuu lll ccc ggg mmm ooowwbbffkzv%
+%    \end{macrocode}
+% Dann die Verteilung in der englischen Sprache:
+%    \begin{macrocode}
+eeeeeeeeeeeee ttttttttt aaaaaaaa oooooooo iiiiiii nnnnnnn ssssss hhhhhh rrrrrr dddd llll ccc uuu mm ww ff gg yy pp bvk}%
+%    \end{macrocode}
+% Nun skaliere ich die gewonnene Breite noch so, dass ich bei der
+% normalen \LaTeX-Schrift (Computer Modern Serif) einen DIV-Faktor von
+% 10 erhalten (Standardeinstellung von \KOMAScript\ bei DIN A4 und
+% 11pt) und bei der Helvetica den DIV-Wert 9. Damit erhalte ich in
+% verschiedenen Tests 85--87 Zeichen pro Zeile.
+%    \begin{macrocode}
+  \setlength\ldv@laxLineWidth{.38\ldv@laxLineWidth}%
+}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\ldv@getDIV}
+%   Bestimmt einen geeigneten DIV-Faktor in Abhängigkeit von der
+%   Schrift und den Papiermaßen. Das Ergebnis schreibt
+%   \verb|\ldv@getDIV| dann in das Makro \verb|\ldv@div|.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@getDIV{%
+%    \end{macrocode}
+% Das wesentliche Problem der DIV-Wert-Berechung ist die Berechnung
+% der Streifenbreite. Dazu bestimme ich am Anfang die gesamte
+% Randbreite aus linkem und rechten Rand.
+%    \begin{macrocode}
+  \newlength\ldv@hBandWidth%
+  \setlength\ldv@hBandWidth{\paperwidth}%
+  \addtolength\ldv@hBandWidth{-\ldv@bcor}%
+  \addtolength\ldv@hBandWidth{-\ldv@laxLineWidth}%
+  \if@twocolumn%
+    \addtolength\ldv@hBandWidth{-\columnsep}%
+    \addtolength\ldv@hBandWidth{-\ldv@laxLineWidth}%
+  \fi%
+%    \end{macrocode}
+% Der Rand soll aus drei Streifen bestehen.
+%    \begin{macrocode}
+  \divide\ldv@hBandWidth by3%
+%    \end{macrocode}
+% Laut dem Quellcode des typearea-Pakets schrumpft die Streifenbreite
+% auf 75\%, wenn die Randnotizen in den Satzspiegel eingeschlossen
+% werden sollen.
+%    \begin{macrocode}
+  \ifldv@mincl%
+    \setlength\ldv@hBandWidth{.75\ldv@hBandWidth}%
+  \fi%
+%    \end{macrocode}
+% Ein Streifen soll aber immer mindestens 5\,mm breit sein. 
+%    \begin{macrocode}
+  \ifdim \ldv@hBandWidth <5mm%
+    \setlength\ldv@hBandWidth{5mm}%
+  \fi%
+%    \end{macrocode}
+% Jetzt steht die Streifenbreite abschließend fest. Daraus ergibt sich
+% durch eine gerundete Ganzzahldivision der DIV-Faktor (in
+% \verb|\ldv@div|).
+%    \begin{macrocode}
+  \ldv@roundeddiv{\paperwidth}{\ldv@hBandWidth}%
+  \ClassInfo{ldvklassen}{Computed DIV=\the\ldv@div.}%
+}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\ldv@autotypearea}
+%   Stellt einen geeigneten Satzspiegel in Abhängigkeit der Schrift
+%   und der Papiermaße ein.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@autotypearea{%
+  \ldv@getLaxLineWidth%
+  \ldv@getDIV%
+  \PassOptionsToClass{DIV=\ldv@div}{ldv@komaclass}
+}
+%% Das ist hier noch nicht möglich, weil die Schriftgröße noch nicht
+%% eingestellt ist.
+%% \ldv@autotypearea
+%    \end{macrocode}
+% \end{macro}
+% 
+%
+%
+% \subsubsection{Laden der Basisklasse}
+%
+% Nun wurden alle Optionen verarbeitet und unsere Klassendatei
+% konfiguriert. Jetzt können wir die \KOMAScript-Klassendatei laden,
+% auf die wir aufbauen. Dabei werden -- wie in
+% Kapitel~\ref{sec:deklaration-optionen} bereits beschrieben -- die
+% von uns nicht verarbeiteten Optionen an diese Klasse weitergereicht.
+%
+%    \begin{macrocode}
+\LoadClass{\ldv@komaclass}
+%    \end{macrocode}
+%
+%
+% \subsection{Kodierung und Sprache}
+%
+% In dieser Klassendatei laden wir viele Pakete, um dem Benutzer das
+% Leben einfacher zu machen. Er soll eine komfortable Umgebung einfach
+% nur mit der Zeile
+%
+% \verb|\documentclass{ldvarticle}|
+%
+% \noindent erhalten. Deshalb werden in den folgenden Kapiteln alle
+% Pakete geladen, die wir als "`Standard"' ansehen.
+%
+% Dazu gehören alle "`Sprachpakete"', also Zeichenkodierung,
+% Schriftenkodierung und "`Kodierung der menschlichen Sprache"'. Der
+% Vorgabewert für die Zeichenkodierung ist UTF-8 (siehe
+% Kapitel~\ref{sec:deklaration-optionen}), für die Sprache
+% Englisch. Über die Klassenoptionen kann der Autor andere Werte
+% einstellen. Die Übergabe der Sprache an das babel-Paket erfolgt über
+% die globalen Klassenoptionen. So wirkt sie sich auch auf das
+% varioref-Paket aus (siehe Kapitel~\ref{sec:verweise}).
+%
+% Der Aufruf von \verb|\main@language| nach dem Laden des Babel-Pakets
+% stellt die Standardsprache ein, welche bei \verb|\begin{document}|
+% geladen wird. Dies ist der in der Babel-Dokumentation empfohlene
+% Weg für Autoren von Sprachpaketen. \verb|\ldv@lang| enthält die
+% Sprache, welche vom Benutzer zuletzt angegeben wurde.
+%
+%    \begin{macrocode}
+\RequirePackage[\ldv@inputenc]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{babel}
+\ifx\ldv@lang\@empty\else\expandafter\main@language\expandafter{\ldv@lang}\fi
+%    \end{macrocode}
+%
+%
+%
+%
+% \subsection{Strukturbefehle für Fließtext}
+%
+% Bei der Textauszeichnung benötigen Autoren häufig verbesserte
+% Funktionen und mehr Flexibilität im Bereich der Tabellen und der
+% Darstellung von vorformatierten Text (z.B. Quellcode). Dazu laden
+% wir die Standardpakete \emph{array} und \emph{fancyvrb}.
+%
+%    \begin{macrocode}
+\RequirePackage{array}
+\RequirePackage{fancyvrb}
+\fvset{xleftmargin=2em}
+%    \end{macrocode}
+% 
+%
+% \begin{macro}{\emphemph}
+%   \LaTeX\ besitzt ein Makro, um Text einfach hervorzuheben. Häufig
+%   ist aber ein zweistufige Betonung erwünscht -- ähnlich dem
+%   Textmodell von HTML. Beispielsweise könnte \verb|\emph| den Text
+%   kursiv darstellen und \verb|\emphemph| -- die zweite Stufe -- in
+%   blauer Farbe. Für den Schwarz-Weiß-Druck ist die Vorgabe hier
+%   Fettdruck.
+%
+%    \begin{macrocode}
+\newcommand\emphemph[1]{{\bfseries#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\simpleverb}
+%   Der Befehl zum Darstellen von direkt formatierten Text,
+%   \verb|\verb|, kann nicht in Überschrift, Bildunterschriften und
+%   ähnlichem verwendet werden. Deshalb braucht man einen
+%   Ersatzbefehl, der zwar nicht das direkte Verhalten nachbilden
+%   kann, aber zumindest das Ausssehen des Textes.
+%
+%    \begin{macrocode}
+\newcommand\simpleverb[1]{{\ttfamily#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{environment}{note}
+% \begin{macro}{\notename}
+%   Die \verb|note|-Umgebung kann dazu verwendet werden, eine
+%   abgesetzte Passage/Bemerkung beispielsweise am Ende eines
+%   Abschnitts abzudrucken. Der Name dieses Abschnitts kann durch den
+%   optionalen Parameter bestimmt werden. Der Vorgabewert "`Note"' ist
+%   sprachabhängig durch Babel realisiert.
+%
+%    \begin{macrocode}
+\newcommand*\notename{Note}
+\addto\captionsngerman{%
+  \renewcommand*\notename{Bemerkung}%
+}
+\addto\captionsgerman{%
+  \renewcommand*\notename{Bemerkung}%
+}
+\addto\captionsenglish{%
+  \renewcommand*\notename{Note}%
+}
+\newenvironment{note}[1][\notename]{%
+  \vspace{\baselineskip}%
+  \noindent\small{\usekomafont{sectioning}#1:}\hspace{.5em}%
+}{}
+%    \end{macrocode}
+% \end{macro}
+% \end{environment}
+%
+%
+%
+%
+% \subsection{Grafik}
+%
+% Zuerst werden die Standardpakete für den Umgang mit Farben und
+% Bildern geladen. Sie werden von vielen Autoren genutzt und stellen
+% heutzutage eine Basisfunktionalität in der Textverarbeitung dar.
+%
+%    \begin{macrocode}
+\RequirePackage{color}
+\RequirePackage{graphicx}
+%    \end{macrocode}
+%
+% \begin{macro}{\graphicswidth}
+% \begin{macro}{\graphicswidthtwo}
+%   Alle fließenden Abbildungen eines Typs sollten in einem Dokument
+%   immer die gleiche Breite haben. Dazu stellen diese
+%   Dokumentenklassen für die beiden üblichen Konstellationen
+%   Längen-Makros zur Verfügung: \verb|\graphicswidth| ist die
+%   passende Breite, wenn eine Abbildung in der Fließumgebung ist
+%   (also über die ganze Breite abzüglich eines kleinen Rands von
+%   2em). Beinhaltet die Fließumgebung zwei Grafiken nebeneinander, so
+%   sollen sie die Breite \verb|\graphicswidthtwo| erhalten und einen
+%   Zwischenabstand von 2em.
+%
+%    \begin{macrocode}
+\newlength\graphicswidth
+\setlength\graphicswidth{\columnwidth}
+\addtolength\graphicswidth{-4\parindent}
+\newlength\graphicswidthtwo
+\setlength\graphicswidthtwo{.5\columnwidth}
+\addtolength\graphicswidthtwo{-3\parindent}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% Bildunterschriften sollen gleich breit wie Abbildungen
+% sein. Zusätzlich formatiere ich sie noch etwas um: Hervorgehobene
+% Bildbezeichnungen, aber ohne Einzug.
+%
+%    \begin{macrocode}
+%\setcapwidth[c]{\graphicswidth}
+\setcapindent{0pt}
+\setkomafont{caption}{\small}
+\setkomafont{captionlabel}{\usekomafont{sectioning}}
+%    \end{macrocode}
+% 
+% \begin{macro}{TUMBlau}
+% \begin{macro}{TUMBlau1}
+% \begin{macro}{TUMBlau2}
+% \begin{macro}{TUMBlau3}
+% \begin{macro}{TUMBlau4}
+% \begin{macro}{TUMBlau5}
+% \begin{macro}{TUMDunkelgrau}
+% \begin{macro}{TUMMittelgrau}
+% \begin{macro}{TUMHellgrau}
+% \begin{macro}{TUMGruen}
+% \begin{macro}{TUMOrange}
+% \begin{macro}{TUMElfenbein}
+%   Die Farben der TUM Corporate Identity können als Hintergrund von
+%   Boxen oder als Textumrandung verwendet werden. Sie sind hier
+%   vordefiniert mit den Namen, die der Corporate Identity Reference
+%   Guide nennt.
+%
+%    \begin{macrocode}
+\definecolor{TUMBlau}       {cmyk}{1.00,0.43,0.00,0.00}
+\definecolor{TUMBlau1}      {cmyk}{1.00,0.57,0.12,0.70}
+\definecolor{TUMBlau2}      {cmyk}{1.00,0.54,0.04,0.19}
+\definecolor{TUMBlau3}      {cmyk}{0.90,0.48,0.00,0.00}
+\definecolor{TUMBlau4}      {cmyk}{0.65,0.19,0.01,0.04}
+\definecolor{TUMBlau5}      {cmyk}{0.42,0.09,0.00,0.00}
+\definecolor{TUMDunkelgrau} {cmyk}{0.00,0.00,0.00,0.80}
+\definecolor{TUMMittelgrau} {cmyk}{0.00,0.00,0.00,0.50}
+\definecolor{TUMHellgrau}   {cmyk}{0.00,0.00,0.00,0.20}
+\definecolor{TUMGruen}      {cmyk}{0.35,0.00,1.00,0.20}
+\definecolor{TUMOrange}     {cmyk}{0.00,0.65,0.95,0.00}
+\definecolor{TUMElfenbein}  {cmyk}{0.03,0.04,0.14,0.08}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+%
+%
+%
+% \subsection{Layout}
+% \label{sec:layout}
+%
+% \begin{macro}{\ldv@setfontstyle}
+%   Mit dem Makro \verb|\ldv@setfontstyle| kann der Benutzer eine von
+%   drei Schriftkombinationen auswählen:
+%   \begin{description}
+%   \item[serif] Normale \LaTeX-Schriften mit der Serifenschrift für
+%     Fließtext und Überschriften.
+%   \item[sans] Normale \LaTeX-Schriften aber mit der serifenlosen
+%     Schrift für Fließtext und Überschriften.
+%   \item[helvet] Helvetica für Fließtext und Überschriften. Auch die
+%     Times wird geladen. Auf die Courier habe ich dagegen verzichtet,
+%     weil die entsprechende \LaTeX-Schrift für meine Begriffe besser
+%     ins Schriftbild passt. Das typearea-Paket verlangt bei der
+%     Verwendung der Option scaled=0.92 des helvet-Pakets einen
+%     niedrigeren DIV-Wert (z.B. bei Schriftgröße 11pt statt 10 nur
+%     9). Kann ich zu einem solch späten Zeitpunkt die Defaults
+%     umbiegen? Wohl kaum. Muss irgendwo am Anfang passieren.
+%   \end{description}
+%
+%   Der Übergabewert kann auch leer sein, dann passiert gar nichts.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@setfontstyle{%
+  \ifcase\ldv@fontstylenr\relax%
+    \renewcommand\familydefault{\rmdefault}%
+  \or%
+    \renewcommand\familydefault{\sfdefault}%
+  \or%
+    \RequirePackage[scaled=0.92]{helvet}%
+    \renewcommand\familydefault{\sfdefault}%
+    \RequirePackage{sfmath}
+%    \RequirePackage{mathptmx}%
+  \fi%
+  % The following font definitions are taken from the KOMA-Script
+  % classes. Only the '\sffamily' command is left out.
+  \setkomafont{disposition}{\normalcolor\bfseries}%
+  \setkomafont{descriptionlabel}{\normalcolor\itshape}%
+  \setkomafont{dictum}{\normalfont\normalcolor\small}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% Mit obigem Befehl kann die Schrift gemäß den Klassenoptionen
+% eingestellt werden.
+%
+%    \begin{macrocode}
+\ldv@setfontstyle
+%    \end{macrocode}
+% 
+% Erfahrungsgemäß muss in vielen Dokumenten der \verb|\tolerance|-Wert
+% angepasst werden, um übervolle horizontale Boxen zu vermeiden. Der
+% Standardwert von \LaTeX\ ist etwas zu streng eingestellt. Im
+% Folgenden benutze ich die Einstellungen von Axel Reichert
+% (http://groups.google.com/group/de.comp.text.tex/msg/c375ef11e78e7bfa).
+%
+%    \begin{macrocode}
+\tolerance=1414
+\hbadness=1414
+\emergencystretch=1.5em
+\hfuzz=0.3pt
+\widowpenalty=10000
+\vfuzz\hfuzz
+\raggedbottom
+%    \end{macrocode} 
+%
+%
+%
+%
+% \subsection{Mathematik}
+%
+% Die AMS-Pakete für den Mathematik-Satz sind mittlerweile der
+% absolute Standard unter \LaTeX. Das Basispaket \emph{amsmath} lädt
+% einige weitere spezielle AMS-Pakete. Lediglich \emph{amssymb}
+% benötigen wir noch für eine größere Vielfalt an Symbolen.
+%
+%    \begin{macrocode}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+%    \end{macrocode}
+% 
+% 
+% \begin{environment}{definition}
+% \begin{environment}{theorem}
+% \begin{environment}{proof}
+% \begin{macro}{\definitionname}
+% \begin{macro}{\theoremname}
+%   Standard-\LaTeX\ bietet zwar die \verb|\theorem|-Umgebung, aber
+%   die genügt häufig nicht und ist etwas unflexibel. Mit den Mitteln
+%   des AMS-Pakets können wir leicht jeweils eine Umgebung für die
+%   mathematischen Standardsätze anbieten: Der Definition, dem Satz
+%   und dem zugehörigen Beweis. Alle drei sind für Englisch und
+%   Deutsch lokalisiert.
+%
+%    \begin{macrocode}
+\newcommand*\definitionname{Definition}
+\newcommand*\theoremname{Theorem}
+\addto\captionsngerman{%
+  \renewcommand*\definitionname{Definition}%
+  \renewcommand*\theoremname{Satz}%
+}
+\addto\captionsgerman{%
+  \renewcommand*\definitionname{Definition}%
+  \renewcommand*\theoremname{Satz}%
+}
+\addto\captionsenglish{%
+  \renewcommand*\definitionname{Definition}%
+  \renewcommand*\theoremname{Theorem}%
+}
+\newtheorem{definition}{\definitionname}
+\newtheorem{theorem}{\theoremname}
+\newtheorem{proof}{\proofname}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{environment}
+% \end{environment}
+% \end{environment}
+% 
+%
+%
+%
+% \subsection{Verweise}
+% \label{sec:verweise}
+%
+% Querverbindungen aufzuzeigen ist in der wissenschaftlichen Arbeit
+% sehr wichtig. Deshalb sollen diese Dokumentenklassen die
+% verschiedenen Formen von Online- und Offline-Verweisen gut
+% unterstützen.
+% 
+% Moderne Literaturverweise ermöglicht das Paket \emph{natbib}
+% (Natural Sciences Citations und References). Es ist weitreichend
+% konfigurierbar und bietet neben den üblichen numerischen
+% Verweisformen auch die Autor-Jahr-Form. Natbib muss vor dem
+% hyperref-Paket geladen werden. 
+%
+% Als \BibTeX-Stil verwenden diese Dokumentenklassen den eigenen Stil
+% \emph{ldv} als Voreinstellung. Er unterstützt neben den üblichen
+% Feldern auch ISBN-, ISSN-, DOI- und URL-Angaben. Mit dem
+% \verb|language|-Feld kann man die Silbentrennung einer anderen
+% Sprache für den Titel wählen. Die Kombination aus dem
+% ldv-\BibTeX-Stil und den LDV-Dokumentenklassen setzt darüber hinaus
+% das Literaturverzeichnis automatisch in der aktiven
+% Dokumentensprache, indem sie sich in den Babel-Mechanismus
+% integrieren.
+%
+% Die folgenden Codeblöcke integrieren natbib in diese
+% Dokumentenklassen, passen das Paket an die eigenen Wünsche an,
+% setzen automatisch den \BibTeX-Stil und integrieren die Sprache des
+% Literaturverzeichnisses in den babel-Mechanismus.
+%
+%    \begin{macrocode}
+\RequirePackage{natbib}
+%    \end{macrocode}
+% 
+% \begin{macro}{\cite}
+%   Weil die Klammerung der Verweise beim natbib-Paket anders ist als
+%   in Standard-\LaTeX, definiere ich sie in eine kompatible Form um:
+%
+%    \begin{macrocode}
+\renewcommand*\cite{\citep}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ldv@latex@bibliographystyle}
+% \begin{macro}{\ifldv@bibstyleset}
+% \begin{macro}{\ldv@bibstylesetfalse}
+% \begin{macro}{\ldv@bibstylesettrue}
+% \begin{macro}{\ldv@latex@bibliography}
+%   Diese Klassendateien sollen ein sinnvolles Vorgabedesign
+%   anbieten. Dazu gehört auch der ldv-Bibliographiestil. Dieser Stil
+%   soll aber jederzeit vom Benutzer überschrieben werden können. Weil
+%   der Befehl \verb|\bibliographystyle| nur einmal aufgerufen werden
+%   darf, kann der Benutzer einen vorherigen Aufruf in den
+%   Dokumentenklassen nicht einfach überschreiben. Deshalb prüft der
+%   erneuerte Befehl \verb|\bibliography| mittels
+%   \verb|\ifldv@bibstyleset|, ob der Benutzer bereits einen
+%   Bibliographiestil gesetzt hat. Falls nicht, stellt er ldv.bst als
+%   \BibTeX-Stil ein. Der veränderte Befehl \verb|\bibliographystyle|
+%   setzt beim gleich beim ersten Aufruf \verb|\ifldv@bibstyleset| auf
+%   wahr.
+%
+%    \begin{macrocode}
+\newif\ifldv@bibstyleset
+\let\ldv@latex@bibliographystyle=\bibliographystyle
+\renewcommand*\bibliographystyle[1]{%
+  \ldv@latex@bibliographystyle{#1}\ldv@bibstylesettrue%
+}
+\let\ldv@latex@bibliography=\bibliography
+\renewcommand*\bibliography[1]{%
+  \ifldv@bibstyleset\else\bibliographystyle{ldv}\fi%
+  \ldv@latex@bibliography{#1}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{bibstyle@ldvplain}
+%   In natbib kann man zu jedem Bibliographiestil auch einen
+%   Zitierstil angeben. Für unseren Bibliographiestil soll es zwei
+%   Zitierstile geben. Standardmäßig soll \LaTeX das Autor-Jahr-Schema
+%   verwenden (Zitierstil \emph{ldv}). Wahlweise kann der Benutzer
+%   aber auch das numerische Schema \emph{ldvplain} einstellen. natbib
+%   bietet dafür den Befehl \verb|citestyle}| an.
+%
+%    \begin{macrocode}
+\newcommand\bibstyle@ldv{%
+  \setcitestyle{authoryear,round,comma,aysep={,}, yysep={,},notesep={, }}%
+}
+\newcommand\bibstyle@ldvplain{%
+  \setcitestyle{numbers,square,comma,aysep={,}, yysep={,},notesep={, }}%
+  \renewcommand*\bibnumfmt[1]{##1.}%
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\bbland}
+% \begin{macro}{\bblandsep}
+% \begin{macro}{\bblandsepauthor}
+% \begin{macro}{\bbletal}
+% \begin{macro}{\bbleditors}
+% \begin{macro}{\bbleds}
+% \begin{macro}{\bbleditor}
+% \begin{macro}{\bbled}
+% \begin{macro}{\bbledby}
+% \begin{macro}{\bbledition}
+% \begin{macro}{\bbledn}
+% \begin{macro}{\bblvolume}
+% \begin{macro}{\bblvol}
+% \begin{macro}{\bblof}
+% \begin{macro}{\bblnumber}          
+% \begin{macro}{\bblno}
+% \begin{macro}{\bblin}
+% \begin{macro}{\bblpages}            
+% \begin{macro}{\bblpp}
+% \begin{macro}{\bblpage}              
+% \begin{macro}{\bblp}
+% \begin{macro}{\bbleidpp}
+% \begin{macro}{\bblchapter}        
+% \begin{macro}{\bblchap}
+% \begin{macro}{\bbltechreport}
+% \begin{macro}{\bbltechrep}
+% \begin{macro}{\bblmthesis}
+% \begin{macro}{\bblphdthesis}
+% \begin{macro}{\bblfirst}            
+% \begin{macro}{\bblfirsto}
+% \begin{macro}{\bblsecond}          
+% \begin{macro}{\bblsecondo}
+% \begin{macro}{\bblthird}            
+% \begin{macro}{\bblthirdo}
+% \begin{macro}{\bblfourth}          
+% \begin{macro}{\bblfourtho}
+% \begin{macro}{\bblfifth}            
+% \begin{macro}{\bblfiftho}
+% \begin{macro}{\bblst}  
+% \begin{macro}{\bblnd}  
+% \begin{macro}{\bblrd}
+% \begin{macro}{\bblth}
+% \begin{macro}{\bbljan}  
+% \begin{macro}{\bblfeb}  
+% \begin{macro}{\bblmar}
+% \begin{macro}{\bblapr}    
+% \begin{macro}{\bblmay}       
+% \begin{macro}{\bbljun}
+% \begin{macro}{\bbljul}     
+% \begin{macro}{\bblaug}    
+% \begin{macro}{\bblsep}
+% \begin{macro}{\bbloct}  
+% \begin{macro}{\bblnov}  
+% \begin{macro}{\bbldec}
+%   Das Literaturverzeichnis ist mit den folgenden Makros gesetzt. Sie
+%   müssen mittels des babel-Mechnismus auf Begriffe in der aktuellen
+%   Sprache gesetzt werden. Dies ermöglichen die folgenden Zeilen.
+%
+%    \begin{macrocode}
+\newcommand*\bbland{and}
+\newcommand*\bblandsep{,}
+\newcommand*\bblandsepauthor{,}
+\newcommand*\bbletal{et~al.}
+\newcommand*\bbleditors{editors}
+\newcommand*\bbleds{eds.}
+\newcommand*\bbleditor{editor}
+\newcommand*\bbled{ed.}
+\newcommand*\bbledby{edited by}
+\newcommand*\bbledition{edition}
+\newcommand*\bbledn{edn.}
+\newcommand*\bblvolume{volume}
+\newcommand*\bblvol{vol.}
+\newcommand*\bblof{of}
+\newcommand*\bblnumber{number}          
+\newcommand*\bblno{no.}
+\newcommand*\bblin{in}
+\newcommand*\bblpages{pages}            
+\newcommand*\bblpp{pp.}
+\newcommand*\bblpage{page}              
+\newcommand*\bblp{p.}
+\newcommand*\bbleidpp{pages}
+\newcommand*\bblchapter{chapter}        
+\newcommand*\bblchap{chap.}
+\newcommand*\bbltechreport{Technical Report}
+\newcommand*\bbltechrep{Tech. Rep.}
+\newcommand*\bblmthesis{Master's thesis}
+\newcommand*\bblphdthesis{Ph.D. thesis}
+\newcommand*\bblfirst{First}            
+\newcommand*\bblfirsto{1st}
+\newcommand*\bblsecond{Second}          
+\newcommand*\bblsecondo{2nd}
+\newcommand*\bblthird{Third}            
+\newcommand*\bblthirdo{3rd}
+\newcommand*\bblfourth{Fourth}          
+\newcommand*\bblfourtho{4th}
+\newcommand*\bblfifth{Fifth}            
+\newcommand*\bblfiftho{5th}
+\newcommand*\bblst{st}  
+\newcommand*\bblnd{nd}  
+\newcommand*\bblrd{rd}
+\newcommand*\bblth{th}
+\newcommand*\bbljan{January}  
+\newcommand*\bblfeb{February}  
+\newcommand*\bblmar{March}
+\newcommand*\bblapr{April}    
+\newcommand*\bblmay{May}       
+\newcommand*\bbljun{June}
+\newcommand*\bbljul{July}     
+\newcommand*\bblaug{August}    
+\newcommand*\bblsep{September}
+\newcommand*\bbloct{October}  
+\newcommand*\bblnov{November}  
+\newcommand*\bbldec{December}
+\addto\captionsngerman{%
+  \renewcommand*\bbland{und}
+  \renewcommand*\bblandsep{}
+  \renewcommand*\bblandsepauthor{}
+  \renewcommand*\bbletal{et~al.}
+  \renewcommand*\bbleditors{Herausgeber}
+  \renewcommand*\bbleds{Hrsg.}
+  \renewcommand*\bbleditor{Herausgeber}
+  \renewcommand*\bbled{Hrsg.}
+  \renewcommand*\bbledby{herausgegeben von}
+  \renewcommand*\bbledition{Auf\/lage}
+  \renewcommand*\bbledn{Aufl.}
+  \renewcommand*\bblvolume{Band}
+  \renewcommand*\bblvol{Bd.}
+  \renewcommand*\bblof{von}
+  \renewcommand*\bblnumber{Nummer}
+  \renewcommand*\bblno{Nr.}
+  \renewcommand*\bblin{in}
+  \renewcommand*\bblpages{Seiten}            
+  \renewcommand*\bblpp{S.}
+  \renewcommand*\bblpage{Seite}              
+  \renewcommand*\bblp{S.}
+  \renewcommand*\bbleidpp{Seiten}
+  \renewcommand*\bblchapter{Kapitel}
+  \renewcommand*\bblchap{Kap.}
+  \renewcommand*\bbltechreport{Technischer Bericht}
+  \renewcommand*\bbltechrep{Techn. Ber.}
+  \renewcommand*\bblmthesis{Masterarbeit}
+  \renewcommand*\bblphdthesis{Dissertation}
+  \renewcommand*\bblfirst{Erste}
+  \renewcommand*\bblfirsto{1.}
+  \renewcommand*\bblsecond{Zweite}
+  \renewcommand*\bblsecondo{2.}
+  \renewcommand*\bblthird{Dritte}            
+  \renewcommand*\bblthirdo{3.}
+  \renewcommand*\bblfourth{Vierte}          
+  \renewcommand*\bblfourtho{4.}
+  \renewcommand*\bblfifth{F\^^b{u}nfte}            
+  \renewcommand*\bblfiftho{5.}
+  \renewcommand*\bblst{.}  
+  \renewcommand*\bblnd{.}  
+  \renewcommand*\bblrd{.}
+  \renewcommand*\bblth{.}
+  \renewcommand*\bbljan{Januar}
+  \renewcommand*\bblfeb{Februar}  
+  \renewcommand*\bblmar{M\^^b{a}rz}
+  \renewcommand*\bblapr{April}
+  \renewcommand*\bblmay{Mai}       
+  \renewcommand*\bbljun{Juni}
+  \renewcommand*\bbljul{Juli}     
+  \renewcommand*\bblaug{August}    
+  \renewcommand*\bblsep{September}
+  \renewcommand*\bbloct{Oktober}  
+  \renewcommand*\bblnov{November}  
+  \renewcommand*\bbldec{Dezember}
+}
+\addto\captionsgerman{%
+  \renewcommand*\bbland{und}
+  \renewcommand*\bblandsep{}
+  \renewcommand*\bblandsepauthor{}
+  \renewcommand*\bbletal{et~al.}
+  \renewcommand*\bbleditors{Herausgeber}
+  \renewcommand*\bbleds{Hrsg.}
+  \renewcommand*\bbleditor{Herausgeber}
+  \renewcommand*\bbled{Hrsg.}
+  \renewcommand*\bbledby{herausgegeben von}
+  \renewcommand*\bbledition{Auf\/lage}
+  \renewcommand*\bbledn{Aufl.}
+  \renewcommand*\bblvolume{Band}
+  \renewcommand*\bblvol{Bd.}
+  \renewcommand*\bblof{von}
+  \renewcommand*\bblnumber{Nummer}
+  \renewcommand*\bblno{Nr.}
+  \renewcommand*\bblin{in}
+  \renewcommand*\bblpages{Seiten}            
+  \renewcommand*\bblpp{S.}
+  \renewcommand*\bblpage{Seite}              
+  \renewcommand*\bblp{S.}
+  \renewcommand*\bbleidpp{Seiten}
+  \renewcommand*\bblchapter{Kapitel}
+  \renewcommand*\bblchap{Kap.}
+  \renewcommand*\bbltechreport{Technischer Bericht}
+  \renewcommand*\bbltechrep{Techn. Ber.}
+  \renewcommand*\bblmthesis{Masterarbeit}
+  \renewcommand*\bblphdthesis{Dissertation}
+  \renewcommand*\bblfirst{Erste}
+  \renewcommand*\bblfirsto{1.}
+  \renewcommand*\bblsecond{Zweite}
+  \renewcommand*\bblsecondo{2.}
+  \renewcommand*\bblthird{Dritte}            
+  \renewcommand*\bblthirdo{3.}
+  \renewcommand*\bblfourth{Vierte}          
+  \renewcommand*\bblfourtho{4.}
+  \renewcommand*\bblfifth{F\^^b{u}nfte}            
+  \renewcommand*\bblfiftho{5.}
+  \renewcommand*\bblst{.}  
+  \renewcommand*\bblnd{.}  
+  \renewcommand*\bblrd{.}
+  \renewcommand*\bblth{.}
+  \renewcommand*\bbljan{Januar}
+  \renewcommand*\bblfeb{Februar}  
+  \renewcommand*\bblmar{M\^^b{a}rz}
+  \renewcommand*\bblapr{April}
+  \renewcommand*\bblmay{Mai}       
+  \renewcommand*\bbljun{Juni}
+  \renewcommand*\bbljul{Juli}     
+  \renewcommand*\bblaug{August}    
+  \renewcommand*\bblsep{September}
+  \renewcommand*\bbloct{Oktober}  
+  \renewcommand*\bblnov{November}  
+  \renewcommand*\bbldec{Dezember}
+}
+\addto\captionsenglish{%
+  \renewcommand*\bbland{and}
+  \renewcommand*\bblandsep{,}
+  \renewcommand*\bblandsepauthor{,}
+  \renewcommand*\bbletal{et~al.}
+  \renewcommand*\bbleditors{editors}
+  \renewcommand*\bbleds{eds.}
+  \renewcommand*\bbleditor{editor}
+  \renewcommand*\bbled{ed.}
+  \renewcommand*\bbledby{edited by}
+  \renewcommand*\bbledition{edition}
+  \renewcommand*\bbledn{edn.}
+  \renewcommand*\bblvolume{volume}
+  \renewcommand*\bblvol{vol.}
+  \renewcommand*\bblof{of}
+  \renewcommand*\bblnumber{number}          
+  \renewcommand*\bblno{no.}
+  \renewcommand*\bblin{in}
+  \renewcommand*\bblpages{pages}            
+  \renewcommand*\bblpp{pp.}
+  \renewcommand*\bblpage{page}              
+  \renewcommand*\bblp{p.}
+  \renewcommand*\bbleidpp{pages}
+  \renewcommand*\bblchapter{chapter}        
+  \renewcommand*\bblchap{chap.}
+  \renewcommand*\bbltechreport{Technical Report}
+  \renewcommand*\bbltechrep{Tech. Rep.}
+  \renewcommand*\bblmthesis{Master's thesis}
+  \renewcommand*\bblphdthesis{Ph.D. thesis}
+  \renewcommand*\bblfirst{First}            
+  \renewcommand*\bblfirsto{1st}
+  \renewcommand*\bblsecond{Second}          
+  \renewcommand*\bblsecondo{2nd}
+  \renewcommand*\bblthird{Third}            
+  \renewcommand*\bblthirdo{3rd}
+  \renewcommand*\bblfourth{Fourth}          
+  \renewcommand*\bblfourtho{4th}
+  \renewcommand*\bblfifth{Fifth}            
+  \renewcommand*\bblfiftho{5th}
+  \renewcommand*\bblst{st}  
+  \renewcommand*\bblnd{nd}  
+  \renewcommand*\bblrd{rd}
+  \renewcommand*\bblth{th}
+  \renewcommand*\bbljan{January}  
+  \renewcommand*\bblfeb{February}  
+  \renewcommand*\bblmar{March}
+  \renewcommand*\bblapr{April}    
+  \renewcommand*\bblmay{May}       
+  \renewcommand*\bbljun{June}
+  \renewcommand*\bbljul{July}     
+  \renewcommand*\bblaug{August}    
+  \renewcommand*\bblsep{September}
+  \renewcommand*\bbloct{October}  
+  \renewcommand*\bblnov{November}  
+  \renewcommand*\bbldec{December}
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+% Das eher unbekannte Paket \emph{varioref} bietet vor allem den
+% Befehl \verb|\vref|, der wie \verb|\ref| benutzt wird und einen
+% intelligenten Verweis erzeugt -- zum Beispiel "`Abbildung 4.1 auf
+% der vorherigen Seite"'.
+%
+% \emph{hyperref} und \emph{varioref} vertragen sich jedoch nicht
+% vollständig. Das beste Vorgehen soll laut der Dokumentation zu
+% hyperref sein, dass man \emph{nameref}, welches zu hyperref gehört,
+% bereits vor varioref lädt. Aber selbst dann sollen noch vereinzelte
+% Ungereimtheiten verbleiben. Die Optionen zum hyperref-Paket unten
+% unterdrücken die Umrandung um Link-Text.
+%
+%    \begin{macrocode}
+\ifldv@doloadhyperref%
+\RequirePackage{nameref}
+\fi
+\ifldv@doloadvarioref%
+\RequirePackage{varioref}
+\fi
+\ifldv@doloadhyperref%
+\RequirePackage[pdfborder={0 0 0}]{hyperref}
+\fi
+%    \end{macrocode}
+%
+%
+%
+%
+% \subsection{Metainformationen}
+%
+
+%
+% \subsubsection{Autor}
+%
+% \begin{macro}{\authorwithand}
+%   Im Autor-Makro werden mehrere Autoren durch das Makro \verb|\and|
+%   getrennt. Mit dem Makro \verb|\authorwithand| können die Autoren
+%   komfortabel mit einem beliebigen Trennzeichen (Wert von
+%   \verb|\and|) gedruckt werden. Das Makro unterdrückt die Angaben in
+%   \verb|\thanks|.
+%
+%    \begin{macrocode}
+\newcommand*\authorwithand[1]{%
+  \let\tempand=\and%
+  \renewcommand*\and{#1}%
+  \let\tempthanks=\thanks%
+  \renewcommand*\thanks[1]{}%
+  \@author%
+  \let\and=\tempand%
+  \let\thanks=\tempthanks%
+}
+%    \end{macrocode}
+%   
+% \end{macro}
+%
+% \subsubsection{Schlüsselwörter}
+%
+% \begin{macro}{\keywords}
+% \begin{macro}{\@keywords}
+%   Zusätzlich zu den üblichen \LaTeX-Metadaten bieten unsere Klassen
+%   auch Zugriff auf das Schlüsselwort-Feld der
+%   PDF-Dokumenteninformationen. Dem Benutzer wird dazu das Makro
+%   \verb|\keywords| zur Verfügung gestellt. Wird das hyperref-Paket
+%   geladen, dann sollen die Schlüsselwörter auch automatisch in den
+%   PDF-Dokumenteneigenschaften stehen; andernfalls sind die
+%   Schlüsselwörter nur zum Abdrucken im Rahmen der Titelei gedacht.
+%
+%    \begin{macrocode}
+\newcommand*{\@keywords}{}
+\ifldv@doloadhyperref%
+\newcommand{\keywords}[1]{%
+  \renewcommand*\@keywords{#1}%
+  \hypersetup{pdfkeywords = {#1}}%
+}%
+\else%
+\newcommand{\keywords}[1]{%
+  \renewcommand*\@keywords{#1}%
+}%
+\fi%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\keywordsname}
+%   Um die Schlüsselwörter zu setzen, brauchen wir noch den
+%   sprachabhängigen Begriff für "`Schlüsselwörter"'. Die unten
+%   gezeigte Vorgehensweise integriert sich in den Mechanismus von
+%   Babel; der Vorgabetext ist der englische.
+% 
+%    \begin{macrocode}
+\newcommand*\keywordsname{Key words}%
+\addto\captionsngerman{%
+  \renewcommand*\keywordsname{Schlagw\"orter}%
+}
+\addto\captionsgerman{%
+  \renewcommand*\keywordsname{Schlagw\"orter}%
+}
+\addto\captionsenglish{%
+  \renewcommand*\keywordsname{Key words}%
+}
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\makekeywords}
+%   Im Text können die Schlüsselwörter dann mit dem Befehl
+%   \verb|\makekeywords| eingefügt werden. Diese bei Artikeln
+%   geschieht üblicherweise direkt nach dem Abstract, bei größeren
+%   Dokumenten in der Nähe der Titelseite bei anderen Metadaten.
+%
+%    \begin{macrocode}
+\newcommand{\makekeywords}{%
+  \if@twocolumn
+  \vspace{\topsep}
+  \noindent{\sectfont\size@paragraph\keywordsname:} \@keywords
+  \else
+  \small
+  \begin{center}%
+    {\normalfont\sectfont\nobreak\keywordsname
+      \vspace{-.5em}\vspace{\z@}}%
+  \end{center}%
+  \quotation\@keywords\endquotation
+  \fi}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Dokumentenversion}
+%
+% \begin{macro}{\version}
+% \begin{macro}{\@version}
+%   Neben der Datumsinformation wird Dokumenten häufig auch eine
+%   Versionsnummer zugewiesen, um dessen Fortentwicklung zu
+%   kennzeichnen. Der Benutzer kann diese mit dem Makro
+%   \verb|\version| einstellen; sie erscheint dann auf der Titelseite
+%   und in der Fußzeile.
+%
+%    \begin{macrocode}
+\newcommand*{\@version}{}
+\newcommand{\version}[1]{\renewcommand*\@version{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% 
+% \subsubsection{Verlag: Universität und Lehrstuhl}
+%
+% Die \KOMAScript-Klassen definieren das Verlagsfeld durch das Makro
+% \verb|\publishers|. Bei uns ist es gleich sinnvoll vorbelegt und
+% wird an verschiedenen Stellen verwendet.
+%
+%    \begin{macrocode}
+\publishers{Technische Universit\"at M\"unchen}
+%    \end{macrocode}
+%
+% \begin{macro}{\institute}
+% \begin{macro}{\@institute}
+% \begin{macro}{\postadress}
+% \begin{macro}{\@postadress}
+% \begin{macro}{\citationaddress}
+% \begin{macro}{\@citationaddress}
+% \begin{macro}{\publishersurl}
+% \begin{macro}{\@publishersurl}
+%   Zusätzlich sind auch der Lehrstuhlname, die Postadresse, der Ort
+%   für den Referenztext und die URL des Verlags/Lehrstuhls
+%   einstellbar:
+%   
+%    \begin{macrocode}
+\newcommand*\@institute{Institute for Data Processing}
+\newcommand*\institute[1]{\renewcommand*\@institute{#1}}
+\newcommand*{\@postaddress}{80290 M\"unchen, Germany}
+\newcommand*{\postaddress}[1]{\renewcommand*{\@postaddress}{#1}}
+\newcommand*{\@citationaddress}{Munich, Germany}
+\newcommand*{\citationaddress}[1]{\renewcommand*{\@citationaddress}{#1}}
+\newcommand*{\@publishersurl}{\url{http://www.ldv.ei.tum.de}}
+\newcommand*{\publishersurl}[1]{\renewcommand*{\@publishersurl}{#1}}
+\addto\captionsenglish{%
+  \institute{Institute for Data Processing}
+  \postaddress{80290 M\"unchen, Germany}
+  \citationaddress{Munich, Germany}
+}
+\addto\captionsngerman{%
+  \institute{Lehrstuhl f\"ur Datenverarbeitung}
+  \postaddress{80290 M\"unchen}
+  \citationaddress{M\"unchen}
+}
+\addto\captionsgerman{%
+  \institute{Lehrstuhl f\"ur Datenverarbeitung}
+  \postaddress{80290 M\"unchen}
+  \citationaddress{M\"unchen}
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+% \subsubsection{Betreuer einer studentischen Abschlussarbeit}
+%
+% \begin{macro}{\supervisor}
+% \begin{macro}{\@supervisor}
+%   Für ein Diplom-, Master-, Studien- oder Bachelorarbeit kann der
+%   betreuende Assistent angegeben werden. Diese Information wird dann
+%   in der Titelei abgedruckt.
+% 
+% \begin{macrocode}
+%<*book>
+\ifldv@studthesis
+  \newcommand*\@supervisor{}
+  \newcommand*\supervisor[1]{\renewcommand*\@supervisor{#1}}
+\fi
+%</book>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+%
+% \subsubsection{Lizenz}
+%
+% \begin{macro}{\licensetext}
+% \begin{macro}{\ldv@licensetext}
+%   Der Benutzer kann das Werk unter eine Lizenz stellen. Dieser Text
+%   wird auf der Impressumsseite oder, bei einseitigem Druck, auf der
+%   Titelseite abgedruckt.  Der Text kann vom Benutzer individuell mit
+%   dem Makro \verb|licensetext| bestimmt werden.  Er wird intern in
+%   \verb|ldv@licensetext| gespeichert.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@licensetext{}
+\newcommand\licensetext[1]{\renewcommand*\ldv@licensetext{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\license}
+%   Mit dem Makro \verb|\license| kann der Benutzer einfach eine der
+%   hinterlegten Lizenzen auswählen, ohne sich um den genauen
+%   Lizenztext kümmern zu müssen. Im Moment sind die Text der sechs
+%   Creative Commons-Lizenzen für Deutschland verfügbar: CC-BY,
+%   CC-BY-SA, CC-BY-ND, CC-BY-NC, CC-BY-NC-SA, CC-BY-NC-ND. Je nach
+%   ausgewählter Lizenz und aktiver Sprache wird der passende Text in
+%   \verb|\ldv@licensetext| abgelegt.
+%
+%   Zur einfachen Implementierung greift dieses Makro auf einen choice
+%   key des Pakets xkeyval zurück. Es ist der choice key
+%   \emph{license}, welcher unten implementiert ist.
+%
+%    \begin{macrocode}
+\newcommand*\license[1]{\setkeys{ldv}{license=#1}}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{option}{license}
+% \begin{macro}{\ldv@licensetext@ccby}
+% \begin{macro}{\ldv@licensetext@ccbysa}
+% \begin{macro}{\ldv@licensetext@ccbynd}
+% \begin{macro}{\ldv@licensetext@ccbync}
+% \begin{macro}{\ldv@licensetext@ccbyncsa}
+% \begin{macro}{\ldv@licensetext@ccbyncnd}
+%   Mit dem choice key \emph{license} lässt sich das Makro
+%   \verb|\license| sehr einfach implementieren.  Dazu speicheren die
+%   Makros \verb|\ldv@license@...| den jeweiligen Lizenztext in der
+%   aktuellen Sprache.  Bei der Verarbeitung der Option license wird
+%   dann nur noch \verb|\ldv@licensetext| auf das jeweilige Makro der
+%   Lizenz gelinkt.
+%
+%    \begin{macrocode}
+\newcommand*\ldv@licensetext@ccby{This work is licenced under the Creative Commons Attribution 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+\newcommand*\ldv@licensetext@ccbysa{This work is licenced under the Creative Commons Attribution-Share Alike 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-sa/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+\newcommand*\ldv@licensetext@ccbynd{This work is licenced under the Creative Commons Attribution-No Derivative Works 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nd/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+\newcommand*\ldv@licensetext@ccbync{This work is licenced under the Creative Commons Attribution-Non-Commercial 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nc/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+\newcommand*\ldv@licensetext@ccbyncsa{This work is licenced under the Creative Commons Attribution-Non-Commercial-Share Alike 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nc-sa/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+\newcommand*\ldv@licensetext@ccbyncnd{This work is licenced under the Creative Commons Attribution-Non-Commercial-No Derivative Works 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nc-nd/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+\addto\captionsenglish{%
+  \renewcommand*\ldv@licensetext@ccby{This work is licenced under the Creative Commons Attribution 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbysa{This work is licenced under the Creative Commons Attribution-Share Alike 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-sa/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbynd{This work is licenced under the Creative Commons Attribution-No Derivative Works 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nd/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbync{This work is licenced under the Creative Commons Attribution-Non-Commercial 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nc/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbyncsa{This work is licenced under the Creative Commons Attribution-Non-Commercial-Share Alike 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nc-sa/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbyncnd{This work is licenced under the Creative Commons Attribution-Non-Commercial-No Derivative Works 3.0 Germany License. To view a copy of this licence, visit http://creativecommons.org/licenses/by-nc-nd/3.0/de/ or send a letter to Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+}
+\addto\captionsngerman{%
+  \renewcommand*\ldv@licensetext@ccby{Dieses Werk ist unter einem Creative Commons Namensnennung 3.0 Deutschland Lizenzvertrag lizenziert. Um die Lizenz anzusehen, gehen Sie bitte zu \url{http://creativecommons.org/licenses/by/3.0/de/} oder schicken Sie einen Brief an Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbysa{Dieses Werk ist unter einem Creative Commons Namensnennung-Weitergabe unter gleichen Bedingungen 3.0 Deutschland Lizenzvertrag lizenziert. Um die Lizenz anzusehen, gehen Sie bitte zu \url{http://creativecommons.org/licenses/by-sa/3.0/de/} oder schicken Sie einen Brief an Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbynd{Dieses Werk ist unter einem Creative Commons Namensnennung-Keine Bearbeitung 3.0 Deutschland Lizenzvertrag lizenziert. Um die Lizenz anzusehen, gehen Sie bitte zu \url{http://creativecommons.org/licenses/by-nd/3.0/de/} oder schicken Sie einen Brief an Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbync{Dieses Werk ist unter einem Creative Commons Namensnennung-Keine kommerzielle Nutzung 3.0 Deutschland Lizenzvertrag lizenziert. Um die Lizenz anzusehen, gehen Sie bitte zu \url{http://creativecommons.org/licenses/by-nc/3.0/de/} oder schicken Sie einen Brief an Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbyncsa{Dieses Werk ist unter einem Creative Commons Namensnennung-Keine kommerzielle Nutzung-Weitergabe unter gleichen Bedingungen 3.0 Deutschland Lizenzvertrag lizenziert. Um die Lizenz anzusehen, gehen Sie bitte zu \url{http://creativecommons.org/licenses/by-nc-sa/3.0/de/} oder schicken Sie einen Brief an Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+  \renewcommand*\ldv@licensetext@ccbyncnd{Dieses Werk ist unter einem Creative Commons Namensnennung-Keine kommerzielle Nutzung-Keine Bearbeitung 3.0 Deutschland Lizenzvertrag lizenziert. Um die Lizenz anzusehen, gehen Sie bitte zu \url{http://creativecommons.org/licenses/by-nc-nd/3.0/de/} oder schicken Sie einen Brief an Creative Commons, 171 Second Street, Suite 300, San Francisco, California 94105, USA.}%
+}
+\define@choicekey*+{ldv}{license}[\ldv@choicekeyval\ldv@choicekeynr]{cc-by,cc-by-sa,cc-by-nd,cc-by-nc,cc-by-nc-sa,cc-by-nc-nd}{%
+  \ifcase\ldv@choicekeynr\relax
+    % Namensnennung: CC-BY
+    \renewcommand*{\ldv@licensetext}{\ldv@licensetext@ccby}
+  \or
+    % Namensnennung und Weitergabe unter gleichen Bedingungen: CC-BY-SA
+    \renewcommand*{\ldv@licensetext}{\ldv@licensetext@ccbysa}
+  \or
+    % Namensnennung und keine Bearbeitung: CC-BY-ND
+    \renewcommand*{\ldv@licensetext}{\ldv@licensetext@ccbynd}
+  \or
+    % Namensnennung und nicht-kommerzielle Nutzung: CC-BY-NC
+    \renewcommand*{\ldv@licensetext}{\ldv@licensetext@ccbync}
+  \or
+    % Namensnennung, nicht-kommerzielle Nutzung und Weitergabe unter
+    % gleichen Bedingungen: CC-BY-NC-SA
+    \renewcommand*{\ldv@licensetext}{\ldv@licensetext@ccbyncsa}
+  \or
+    % Namensnennung, nicht-kommerzielle Nutzung und keine Bearbeitung:
+    % CC-BY-NC-ND
+    \renewcommand*{\ldv@licensetext}{\ldv@licensetext@ccbyncnd}
+  \fi
+}{%
+  \ClassWarning{\ClassName}{%
+    Value given for the option license is not known.%
+  }
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{option}
+%
+%
+%
+% \subsubsection{Dokumenteninformationen in PDF-Dateien}
+%
+% \begin{macro}{\title}
+% \begin{macro}{\subtitle}
+% \begin{macro}{\author}
+% \begin{macro}{\subject}
+%   Die Metainformationen sollen automatisch in die
+%   Dokumenteneigenschaften der PDF-Datei eingetragen werden. Dies
+%   geschieht am Besten zu dem Zeitpunkt, zu dem der Autor die
+%   jeweilge Metainformation setzt. Das neu eingeführte Metaelement
+%   "`keywords"' tut das schon. Für alle bestehenden Metaelemente
+%   müssen die Befehle dazu noch umdefiniert werden. Dies passiert
+%   natürlich nur, wenn das hyperref-Paket tatsächlich geladen wird.
+%
+%    \begin{macrocode}
+\ifldv@doloadhyperref%
+\renewcommand*\title[1]{%
+  \renewcommand*\@title{#1}%
+  \hypersetup{%
+    pdftitle = {\@title\ifx\@subtitle\@empty\else. \@subtitle.\fi}%
+  }%
+}
+\renewcommand*\subtitle[1]{%
+  \renewcommand*\@subtitle{#1}%
+  \hypersetup{%
+    pdftitle = {\ifx\@title\@empty\else\@title. \@subtitle.\fi}%
+  }%
+}
+\renewcommand*\author[1]{%
+  \renewcommand*\@author{#1}%
+  \let\tempand=\and%
+  \renewcommand*\and{, }%
+  \let\tempthanks=\thanks%
+  \let\thanks=\@empty%
+  \hypersetup{%
+    pdfauthor  = {\textcopyright\ \@author}%
+  }%
+  \let\and=\tempand%
+  \let\thanks=\tempthanks%
+}
+\renewcommand*\subject[1]{%
+  \renewcommand*\@subject{#1}%
+  \hypersetup{%
+    pdfsubject = {\@subject}
+  }%
+}
+\fi%
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+%
+% \subsection{Titelei}
+%
+% \subsubsection{Grundeinstellungen}
+%
+% Zu Anfang wird die \KOMAScript-Schrift für das Subject-Feld
+% angepasst, so dass es jetzt in normaler Schriftgröße erscheint. Dies
+% wirkt sich auf alle Titel-Makros aus.
+%
+%    \begin{macrocode}
+\renewcommand*\subject@font{\normalfont\normalcolor\bfseries}
+%    \end{macrocode}
+%
+% \begin{macro}{\ldv@ldvlogowidth}
+% \begin{macro}{\ldv@ldvlogoS}
+% \begin{macro}{\ldv@ldvlogoCMYK}
+% \begin{macro}{\ldv@tumlogowidth}
+% \begin{macro}{\ldv@tumlogoS}
+% \begin{macro}{\ldv@tumlogoCMYK}
+%   Dateinamen und die Breiten der Logos werden auch von mehreren
+%   Makros im Folgenden verwendet werden. Bisher sind es lediglich die
+%   Breiten für ein A4-Papier. Das TUM-Logo ist bei dieser Breite
+%   knapp 10mm hoch.
+%
+%    \begin{macrocode}
+\RequirePackage{calc}
+\newlength\ldv@ldvlogowidth
+\setlength\ldv@ldvlogowidth{19mm}
+\newcommand*\ldv@ldvlogoS{LDVLogoS_oT}
+\newcommand*\ldv@ldvlogoCMYK{LDVLogoCMYK_oT}
+\newlength\ldv@tumlogowidth
+\setlength\ldv@tumlogowidth{17mm}
+\newcommand*\ldv@tumlogoS{TUMLogo_oZ_Vollfl_sw}
+\newcommand*\ldv@tumlogoCMYK{TUMLogo_oZ_Vollfl_CMYK}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\andname}
+%   Zur Lokalisierung des Autor-Feldes wird der sprachspezifische
+%   Begriff für "`und"' benötigt.
+%    \begin{macrocode}
+%<*book>
+  \newcommand*\andname{and}
+  \addto\captionsngerman{%
+    \renewcommand*\andname{und}%
+  }
+  \addto\captionsgerman{%
+    \renewcommand*\andname{und}%
+  }
+  \addto\captionsenglish{%
+    \renewcommand*\andname{and}%
+  }
+%</book>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\diplomarbeitname}
+% \begin{macro}{\mastersthesisname}
+% \begin{macro}{\studienarbeitname}
+% \begin{macro}{\bachelorsthesisname}
+% \begin{macro}{\idpname}
+% \begin{macro}{\phdthesisname}
+%   Für studentische Abschlussarbeiten und Dissertationen soll das
+%   \verb|subject| den genauen Typ der Arbeit enthalten. Dieser kann
+%   eine Diplom-, Master-, Studien- oder Bachelorarbeit, ein
+%   interdisziplinäres Projekt sowie eine Disseration sein. Die in
+%   Kapitel~\ref{sec:deklaration-optionen} definierte Bedingung
+%   \verb|\ifldv@studthesis| trifft zu, falls in den Klassenoptionen
+%   eine dieser studentischen Abschlussarbeiten ausgewählt wurde.
+%   \verb|\ifldv@phdthesis| trifft zu, falls in den Klassenoptionen
+%   eine Disseration ausgewählt wurde.
+%
+%    \begin{macrocode}
+%<*book>
+\ifldv@studthesis%
+  \newcommand*\diplomarbeitname{Diploma thesis}
+  \newcommand*\mastersthesisname{Master's thesis}
+  \newcommand*\studienarbeitname{Research paper}
+  \newcommand*\bachelorsthesisname{Bachelor's thesis}
+  \newcommand*\idpname{Interdisciplinary project}
+  \addto\captionsngerman{%
+    \renewcommand*\diplomarbeitname{Diplomarbeit}%
+    \renewcommand*\mastersthesisname{Masterarbeit}%
+    \renewcommand*\studienarbeitname{Studienarbeit}%
+    \renewcommand*\bachelorsthesisname{Bachelorarbeit}%
+    \renewcommand*\idpname{Interdisziplin\"ares Projekt}%
+  }
+  \addto\captionsgerman{%
+    \renewcommand*\diplomarbeitname{Diplomarbeit}%
+    \renewcommand*\mastersthesisname{Masterarbeit}%
+    \renewcommand*\studienarbeitname{Studienarbeit}%
+    \renewcommand*\bachelorsthesisname{Bachelorarbeit}%
+    \renewcommand*\idpname{Interdisziplin\"ares Projekt}%
+  }
+  \addto\captionsenglish{%
+    \renewcommand*\diplomarbeitname{Diploma thesis}%
+    \renewcommand*\mastersthesisname{Master's thesis}%
+    \renewcommand*\studienarbeitname{Research paper}%
+    \renewcommand*\bachelorsthesisname{Bachelor's thesis}%
+    \renewcommand*\idpname{Interdisciplinary project}%
+  }
+  \ifstr{\ldv@doctype}{diplomarbeit}{
+    \subject{\diplomarbeitname}
+  }{\ifstr{\ldv@doctype}{mastersthesis}{
+      \subject{\mastersthesisname}
+    }{\ifstr{\ldv@doctype}{idp}{
+        \subject{\idpname}
+      }{\ifstr{\ldv@doctype}{bachelorsthesis}{
+          \subject{\bachelorsthesisname}
+        }{
+          \subject{\studienarbeitname}
+        }
+      }
+    }
+  }
+\fi
+\ifldv@phdthesis
+  \newcommand*\phdthesisname{Dissertation}
+  \addto\captionsenglish{%
+    \renewcommand*\phdthesisname{Dissertation}
+  }
+  \addto\captionsngerman{%
+    \renewcommand*\phdthesisname{Dissertation}
+  }
+  \addto\captionsngerman{%
+    \renewcommand*\phdthesisname{Dissertation}
+  }
+  \subject{\phdthesisname}
+\fi
+%</book>
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% 
+%
+% \subsubsection{Setzen der Titelei}
+%
+% Das Makro \verb|\maketitle| setzt die gesamte Titelei; als Basis
+% habe ich die Definition aus den \KOMAScript-Quellen genommen und
+% weiter modularisiert. Der Titel selbst (insbesondere die Titelseite)
+% wird jetzt von eigenen Makros implementiert, so dass man sich beim
+% Redefinieren rein auf das Layout konzentrieren kann, ohne die
+% umliegenden Seiten beachten zu müssen. So können Benutzern leichter
+% einen eigenen Titel definieren.
+%
+% \verb|\maketitle| benutzt nun den Schlüssel-Wert-Mechanismus des
+% \emph{xkeyval}-Pakets, um flexibel vielfältige Funktionen
+% realisieren zu können. Das Makro unterstützt folgende Optionen:
+% \begin{itemize}
+% \item \verb|frontcover| (z.B. \verb|frontcover=Design1|)
+% \item \verb|pagenumber| (z.B. \verb|pagenumber=3|)
+% \end{itemize}
+% Zuerst werden im Folgenden die Optionen definiert.
+%
+% \begin{option}{frontcover}
+% \begin{macro}{\ldv@frontcoverdesign}
+%   Die Option \verb|frontcover| gibt an, welches Design aus einer
+%   vordefinierten Auswahl für den vorderen Umschlag verwendet werden
+%   soll. Die verschiedenen Umschlagseiten sollen ohne viel Aufwand
+%   für den Autor ein gewisses Maß an Individualität bieten. Der
+%   Benutzer wählt ein Design in der Form \verb|frontcover=Design1|
+%   aus. Ohne diese Option erscheint keine Umschlagseite; damit ist
+%   \verb|maketitle| weiterhin kompatibel zu den
+%   Standard-\LaTeX-Klassen.
+%
+%    \begin{macrocode}
+\define@choicekey*{ldv}{frontcover}[\ldv@frontcoverdesign]
+  {design1}{%
+    \if@titlepage\else%
+      \ClassWarning{\ClassName}{%
+        Option frontcover of \string\maketitle\ is only valid
+        \MessageBreak
+        when using titlepage=true%
+      }%
+    \fi%
+  }%
+%    \end{macrocode}
+% \end{macro}
+% \end{option}
+%
+% \begin{option}{frontcoverfile}
+%   
+%    \begin{macrocode}
+\define@cmdkey{ldv}[ldv@]{frontcoverfile}{}
+%    \end{macrocode}
+% \end{option}
+% 
+% \begin{option}{pagenumber}
+%   Die Option \verb|pagenumber| ermöglicht es dem Autor, eine
+%   bestimmte Seitenzahl für den Beginn der Titelei anzugeben. Dies
+%   ist eine Option, die das \KOMAScript-Makro als optionales Argument
+%   bietet und von dort übernommen wurde, um etwa funktionsgleich zu
+%   bleiben. Ohne diese Option beginnt die Zählung bei 1.
+%
+%    \begin{macrocode}
+\define@key{ldv}{pagenumber}{%
+  \if@titlepage%
+    \setcounter{page}{#1}%
+  \else%
+    \ClassWarning{\ClassName}{%
+      Option pagenumber of \string\maketitle\ is only valid
+      \MessageBreak
+      when using titlepage=true%
+    }%
+  \fi%
+}
+%    \end{macrocode}
+% \end{option}
+% 
+% \begin{macro}{\@maketitle}
+%   Das Makro \verb|\@maketitle| aus den \KOMAScript-Klassen benutze
+%   ich nicht mehr. Deshalb deaktiviere ich es hier.  
+%
+%    \begin{macrocode}
+\global\let\@maketitle\relax
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\maketitle}
+%   Wie in den \KOMAScript-Klassen auch gibt es jeweils eine eigene
+%   Makro-Definition für die Option einer ganzen Titelseite und eines
+%   einfachen Titelkopfes. Die komplette Titelei steht nur für die
+%   Option \verb|titlepage=true| zur Verfügung.
+%
+%   Das Makro nutzt in diesen LDV-Klassen den
+%   Schlüssel-Wert-Mechanismus des \emph{xkeyval}-Pakets. Die Optionen
+%   sind weiter oben in diesem Kapitel beschrieben.
+%
+%   Schließlich löscht dieses Makro am Ende nun nicht mehr alle
+%   Makros zu den Meta-Informationen. Diese kann der Autor also bei
+%   diesen Klassen im Nachhinein verwenden.
+%
+%    \begin{macrocode}
+\if@titlepage
+  \renewcommand*\maketitle[1][]{%
+    \setkeys{ldv}{#1}%
+    \begin{titlepage}
+      \let\footnotesize\small
+      \let\footnoterule\relax
+      \let\footnote\thanks
+      \renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
+      \let\@oldmakefnmark\@makefnmark
+      \renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}%
+      \ifdefined\ldv@frontcoverfile%
+        \setcounter{page}{-1}%
+        \ldv@includefile{\ldv@frontcoverfile}%
+        \if@twoside\cleardoubleemptypage\else\clearpage\fi%
+        \thispagestyle{empty}
+      \else%
+        \ifdefined\ldv@frontcoverdesign%
+          \ifstr{\ldv@frontcoverdesign}{design1}{%
+            \setcounter{page}{-1}%
+            \ldv@makecover@eins%
+            \if@twoside\cleardoubleemptypage\else\clearpage\fi%
+            \thispagestyle{empty}
+          }{}%
+        \fi%
+      \fi%
+      \ifx\@extratitle\@empty \else
+        \noindent\@extratitle\next@tpage\cleardoubleemptypage
+        \thispagestyle{empty}%
+      \fi
+%<+book>      \ifldv@phdthesis\ldv@phdtitle\else\ldv@pagetitle\fi%
+%<+article>      \ldv@pagetitle%
+      \if@twoside\next@tpage
+        \begin{minipage}[t]{\textwidth}
+          \@uppertitleback
+        \end{minipage}\par
+        \vfill
+        \begin{minipage}[b]{\textwidth}
+          \@lowertitleback
+        \end{minipage}
+      \fi
+      \ifx\@dedication\@empty \else
+        \next@tpage\null\vfill
+        {\centering \Large \@dedication \par}%
+        \vskip \z@ \@plus3fill
+        \if@twoside \next@tpage\cleardoubleemptypage \fi
+      \fi
+    \end{titlepage}
+    \setcounter{footnote}{0}%
+    \global\let\thanks\relax
+    \global\let\maketitle\relax
+    \global\let\@thanks\@empty
+  }
+\else
+  \renewcommand*\maketitle[1][]{\par%
+    \setkeys{ldv}{#1}%
+    \begingroup
+      \renewcommand*\thefootnote{\@fnsymbol\c@footnote}%
+      \let\@oldmakefnmark\@makefnmark
+      \renewcommand*{\@makefnmark}{\rlap\@oldmakefnmark}
+      \if@twocolumn
+        \ifnum \col@number=\@ne
+          \ldv@headtitle
+         \else
+          \twocolumn[\ldv@headtitle]%
+        \fi
+      \else
+        \newpage
+        \global\@topnum\z@
+        \ldv@headtitle
+      \fi
+      \thispagestyle{\titlepagestyle}\@thanks
+    \endgroup
+    \setcounter{footnote}{0}%
+    \let\thanks\relax
+    \let\maketitle\relax
+    \global\let\@thanks\@empty
+  }
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \subsubsection{Titelseite}
+%
+% \begin{macro}{\@titletitle}
+% \begin{macro}{\titletitle}
+%   Um für die Titelseite eigene Zeilenumbrüche im Titel zu setzen,
+%   kann der Benutzer optional das Hilfsmakro \verb|\titletitle|
+%   benutzen. Der so festgelegte Titel wird dann beim Setzen der
+%   Titelseite bevorzugt.
+%
+%    \begin{macrocode}
+\newcommand*\@titletitle{}
+\newcommand*\titletitle[1]{%
+  \renewcommand*\@titletitle{#1}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ldv@studthesispersons}
+%   Bei studentischen Abschlussarbeiten mit einseitigem Druck wird der
+%   Betreuer auf der Titelseite genannt. Dazu ist ein zusätzliches
+%   lokalisiertes Makro nötig, welches anstelle der Autoren gedruckt
+%   werden soll. (Die Implementierung hier kann mit mehreren Autoren
+%   umgehen, obwohl das bei einer Abschlussarbeit mit derzeitiger
+%   Prüfungsordnung wenig Sinn macht.)
+%
+%    \begin{macrocode}
+%<*book>
+\ifldv@studthesis
+  \if@twoside\else
+    \newcommand*\ldv@studthesispersons{%
+      Written by \authorwithand{\andname}\\
+      Supervised by Prof.\ Dr.-Ing.\ K.\ Diepold%
+      \ifx\@supervisor\@empty\else \ and \@supervisor\fi%
+    }
+    \addto\extrasenglish{
+      \renewcommand*\ldv@studthesispersons{%
+        Written by \authorwithand{\andname}\\
+        Supervised by Prof.\ Dr.-Ing.\ K.\ Diepold%
+        \ifx\@supervisor\@empty\else \ and \@supervisor\fi%
+      }
+    }      
+    \addto\extrasngerman{%
+      \renewcommand*\ldv@studthesispersons{%
+        Verfasst von \authorwithand{\andname}\\
+        Betreut von Prof.\ Dr.-Ing.\ K.\ Diepold%
+        \ifx\@supervisor\@empty\else \ und \@supervisor\fi%
+      }%
+    }
+    \addto\extrasgerman{%
+      \renewcommand*\ldv@studthesispersons{%
+        Verfasst von \authorwithand{\andname}\\
+        Betreut von Prof.\ Dr.-Ing.\ K.\ Diepold%
+        \ifx\@supervisor\@empty\else \ und \@supervisor\fi%
+        \let\and=\tempand%
+      }%
+    }
+  \fi
+\fi
+%</book>
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ldv@pagetile}
+%   Mit dem Makro \verb|ldv@pagetitle| wird ein Titel gesetzt, der
+%   eine ganze Seite in Anspruch nimmt. Der Code wurde im Wesentlichen
+%   aus den \KOMAScript-Quellen entnommen (aus dem Makro
+%   \verb|\maketitle|). Folgende Änderungen sind dann eingeflossen:
+%
+%   \begin{itemize}
+%   \item Coporate Design-Elemente eingefügt (Logo und Namen).
+%   \item Abstand zwischen Untertitel und Autoren korrigiert.
+%   \item Verlags-/Institutions-Angabe entfernt; sie ist bereits durch die oben
+%     genannten Coporate Design-Elemente vorhanden.
+%   \item Versionsnummer eingefügt.
+%   \end{itemize}
+% 
+%    \begin{macrocode}
+\if@titlepage
+\newcommand*\ldv@pagetitle{%
+  \ldv@makepublishers%
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative%
+  \ifx\@titlehead\@empty \else%
+  \begin{minipage}[t]{\textwidth}%
+    \@titlehead
+  \end{minipage}\par
+  \fi
+  \null\vfill
+  \begin{center}
+    \ifx\@subject\@empty\else
+    {\subject@font \@subject \par}%
+    \vskip 3em
+    \fi
+    {\titlefont\huge \ifx\@titletitle\@empty \@title \else\@titletitle \fi\par}%
+    \ifx\@subtitle\@empty\else%
+      \vskip 1em%
+      {\usekomafont{subtitle}\@subtitle\par}\fi%
+    \vskip 3em
+    {\lineskip 0.75em%
+%<*book>
+      \ifdefined\ldv@studthesispersons%
+      \ldv@studthesispersons\par%
+      \else%
+%</book>
+      \begin{tabular}[t]{c}
+        \@author
+      \end{tabular}\par%
+%<+book>      \fi
+    }%
+    \vskip 1.5em
+    {\@date%
+      \ifx\@version\@empty\else, \@version\fi\par}%
+    {\ifx\@license\@empty\else\if@twoside\else%
+      \vskip 1.5em%
+      \ldv@licensetext\par%
+    \fi\fi}%
+    \vfill\vfill\vfill\vfill\null
+  \end{center}\par
+  \@thanks
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ldv@makepublishers}
+%   \verb|\ldv@makepublishers| zeichnet am Fuß der Seite die
+%   Lehrstuhl-In\-for\-ma\-tio\-nen (Logo und Name). Dieser Vorgang
+%   ist aufwändiger, so dass er in einem eigenen Makro implementiert
+%   ist.
+%
+%   Zuerst wird der Inhalt in einer Box (\verb|\ldv@pubslishersbox|)
+%   angeordnet. Diese wird dann an den Fuß des Blatts
+%   verschoben. Dabei soll der untere Rand (\verb|ldv@bottommargin|)
+%   genauso groß sein wie der aktuell eingestellt linke Rand. Die
+%   Verschiebung ist in der Länge \verb|\ldv@publishersmove|
+%   gespeichert.
+%    \begin{macrocode}
+\newcommand*\ldv@makepublishers{%
+  \newlength\ldv@tumwidth%
+  \newlength\ldv@ldvwidth%
+  \newlength\ldv@publisherwidth%
+  \settowidth\ldv@tumwidth{\@publishers}%
+  \settowidth\ldv@ldvwidth{\@institute}%
+  \ifdim\ldv@tumwidth >\ldv@ldvwidth%
+    \setlength\ldv@publisherwidth{\ldv@tumwidth}%
+  \else%
+    \setlength\ldv@publisherwidth{\ldv@ldvwidth}%
+  \fi%
+  \newsavebox\ldv@publishersbox%
+  \savebox\ldv@publishersbox[\textwidth]{%
+    \parbox{\ldv@ldvlogowidth}{%
+      \includegraphics[width=\ldv@ldvlogowidth]{\ldv@ldvlogoS}%
+    }%
+    \hfill%
+    \parbox{\ldv@publisherwidth}{%
+      \centering%
+      \@institute\\
+      \@publishers%
+    }%
+    \hfill%
+    \parbox{\ldv@tumlogowidth}{%
+      \includegraphics[width=\ldv@tumlogowidth]{\ldv@tumlogoS}%
+    }%
+  }%
+  %
+  \newlength\ldv@bottommargin
+  \setlength\ldv@bottommargin{1in + \hoffset + \oddsidemargin}
+  \newlength\ldv@publishersboxdepth%
+  \settodepth\ldv@publishersboxdepth{\usebox\ldv@publishersbox}%
+  \newlength\ldv@publishersbottom%
+  \setlength\ldv@publishersbottom{%
+    1in + \voffset + \topmargin + \headheight + \headsep +%
+    \topskip + \ldv@publishersboxdepth%
+  }%
+  \newlength\ldv@publishersmove%
+  \setlength\ldv@publishersmove{%
+    \paperheight - \ldv@publishersbottom - \ldv@bottommargin%
+  }%
+  \noindent\raisebox{-\ldv@publishersmove}[0pt][0pt]{%
+    \makebox[0pt][l]{\usebox\ldv@publishersbox}}%
+}
+\fi
+%    \end{macrocode}
+% \end{macro}
+% 
+%
+%
+% \subsubsection{Titelblatt für Dissertationen}
+% \label{sec:titelblatt-dissertationen}
+%
+% \begin{macro}{\ldv@phdtitle}
+%    \begin{macrocode}
+%<*book>
+\newcommand*\@dateaccepted{}
+\newcommand*\dateaccepted[1]{\renewcommand*\@dateaccepted{#1}}
+\newcommand*\@pruefer{}
+\newcommand*\pruefer[1]{\renewcommand*\@pruefer{#1}}
+\newcommand*\@vorsitzender{}
+\newcommand*\vorsitzender[1]{\renewcommand*\@vorsitzender{#1}}
+\newcommand*\ldv@phdtitle{%
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative%
+  \newsavebox\ldv@publishersbox%
+  \savebox\ldv@publishersbox[\textwidth]{%
+    \parbox{\ldv@ldvlogowidth}{%
+      \includegraphics[width=\ldv@ldvlogowidth]{\ldv@ldvlogoS}%
+    }\_%
+    \hfill%
+    M-\_\parbox{\ldv@tumlogowidth}{%
+      \includegraphics[width=\ldv@tumlogowidth]{\ldv@tumlogoS}%
+    }%
+  }%
+  \newlength\ldv@topmargin%
+  \setlength\ldv@topmargin{0mm}%
+  \newlength\ldv@publishersboxheight%
+  \settodepth\ldv@publishersboxheight{\usebox\ldv@publishersbox}%
+  \newlength\ldv@publisherstop%
+  \setlength\ldv@publisherstop{%
+    1in + \voffset + \topmargin + \headheight + \headsep +%
+    \topskip - \ldv@publishersboxheight%
+  }%
+  \newlength\ldv@publishersmove%
+  \setlength\ldv@publishersmove{.5in + .5\topmargin + .5\headheight +
+    .5\headsep + \topskip}
+  \noindent\raisebox{\ldv@publishersmove}[0mm][0mm]{%
+    \makebox[0mm][l]{\usebox\ldv@publishersbox}}
+  Technische U\_niversit\"at M\"unchen\\
+  Lehrstuhl f\"ur Datenverarbeitung
+  \vspace{3\baselineskip}
+
+  % TODO Make this font adjustable with the KOMA-Script font 
+  % selection mechanism
+  {\raggedright\LARGE\bfseries \ifx\@titletitle\@empty \@title
+    \else\@titletitle \fi\par}%
+  \ifx\@subtitle\@empty\else{\vspace{0.5\baselineskip}\raggedright\large\bfseries\@subtitle\par}\fi%
+  \vspace{2\baselineskip}
+
+  {\large\bfseries\@author\par}%
+  \vspace{2\baselineskip}
+
+  \begin{otherlanguage}{ngerman}% This text is always in German
+    \hyphenation{In-for-ma-tions-tech-nik}%
+    %
+    \newlength\ldv@widthoftext%
+    \settowidth\ldv@widthoftext{Vollst\"andiger Abdruck der von der
+      Fakult\"at f\"ur Elektrotechnik und Informationstechnik}%
+    \ifdim\ldv@widthoftext>\columnwidth%
+      Vollst\"andiger Abdruck der von der Fakult\"at f\"ur
+      Elektrotechnik und Informationstechnik der Technischen
+      Universit\"at M\"unchen zur Erlangung des akademischen Grades
+      eines\\[\baselineskip]%
+    \else%
+      Vollst\"andiger Abdruck der von der Fakult\"at f\"ur
+      Elektrotechnik und Informationstechnik\\
+      der Technischen Universit\"at M\"unchen zur Erlangung des
+      akademischen Grades eines\\[\baselineskip]%
+    \fi%
+    {\bfseries Doktor-Ingenieurs (Dr.-Ing.)}\\[\baselineskip]%
+    genehmigten Dissertation.  \vspace{3\baselineskip}%
+  
+    {\bfseries Vorsitzende(r):}\quad \@vorsitzender
+    \vspace{\baselineskip}%
+  
+    {\bfseries Pr\"ufer der Dissertation:}%
+    \let\tempand=\and%
+    \renewcommand*\and{\item}%
+    \begin{enumerate}%
+    \item \@pruefer%
+    \end{enumerate}%
+    \let\and=\tempand%
+    \vspace{.5\baselineskip}
+
+    Die Dissertation wurde am \@date\ bei der Technischen
+    Universit\"at M\"unchen eingereicht und durch die Fakult\"at f\"ur
+    Elektrotechnik und Informationstechnik am \@dateaccepted\
+    angenommen.
+  \end{otherlanguage}%
+}
+%</book>
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \subsubsection{Kleiner Titel am Seitenkopf}
+%
+% \begin{macro}{\ldv@headtitle}
+%   Damit wird im Fall des Titelkopfes die eigentliche Arbeit
+%   geleistet. Dieses Makro wurde aus den \KOMAScript-Quellen
+%   übernommen, wo es \verb|\@maketitle| hieß, und an das TUM-Layout
+%   angepasst. Deshalb kann das (ursprüngliche) Makro
+%   \verb|@maketitle| gelöscht werden.
+%
+%   Falls auf ein anderes Papierformat gegangen wird, müsste
+%   eigentlich auch die Logogröße angepasst werden (A5: 8mm, A4: 10mm,
+%   A3: 14mm). Bis jetzt ist das noch nicht drinnen. Sollte noch
+%   folgen. (!!)
+%
+%   Änderungen zu den \KOMAScript-Quellen:
+%   \begin{itemize}
+%   \item Logos eingefügt.
+%   \item Verlag/Institution entfernt, weil er bereits durch die Logos
+%     angezeigt ist.
+%   \item Autor und Datum in normaler Schriftgröße (ohne
+%     \verb|\Large|).
+%   \item Versionsinformation beim Datum eingefügt.
+%   \end{itemize}
+%
+%    \begin{macrocode}
+\if@titlepage\else
+\newcommand*\ldv@headtitle{%
+  \clearpage
+  \let\footnote\thanks%
+  \ifx\@extratitle\@empty \else
+    \noindent\@extratitle \next@tpage \if@twoside \null\next@tpage \fi
+  \fi
+  \noindent\includegraphics[width=\ldv@ldvlogowidth]{\ldv@ldvlogoS}%
+  \hfill%
+  \includegraphics[width=\ldv@tumlogowidth]{\ldv@tumlogoS}\par%
+  \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+  \vskip .5em
+  \ifx\@titlehead\@empty \else
+    \begin{minipage}[t]{\textwidth}
+      \@titlehead
+    \end{minipage}\par
+  \fi
+  \null
+  \vspace\baselineskip%
+  \begin{center}%
+    \ifx\@subject\@empty \else%
+      \vspace{-\baselineskip}{\subject@font\@subject}\par%
+      \vspace\baselineskip%
+    \fi%
+    {\titlefont\huge\ifx\@titletitle\@empty\@title\else\@titletitle\fi\par}%
+    \ifx\@subtitle\@empty\else%
+      \vspace{.33\baselineskip}%
+      {\usekomafont{subtitle}\@subtitle}\par%
+    \fi%
+    \vspace\baselineskip%
+    \ifx\@author\@empty\vspace{.5em}\else%
+      {\lineskip .5em%
+        \begin{tabular}[t]{c}
+          \@author
+        \end{tabular}\par%
+      }%
+      \vspace{.5\baselineskip}%
+    \fi%
+    {\@date%
+      \ifx\@version\@empty\else, \@version\fi \par}%
+    {\ifx\ldv@licensetext\@empty\else\if@twoside\else%
+      \vspace{.5\baselineskip}%
+      \footnotesize\ldv@licensetext\par%
+    \fi\fi}%
+    \ifx\@dedication\@empty \else
+      \vskip 2em
+      {\Large \@dedication \par}
+    \fi
+  \end{center}%
+  \par
+  \vskip 2em
+}
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
+% \subsubsection{Impressumsseite}
+%
+% Beim zweiseitigen Druck erscheinen die Details zum Buch oder zur
+% Abschlussarbeit auf der Rückseite der Titelseite -- so wie es in
+% Büchern üblich ist.
+%
+%    \begin{macrocode}
+%<*book>
+\if@twoside%
+%    \end{macrocode}
+% 
+% \begin{macro}{\makereference}
+%   Zentraler Bestandteil des Impressums soll eine vollständige
+%   Referenzierung des Werkes sein. Sie wird vom Makro
+%   \verb|\makereference| zusammengesetzt.
+%
+%    \begin{macrocode}
+  \newcommand*\makereference{
+    \let\ldv@sep=\@empty
+    \ifx\@author\@empty\else\authorwithand{, }. \fi%
+    \ifx\@title\@empty\else\emph{\@title. \ifx\@subtitle\@empty\else\@subtitle. \fi}\fi%
+    \ifx\@version\@empty\else\@version. \fi%
+    \ifx\@subject\@empty%
+    \else%
+      \@subject%
+      \renewcommand*\ldv@sep{, }%
+    \fi%
+    \ifx\@publishers\@empty%
+    \else%
+      \ldv@sep\@publishers, \@citationaddress%
+      \renewcommand*\ldv@sep{, }%
+    \fi
+    \ldv@sep\number\year.%
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ldv@thesissubmissiontext}
+%     Das Impressum wird mit dem Makro \verb|\lowertitleback| der
+%     \KOMAScript-Klassen gesetzt.  Der Inhalt hängt davon ab, ob es
+%     sich um eine studentische Abschlussarbeit oder ein normales Buch
+%     handelt.
+%
+%     Für den Fall einer studentischen Abschlussarbeit enthält das
+%     Makro \verb|\ldv@thesissubmissiontext| den zusätzlichen
+%     sprachenabhängigen Text.
+%
+%    \begin{macrocode}
+  %
+  \ifldv@studthesis%
+    \newcommand*\ldv@thesissubmissiontext{%
+      Supervised by Prof.\ Dr.-Ing.\ K.\ Diepold
+      \ifx\@supervisor\@empty\else and \@supervisor\fi; submitted on
+      \@date\ to the Department of Electrical and
+      Computer Engineering of the \@publishers.%
+    }
+    %
+    \addto\captionsenglish{%
+      \renewcommand*\ldv@thesissubmissiontext{%
+        Supervised by Prof.\ Dr.-Ing.\ K.\ Diepold
+        \ifx\@supervisor\@empty\else and \@supervisor\fi; submitted on
+        \@date\ to the Department of Electrical and
+        Computer Engineering of the \@publishers.%
+      }%
+    } 
+    \addto\captionsngerman{%
+      \renewcommand*\ldv@thesissubmissiontext{%
+        Betreut von Prof.\ Dr.-Ing.\ K.\ Diepold
+        \ifx\@supervisor\@empty\else und \@supervisor\fi; eingereicht
+        am \@date\ bei der Fakult\"at f\"ur Elektrotechnik und
+        Informationstechnik der Technischen Universit\"at M\"unchen.
+      }%
+    } 
+    \addto\captionsgerman{%
+      \renewcommand*\ldv@thesissubmissiontext{%
+        Betreut von Prof.\ Dr.-Ing.\ K.\ Diepold
+        \ifx\@supervisor\@empty\else und \@supervisor\fi; eingereicht
+        am \@date\ bei der Fakult\"at f\"ur Elektrotechnik und
+        Informationstechnik der Technischen Universit\"at M\"unchen.
+      }%
+    } 
+    %
+    \lowertitleback{%
+      \makereference
+      % 
+      \ifx\@keywords\@empty\else\\[\baselineskip]\keywordsname: \@keywords .\fi%
+      % 
+      \\[\baselineskip]\ldv@thesissubmissiontext
+      % 
+      \ifx\ldv@licensetext\@empty\else%
+        \\[\baselineskip]
+        \copyright\ \number\year\ \authorwithand{, }\\[\baselineskip]
+        % 
+        \@institute, \@publishers, \@postaddress,
+        \@publishersurl.\\[\baselineskip]
+        % 
+        \ldv@licensetext%
+      \fi%
+    }%
+  \else
+    \lowertitleback{%
+      \makereference%
+      % 
+      \ifx\@keywords\@empty\else\\[\baselineskip]\keywordsname: \@keywords .\fi%
+      % 
+      \ifx\ldv@licensetext\@empty\else
+        \\[\baselineskip]
+        \copyright\ \number\year\ \authorwithand{, }\\[\baselineskip]
+        %
+        \ifx\@publishers\@empty\else%
+          \ifx\@institute\@empty\else\@institute, \fi%
+          \@publishers%
+          \ifx\@postaddress\@empty\else, \@postaddress\fi%
+          \ifx\@publishersurl\@empty\else, \@publishersurl\fi%
+          .\\[\baselineskip]%
+        \fi%
+        % 
+        \ldv@licensetext%
+      \fi
+    }%
+  \fi
+\fi
+%</book>
+%    \end{macrocode}
+% \end{macro}
+% 
+%
+%
+% \subsubsection{Umschlagseiten}
+%
+% Umschlagseiten bilden ein gestalterisch freies und individuelles
+% Element an einem Buch. Um der Freiheit Rechnung zu tragen, soll es
+% in einer späteren Version der Klassen die Möglichkeit geben, eine
+% selbst gestaltete Seite im PDF-Format einzubinden. Darüber hinaus
+% sollen die Klassen mehrere verschiedene vordefinierte Designs
+% anbieten, aus denen sich der Autor dann eines aussuchen kann. Zur
+% Zeit bieten die LDV-Klassen aber nur ein Umschlaglayout. 
+%
+% \begin{macro}{\@covertitle}
+% \begin{macro}{\covertitle}
+%   Um für die Umschlagseite eigene Zeilenumbrüche im Titel zu setzen,
+%   kann der Benutzer das Hilfsmakro \verb|\covertitle| benutzen. Der
+%   so festgelegte Titel wird dann beim Setzen des Umschlags
+%   bevorzugt.
+%
+%    \begin{macrocode}
+\newcommand*\@covertitle{}
+\newcommand*\covertitle[1]{%
+  \renewcommand*\@covertitle{#1}%
+}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+%
+% \begin{macro}{\ldv@makecover@eins}
+%   Das Makro \verb|\ldv@makecover@eins| setzt das \verb|Design1| der
+%   vorderen Umschlagseite. Es setzt das Verhältnis des goldenen
+%   Schnitts um: Gesamtbreite zu linker Spalte zu rechter Spalte
+%   befolgen das Verhältnis, ebenso wie vertikal etwas abgewandelt der
+%   mittlere Leerraum zum oberen Leerraum und zum unteren Leerraum.
+%
+%   Es zeigt sich jedoch, dass dann der Platz für den Titel horizontal
+%   recht schmal ist, was insbesondere bei studentischen
+%   Abschlussarbeiten zu Schwierigkeiten führt.
+%
+%    \begin{macrocode}
+\if@titlepage
+\newcommand\ldv@makecover@eins{%
+  \newlength\ldv@coverwidth%
+  \setlength\ldv@coverwidth{\paperwidth - \hoffset}%
+  \newlength\ldv@coverheight%
+  \setlength\ldv@coverheight{\paperheight - \voffset}%
+  \newlength\ldv@coverleftcolumnwidth%
+  \setlength\ldv@coverleftcolumnwidth{0.618\ldv@coverwidth - 4mm}%
+  \newlength\ldv@coverrightcolumnwidth%
+  \setlength\ldv@coverrightcolumnwidth{%
+    \ldv@coverwidth - \ldv@coverleftcolumnwidth - 8mm}%
+  \newsavebox\ldv@covertitleauthor%
+  \savebox\ldv@covertitleauthor{%
+    \parbox{\ldv@coverwidth}{%
+      \hspace{0.1\ldv@coverwidth}%
+      \parbox{\ldv@coverleftcolumnwidth - 0.1\ldv@coverwidth}{%
+        \raggedleft\bfseries%
+        {\huge\ifx\@covertitle\empty\@title\else\@covertitle\fi\par}%
+        \@subtitle%
+      }%
+      
+      \vspace{1mm}\hspace{\ldv@coverleftcolumnwidth}\hspace{8mm}%
+      \parbox{\ldv@coverrightcolumnwidth - 0.05\ldv@coverwidth}{%
+        \raggedright\bfseries%
+        \authorwithand{\newline}%
+      }%
+    }%
+  }%
+  \newsavebox\ldv@coverlogos%
+  \savebox\ldv@coverlogos[0mm][l]{%
+    \parbox[c]{\ldv@coverleftcolumnwidth}{%
+      \raggedleft%
+      \includegraphics[width=\ldv@ldvlogowidth]{\ldv@ldvlogoCMYK}%
+    }%
+    \hspace{8mm}%
+    \parbox[c]{\ldv@tumlogowidth}{%
+      \raggedright%
+      \includegraphics[width=\ldv@tumlogowidth]{\ldv@tumlogoCMYK}%
+    }%
+  }%
+  %\setlength\fboxsep{0mm}%
+  \noindent\hspace{-1in}\hspace{-\oddsidemargin}%
+  \raisebox{1in + \topmargin + \headheight + \headsep +
+    \topskip}[0mm][0mm]{%
+    \parbox[t][\ldv@coverheight]{\ldv@coverwidth}{%
+      \newlength\ldv@coveremptyspace%
+      \setlength\ldv@coveremptyspace{%
+        \ldv@coverheight 
+        - \totalheightof{\usebox\ldv@covertitleauthor}
+        - \totalheightof{\usebox\ldv@coverlogos}
+      }%
+      \raisebox{-\ldv@coverheight}[0mm][0mm]{\makebox[0mm][l]{%
+          \hspace{\ldv@coverleftcolumnwidth}\hspace{2.6mm}%
+          \color{TUMBlau5}\rule{3mm}{\ldv@coverheight}%
+        }%
+      }%
+      \raisebox{-\ldv@coverheight + 0.095\ldv@coveremptyspace + \totalheight}[0mm][0mm]{%
+        \usebox\ldv@coverlogos%
+      }%
+      \raisebox{-\height - 0.25\ldv@coveremptyspace}{%
+        \usebox\ldv@covertitleauthor%
+      }%
+    }%
+  }%
+}
+\fi
+%    \end{macrocode}
+% \end{macro}
+%
+%
+% \begin{macro}{\ldv@includefile}
+%    \begin{macrocode}
+\newcommand*\ldv@includefile[1]{%
+  \noindent\hspace{-1in}\hspace{-\oddsidemargin}\fbox{A}%
+  \raisebox{1in + \topmargin + \headheight + \headsep}[0mm][0mm]{%
+    \fbox{B\includegraphics{LDVLogoS_oT}}
+  }
+%  \noindent\hspace{-1in}\hspace{-\oddsidemargin}%
+%  \raisebox{1in + \topmargin + \headheight + \headsep +
+%    \topskip}{%
+%    \fbox{\includegraphics{ta.pdf}}%
+%  }
+}
+%    \end{macrocode}
+% \end{macro}
+%
+% 
+%
+\endinput
+%
+%
+%
+% \iffalse
+%%% Local Variables: 
+%%% mode: doctex
+%%% TeX-PDF-mode: t
+%%% TeX-master: "ldvguide.tex"
+%%% End: 
+% \fi

@@ -1,0 +1,19 @@
+\begin{thebibliography}{GLL90}
+
+\bibitem[Arn99]{arnaud99}
+B.~St. Arnaud.
+\newblock {Gigabit Internet to every Canadian Home by 2005}.
+\newblock \url{http://www.canet2.net/archeng/home.html}, 1999.
+
+\bibitem[EV97]{eberspaecher97}
+J.~Ebersp"acher and H.-J. V"ogel.
+\newblock {\em {GSM - Global System for Mobile Communication. Vermittlung,
+  Dienste und Protokolle in digitalen Mobilfunknetzen.}}
+\newblock Teubner, Stuttgart, 1997.
+
+\bibitem[GLL90]{griswold90}
+J.~S. Griswold, T.~L. Lightle, and J.~G. Lovelady.
+\newblock {Hurricane Hugo: Effect On State Government Communications.}
+\newblock {\em IEEE Communications Magazine}, 28(6):12--17, 1990.
+
+\end{thebibliography}

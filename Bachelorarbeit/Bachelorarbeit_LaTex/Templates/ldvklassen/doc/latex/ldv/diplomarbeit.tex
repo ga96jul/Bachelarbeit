@@ -1,0 +1,53 @@
+% Alternative Typen von Abschlussarbeiten
+%   doctype=Studienarbeit
+%   doctype=Bachelorthesis
+%   doctype=Diplomarbeit
+%   doctype=Mastersthesis
+%
+% Sprachen
+%   ohne lang-Attribut:  Englisch
+%   lang=ngerman:        Neue deutsche Rechtschreibung
+\documentclass[doctype=Diplomarbeit,lang=ngerman]{ldvbook}
+
+
+\begin{document}
+
+\title{[Titel der Arbeit]}
+\author{[Name des Autors]}
+\license{CC-BY}
+\supervisor{[Betreuender Assistent]}
+\maketitle
+
+
+\chapter*{Zusammenfassung}
+
+Eine Zusammenfassung der Problemstellung und der wichtigsten
+Ergebnisse auf maximal einer Seite.
+
+
+\tableofcontents
+
+
+
+% Bitte kompilieren Sie zuerst dieses Dokument einschließlich der
+% BibTeX-Datei. Kontrollieren Sie dann im Text und im
+% Literaturverzeichnis die Umlaute, um sicherzustellen, dass LaTeX die
+% Zeichenkodierung überall richtig erkennt.
+
+
+
+\chapter{Erstes Kapitel}
+
+Text text text 
+
+Von \citet[deutsch]{Niederhauser2006} und
+\citet[englisch]{Gustavii2003} gibt es gute Bücher zum Verfassen
+wissenschaftlicher Arbeiten.
+
+
+
+% Das folgende LaTeX-Makro erzeugt aus der Datei diplomarbeit.bib das
+% Literaturverzeichnis.
+\bibliography{diplomarbeit}
+
+\end{document}

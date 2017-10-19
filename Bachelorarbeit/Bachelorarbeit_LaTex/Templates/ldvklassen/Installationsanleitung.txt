@@ -1,0 +1,53 @@
+Die LDV-LaTeX-Klassen
+======================================================================
+
+Diese Anleitung beschreibt die Installation der LDV-LaTeX-Klassen für
+die LaTeX-Distributionen MikTeX unter Windows und TeX Live unter
+Linux/Unix.
+
+
+MikTeX unter Windows
+----------------------------------------------------------------------
+
+Zur Installation entpacken Sie das ZIP-Archiv zuerst in Ihr lokales
+oder privates TEXMF-Verzeichnis und aktualisieren dann die
+TeX-Dateidatenbank. Im Detail empfehle ich die folgenden Schritte:
+
+  1. Entpacken Sie das ZIP-Archiv. Dabei entsteht das neues
+     Verzeichnis ldvklassen.
+ 
+  2. Kopieren Sie dieses Verzeichnis nach C:\Programme.
+
+  3. Starten Sie das Programm "MikTeX Options" in Ihrem Startmenü.
+     (Start -> Programme -> MikTeX 2.8 -> Maintenance - Settings)
+
+  4. Gehen Sie zum Karteireiter "Roots"
+  
+  5. Betätigen Sie dort die Schaltfläche "Add..." und wählen Sie 
+     dann das Verzeichnis C:\Programme\ldvklassen aus.
+  
+  6. Bestätigen Sie die Einstellung mit zweimal "OK".
+ 
+
+TeX Live unter Linux/Unix
+----------------------------------------------------------------------
+
+Zur Installation entpacken Sie das ZIP-Archiv zuerst in Ihr lokales
+oder privates TEXMF-Verzeichnis und aktualisieren dann die
+TeX-Dateidatenbank. All das erledigt das Skript install.sh für
+Sie. Führen Sie also die folgenden beiden Schritte durch:
+
+  1. Entpacken Sie das ZIP-Archiv. Verwenden Sie dazu beispielsweise
+     den Befehl
+ 
+       unzip ldvklassen.zip
+      
+     auf der Kommandozeile. Dabei steht das neue Verzeichnis
+     ldvklassen.
+    
+  2. Rufen Sie das Skript install.sh innerhalb dieses Verzeichnisses
+     als root auf. Verwenden Sie dazu beispielsweise den Befehl
+     
+       sudo ldvklassen/install.sh
+       
+     auf der Kommandozeile.

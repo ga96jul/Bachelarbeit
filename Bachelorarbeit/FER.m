@@ -9,11 +9,11 @@
 clear all;
 tic;
 h = waitbar(0,'Calculating...');
-n = 2304;                                                                   % 576:96:2304
-rate = (5/6);
+n = 576;                                                                   % 576:96:2304
+rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 17:0.5:22;
+snr_dB = 0:0.5:6;
 cnt = 1;
 Frame_errors = 0;
 
@@ -24,7 +24,7 @@ amplitude = sqrt(EsNo);
 %
 for l = 1:length(snr_dB)
     pause(1);
-frames = 100000;   
+frames = 10000;   
 %% Encoder using LDPC
 % WiMax supports code rates of 1/2, 2/3, 3/4 and 5/6  and a code length of
 % 576 upto 2304
@@ -43,10 +43,13 @@ for iterations = 1:frames                                                  % num
 
     codeword = LdpcEncode(data, H_rows, P);                                % codewords c
 
-%% Mapping
-QPSK = CreateConstellation( 'QAM', 64);                                       % QAM, PSK, FSK, etc. possible
+    perm = randperm(length(codeword));
 
-symbols = Modulate(codeword,QPSK);
+    interleaver = intrlv(codeword,perm);
+%% Mapping
+QPSK = CreateConstellation( 'QPSK' );                                       % QAM, PSK, FSK, etc. possible
+
+symbols = Modulate(interleaver,QPSK);
 
 symbols_A = symbols;
 
@@ -66,13 +69,14 @@ sym_ll = Demod2D(r, QPSK , EsNo(l));                                          % 
 
 llr = Somap(sym_ll);                                                       % soft demapping
 
+deinterleaver = deintrlv(llr,perm);
 
 
 %% Decoder
 % 50 iterations for code correction. At least 1 error in last iteration
 % gives out a Frame_error
 % FER = Frame_errors/(number of frames/iterations)
-[output, errors] = MpDecode(-llr, H_rows, H_cols, 50, 0, 1, 1, data );     % decoder
+[output, errors] = MpDecode(-deinterleaver, H_rows, H_cols, 50, 0, 1, 1, data );     % decoder
 
 
 if (errors(50) > 0)
@@ -85,6 +89,7 @@ end
 
 end
 
+Frame_errors_SNR(l) = Frame_errors;
 Frame_error_rate(l) = Frame_errors/iterations;
 Frame_errors = 0;
 waitbar(l/length(snr_dB));
@@ -92,14 +97,30 @@ waitbar(l/length(snr_dB));
 end
 close(h);
 figure;
-sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(17,22,50000);
+%sem = semilogy(snr_dB,Frame_error_rate);
+inter = linspace(0,10,10000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
-snr_FER = find(pFER < 0.001);
-snr_FER = snr_FER(1)/10000 + 17;
+sem = semilogy(inter,pFER);
+hold on; 
+grid on;
 
-save('FER_5_6_QAM64_001_2.mat','Frame_error_rate');
-save('FER_plot_5_6_QAM64_001_2.fig','sem');
-save('snr_FER_5_6_QAM64_001_2.mat','snr_FER');
+try 
+    snr_FER = find(pFER < 0.01);
+    snr_FER = snr_FER(1)/1000 + 0;
+    plot(snr_FER, 0.01, 'r*');
+catch
+    disp('No FER under 0.01');
+end
+try
+    snr_FER_001 = find(pFER < 0.001);
+    snr_FER_001 = snr_FER_001(1)/1000 + 0;
+    plot(snr_FER_001, 0.001, 'g*');
+catch
+    disp('No FER under 0.001');
+end
+
+save('FER_1_2_QPSK_1810.mat','Frame_error_rate');
+save('FER_1_2_QPSK_1810.fig','sem');
+save('snr_FER_1_2_QPSK_1810.mat','snr_FER');
 
 toc;

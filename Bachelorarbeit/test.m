@@ -23,7 +23,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 10000;  
+frames = 100000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -48,7 +48,7 @@ symbols = Modulate(interleaver,QPSK);
 %% Split symbols into blocks
 
 sym_temp = [];
-variance = 1/(2*EsNo(l));
+variance = (2*EsNo(l));
 amplitude = sqrt(EsNo(l));
 fading = (1/sqrt(2))*((randn(1))+1i*(randn(1)));
 
@@ -58,9 +58,9 @@ QPSK_A = QPSK;
 block_sym = [1 sym_temp];
 
 %% channel
-noise = (1/sqrt(2))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
+noise = (1/sqrt(variance))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
 
-r = amplitude* block_sym* fading + noise;
+r = block_sym* fading + noise;
 
 est_fad = fading;
 est_sym = r/est_fad;
@@ -68,18 +68,18 @@ l_sym = length(est_sym);
 real_sym = est_sym(2:l_sym);
 receiv_sym = real_sym;
 
-p = abs(est_fad);
+%p = abs(est_fad);
 
-E_fad = p^2*(p*exp(-((p^2)/2)));
+%E_fad = p^2*(p*exp(-((p^2)/2)));
 
-fade_coeff = ones(1,length(receiv_sym))*fading;
+%fade_coeff = ones(1,length(receiv_sym))*fading;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% new
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     
     
 % %% Demapping
- sym_ll = Demod2D(receiv_sym, amplitude*QPSK_A , 1);                                 % transforms received symbols into log-likelihoods
+ sym_ll = Demod2D(receiv_sym, QPSK_A , EsNo(l));                                 % transforms received symbols into log-likelihoods
 % 
  llr = Somap(sym_ll);                                                       % soft demapping
 % 

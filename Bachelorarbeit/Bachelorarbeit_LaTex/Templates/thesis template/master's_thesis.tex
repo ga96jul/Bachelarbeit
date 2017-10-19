@@ -1,0 +1,195 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{a4}
+\usepackage[none]{hyphenat} %hyphenation
+\sloppy
+\usepackage{parskip} %no indentation after paragraphs
+\usepackage{umlaute}
+\usepackage{afterpage} %for using \afterpage{\clearpage} (don't push images to the end of a chapter)
+\usepackage{makeidx}
+\usepackage[numbers]{natbib}
+\usepackage{graphicx}
+\usepackage{picins} %provides precise control over the placement of inline graphics
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{dsfont} %math symbols
+\usepackage{tabularx}
+\usepackage{floatflt} %float text around figures and tables
+% Florian Schulze, 06.06.2012
+% v1.0, latest edit: 06.06.2012
+
+\usepackage{enumitem} %resume counting from previous enumerate block
+\usepackage{amsmath,amssymb}
+\usepackage[format=default,font=footnotesize,labelfont=bf]{caption}
+\usepackage{listings} %for listing source code
+\usepackage{color}
+\usepackage{algpseudocode} %for listing pseudocode
+\usepackage{algorithm} %wrap algpseudocode and enrich with label etc.
+\usepackage{float} % for [H] after floats
+
+\titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{.5em}{}
+
+\makeindex
+\frenchspacing
+\sloppy
+
+\pagestyle{headings}
+
+\textwidth16cm
+\textheight22cm
+
+\topmargin0cm
+\oddsidemargin0cm
+\evensidemargin0cm
+
+
+\newcommand{\bildklein}[3]{  
+	\begin{figure}[hp]
+	\begin{center}
+	\includegraphics[width=0.5\textwidth]{#1}
+	\end{center}
+	\caption[#2]{#3}
+	\end{figure}
+}
+  	
+\newcommand{\bildgross}[3]{  
+	\begin{figure}[hp]
+	\begin{center}
+	\includegraphics[width=0.95\textwidth]{#1}
+	\end{center}
+	\caption[#2]{#3}
+	\end{figure}
+}
+  
+
+\newcommand{\eqn}[3]{
+	\begin{figure}[hp]
+	\begin{equation}#1\end{equation}
+	\caption[#2]{#3}
+	\end{figure}
+}
+
+\input{figures/tumlogo}
+
+\begin{document}
+
+\nocite{*} %include uncited references in bibliography
+\hoffset=5mm
+\thispagestyle{empty}
+
+\begin{center}
+	\bigskip \bigskip \bigskip 
+	\oTUM{6.0cm} \\
+	\vspace*{0.8cm}
+	{\huge \bf Technische Universität} \\
+	\bigskip
+	{\huge \bf München} \\
+	\bigskip \bigskip \bigskip
+	{\huge \bf Fakultät für Informatik} \\
+	\bigskip \bigskip \bigskip
+	{\Large \bf Master's Thesis in Informatik} \\
+	\bigskip \bigskip \bigskip \bigskip \bigskip
+	{\Large An Email-Centered Approach to Intelligent Task Management Using Crowdsourcing and Natural Language Processing} \\        
+	\bigskip \bigskip \bigskip \bigskip
+	{\Large John Doe} \\    
+	\bigskip
+	\begin{figure}[ht]
+	\centering \includegraphics[width=0.2\linewidth]{figures/infologo.jpg}
+	\end{figure}
+	\bigskip 
+\end{center}
+
+\vfill
+
+\newpage
+\hoffset=5mm
+\thispagestyle{empty}
+
+\begin{center}
+	\bigskip \bigskip \bigskip 
+	\oTUM{6.0cm} \\
+	\vspace*{0.8cm}
+	{\huge \bf Technische Universität} \\
+	\bigskip
+	{\huge \bf München} \\
+	\bigskip \bigskip \bigskip
+	{\huge \bf Fakultät für Informatik} \\
+	\bigskip \bigskip \bigskip
+	{\Large \bf Master's Thesis in Informatik} \\
+	\bigskip \bigskip \bigskip \bigskip \bigskip
+	{\Large An Email-Centered Approach to Intelligent Task Management Using Crowdsourcing and Natural Language Processing} \\
+	\bigskip \bigskip \bigskip
+	{\Large Ein Email-basierter Ansatz für intelligente Aufgabenverwaltung mit Hilfe von Crowdsourcing und Natural Language Processing} \\
+	\bigskip
+\end{center}
+\vfill
+
+\begin{tabular}{ll}
+{\Large \bf Author:} & {\Large John Doe} \\\\
+{\Large \bf Supervisor:} & {\Large Prof. Dr. Johann Schlichter} \\\\
+{\Large \bf Advisor:} & {\Large Dr. Wolfgang Wörndl} \\\\
+{\Large \bf Submission:} & {\Large DD.MM.YYYY}
+\end{tabular}
+
+\newpage	
+\thispagestyle{empty}
+\hoffset=0mm
+\vspace*{\fill}
+\noindent I assure the single handed composition of this master's thesis only supported by declared resources.\\\\
+München, DD.MM.YYYY\\\\\\\\\\\\
+\noindent \textit{(John Doe)}
+
+\newpage
+\thispagestyle{empty}
+\null
+
+\newpage
+\thispagestyle{empty}
+\hoffset=0mm
+\section*{Abstract}	
+\begin{spacing}{1.2}
+\input{abstracte}
+\end{spacing}
+	
+\section*{Inhaltsangabe}
+\begin{spacing}{1.2}
+\input{abstractd}
+\end{spacing}
+
+\newpage
+\setcounter{page}{1}
+\hoffset=0mm
+\bibliographystyle{wmaainf} % quotation style
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\fboxsep 0mm
+
+\tableofcontents
+
+\newpage
+\setlength{\baselineskip}{3ex}
+
+\begin{spacing}{1.15}
+	%\input{chapter1}
+	%\input{chapter2}
+	%\input{chapter3}
+	%\input{chapter4}
+\end{spacing}
+\newpage
+\thispagestyle{empty}
+\null
+
+\newpage
+\addcontentsline{toc}{chapter}{List of figures}
+\listoffigures
+
+%\input{appendices}
+
+\newpage
+\thispagestyle{empty}
+\null
+	
+% Generierung des Literaturverzeichnisses
+%\bibliography{/path/to/your/.bib/file}
+
+\end{document}

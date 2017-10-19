@@ -1,0 +1,986 @@
+\ProvidesFile{ldvguide.tex}[2011/02/23 2.0 ldv]
+
+\documentclass{scrdoc}
+
+\usepackage[ngerman]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage[pdfborder={0 0 0}]{hyperref}
+\tolerance=1500
+ 
+\CodelineIndex
+
+\GetFileInfo{ldvguide.tex}
+\title{LDV-Klassen%
+  \footnote{Dies ist Version \fileversion.}}
+\date{\filedate}
+\author{Walter Bamberger}
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Einführung}
+\label{sec:einfuehrung}
+
+Die Installation dieser \LaTeX-Klassen erklären die Dokumente
+"`Installationsanleitung.txt"' und "`Installation instructions.txt"'.
+
+Das LDV-Paket bietet zwei Dokumentenklassen an: \emph{ldvarticle} ist
+für kürzere Dokumente (üblicherweise zwischen 1 und 25 Seiten)
+gedacht. Es verwendet hierfür einseitigen Druck und beginnt die
+Über\-schrif\-ten\-hierar\-chie mit der
+\verb|\section|-Ebene. \emph{ldvbook} zielt dagegen auf größere
+Dokumente (ab etwa 15 Seiten) ab. Es stellt dazu doppelseitigen Druck
+ein, bietet die Überschriftenebene \verb|\chapter| und beginnt jedes
+Hauptkapitel auf einer neuen ungeraden Seite. Mit diesen
+Dokumentenklassen können alle anvisierten wissenschaftlichen Dokumente
+(siehe Kapitel~\ref{sec:dokumentarten}) schnell und einfach umgesetzt
+werden. Der Fokus der Erweiterungen und Verbesserungen liegt vor allem
+auf der Titelei und den Literaturverweisen.
+
+Wie die Namen der Dokumentenklassen bereits nahelegen, sind diese
+verwandt mit den entsprechenden Standardklassen bzw. den
+entsprechenden \KOMAScript-Klassen. Warum wurden dann neue Klassen ins
+Leben gerufen und welchen Vorteil bringen sie Ihnen?
+
+\begin{description}
+\item[Corporate Identity.]  Die LDV-Klassen setzten, wo sinnvoll und
+  möglich, die Intentionen und Vorgaben des neuen Style Guide der TUM
+  um. Dies reicht von der Schriftenauswahl, über die Definition der
+  Farben bis zur Gestaltung der Titelseite.
+\item[Einstiegskomplexität.]  Die LDV-Klassen sollen \LaTeX-Neulingen
+  (also den meisten Studierenden) den Einstieg möglichst einfach
+  machen. Dazu ermöglichen sie eine sehr einfache \LaTeX-Präambel,
+  setzen eine ausgewogene und moderne Layoutvorgabe um und bieten vor
+  allem im Bereich der Titelei einige Automatismen.
+\item[Metadatenverarbeitung.]  Die Standardklassen von \LaTeX\ nutzen
+  die Metainformationen wie Autor und Titel lediglich zur Gestaltung
+  der Titelseite. Die LDV-Klassen verwenden diese Informationen
+  dagegen an möglichst vielen weiteren Stellen: Auf der Umschlagseite,
+  auf der Impressumsseite und insbesondere auch in den
+  PDF-Dokumenteneigenschaften. Sie bekommen also ohne weiteres Zutun
+  ein komplettes Dokumentengerüst, einschließlich der
+  PDF-Meta\-daten.
+\item[Umschlagseite.]  Umfangreiche Werke (Bücher) sind 
+  zusätzlich zur Titelseite (zumeist die Seite~5) von einem Umschlag
+  umgeben, der Raum zur individuellen Gestaltung bietet. Im
+  Gegensatz zu den Standardklassen von \LaTeX, integrieren die
+  LDV-Klassen Funktionalitäten zum einfachen Umgang mit dem Umschlag.
+\item[Titelei.]  Das Makro \verb|\maketitle| der LDV-Klassen besitzt
+  erweiterte Mög\-lich\-kei\-ten, um automatisch eine komplette
+  Titelei zu generieren. Es erzeugt insbesondere eine Impressumsseite,
+  auf der optional Lizenzinformationen stehen. Die sechs Creative
+  Commons-Lizenzen (CC-BY, CC-BY-SA, CC-BY-ND, CC-BY-NC, CC-BY-NC-SA,
+  CC-BY-NC-ND) sind bereits in die Klassen integriert und können mit
+  dem Befehle \verb|\license| ausgewählt werden (siehe
+  http://creativecommons.org).
+\item[Literaturverzeichnis.]  Die LDV-Klassen beherrschen das
+  Autor-Jahr-Sche\-ma, mit dem man den Literaturverweis gut in den
+  Text integrieren kann und ein Werk bereits im Text gut
+  wiedererkennen kann. Darüber hinaus beinhalten sie einen eigenen
+  Literaturverzeichnisstil, der mit den modernen Attributen DOI, ISBN,
+  ISSN und URL umgehen kann, und der den Dokumententyp "`www"' für
+  Webseiten und "`media"' für Mediendateien kennt. Bei diesen Quellen
+  gibt es häufig eine große Unsicherheit im Umgang.
+\item[Zweisprachige Umsetzung.]  Alle Funktionen, die Text im Dokument
+  erzeugen, sind konsequent zweisprachig aufgebaut, für deutsche
+  (\verb|lang=| \verb|ngerman|) und für englische
+  (\verb|lang=englisch|) Texte, indem sie sich in das Rahmenkonzept
+  des Babel-Pakets integrieren. Die Standardsprache ist Englisch.
+\end{description}
+
+Das folgende Beispiel zeigt das Grundgerüst für eine Diplomarbeit.
+
+\begin{verbatim}
+\documentclass[doctype=Diplomarbeit,lang=ngerman]{ldvbook}
+
+\begin{document}
+
+\title{Der große Wurf}
+\author{H. Mustermann}
+\license{CC-BY}
+\supervisor{W. Bamberger}
+
+\maketitle[frontcover=Design1]
+\tableofcontents
+
+\chapter{Einführung}
+
+...
+
+\bibliography{diplomarbeit}
+
+\end{document}
+\end{verbatim}
+%
+Man sieht die sehr kurze \LaTeX-Präambel. Und auch die Titelei ist mit
+wenigen Zeilen getan. Für eine normale Diplomarbeit dürfte das Gerüst
+genügen; denn folgende Pakete sind so bereits automatisch eingebunden:
+%
+\begin{itemize}
+\item inputenc
+\item fontenc
+\item babel
+\item array
+\item fancyvrb
+\item color
+\item graphicx
+\item amsmath
+\item amssymb
+\item natbib
+\item hyperref
+\item varioref
+\item helvet (je nach Klassenoption)
+\end{itemize}
+
+Indem die LDV-Klassen das komplette \LaTeX-System sinnvoll
+vorkonfigurieren einschließlich aller üblichen Pakete, erlauben sie
+Neulingen einen sehr schnellen Einstieg.
+
+Diese Anleitung ist keine \LaTeX-Anleitung. Vielmehr beschreibt sie
+nur die Zusätze, die die LDV-Klassen im Vergleich zu den
+\KOMAScript-Klassen bieten. Ich verweise jedoch immer wieder auf die
+Beschreibungen der zu einem Thema wichtigen Pakete.
+
+
+
+
+\section{Anvisierte Arten von Dokumenten}
+\label{sec:dokumentarten}
+
+Die LDV-Dokumentenklassen zielen auf strukturierte Dokumente mit meist
+wissenschaftlichem Hintergrund ab. Bei der Entwicklung habe ich vor
+allem an 
+%
+\begin{itemize}
+\item Vorlesungsskripte,
+\item Studentische Abschlussarbeiten (Studien-, Diplom-, Bachelor- und
+  Masterarbeiten sowie interdisziplinäre Projekte),
+\item Doktorarbeiten,
+\item Forschungsberichte und
+\item wissenschaftliche Aufsätze/Paper
+\end{itemize}
+%
+gedacht. Sie bestehen im Wesentlichen aus der Titelei, Verzeichnissen
+und Fließtext mit Tabellen und Abbildungen. Im Vergleich zu den
+\KOMAScript-Klassen benötigt man für diese Dokumente vor allem
+Ergänzungen im Bereich der Titelei und dem
+Literaturverzeichnis. Hierin lag deshalb das Augenmerk für die
+Entwicklung der LDV-Klassen.
+
+Der volle Funktionsumfang der LDV-Klassen steht in den Sprachen
+Deutsch und Englisch zur Verfügung. Eine Erweiterung um weitere
+Sprachen ist denkbar und einfach möglich, aber im Augenblick nicht
+geplant.
+
+Briefe sowie Texte mit freiem Layout decken diese Dokumentenklassen
+nicht ab. Dagegen ist eine Erweiterung in Richtung eines
+Konferenzbands (proceedings) denkbar.
+
+
+
+
+\section{Sprache und Kodierung}
+\label{sec:kodi-und-sprache}
+
+\DescribeOption{lang}%
+Die LDV-Klassen laden automatisch das \emph{Babel}-Paket mit den
+Einstellungen zur englischen Sprache. Zusätzliche Spracheinstellungen
+können Sie mit der Klassenoption \verb|lang| laden, also
+beispielsweise mit der Option \verb|lang=ngerman|. (Bitte bevorzugen
+Sie \verb|ngerman| gegenüber \verb|german|. Letzteres ist veraltet.)
+
+\DescribeOption{inputenc}%
+Im Sinne einer modernen Sprachunterstützung wählen die LDV-Klassen als
+Zeichensatz automatisch UTF-8, indem sie das Paket \emph{inputenc} mit
+der entsprechenden Option laden. Wollen Sie eine andere
+Zeichenkodierung für Ihre .tex-Datei verwenden, dann müssen Sie die
+Klassenoption \verb|inputenc| verwenden. In welchem Format Ihre
+.tex-Datei kodiert ist, bestimmt Ihr \TeX-Editor.
+
+Die LDV-Klassen verwenden automatisch die T1-kodierten Schriften von
+\LaTeX, die modernere und flexiblere Kodierung. Dazu laden sie das
+Paket fontenc mit Option "`T1"'. Dieses Verhalten ist fest vorgegeben
+und unveränderlich.
+
+\paragraph{Beispiel}
+
+\begin{verbatim}
+\documentclass[lang=ngerman,inputenc=latin1]{ldvbook}
+\end{verbatim}
+
+
+
+
+\section{Meta-Informationen}
+\label{sec:meta}
+
+\DescribeMacro{\author}%
+\DescribeMacro{\citationaddress}%
+\DescribeMacro{\institute}%
+\DescribeMacro{\keywords}%
+\DescribeMacro{\license}%
+\DescribeMacro{\licensetext}%
+Die LDV-Klassen können bestimmte bibliographische Informationen an
+verschiedenen Stellen in einem Dokument einfügen: Auf der
+Umschlagseite, auf der Titelseite, auf der Impressumsseite (siehe
+Kapitel~\ref{sec:titelei}) und in den Dokumenteneigenschaften der
+PDF-Datei (nur mit pdf\LaTeX). Dabei beachten sie die gewählte
+Textsprache (deutsch und englisch). Im Einzelnen sind das folgende
+Meta-Informationen:
+
+\DescribeMacro{\postaddress}%
+\DescribeMacro{\publishers}%
+\DescribeMacro{\publishersurl}%
+\DescribeMacro{\subtitle}%
+\DescribeMacro{\subject}%
+\DescribeMacro{\title}%
+\DescribeMacro{\version}%
+\begin{itemize}
+\item der Verfasser (\verb|\author|),
+\item der Titel (\verb|\title|),
+\item der Untertitel (\verb|\subtitle|),
+\item die Dokumentenart bzw. das Thema (\verb|\subject|, manchmal auch
+  als Betreff beschrieben),
+\item die veröffentlichende Einrichtung bzw. Person
+  (\verb|\publishers|, z.B. die Universität),
+\item die Internetadresse der Einrichtung (\verb|\publishersurl|),
+\item die Postadresse der Einrichtung (\verb|\postaddress|),
+\item der Ort der Einrichtung, wie er in der Referenzierung erscheinen
+  soll (\verb|\citationaddress|),
+\item der Lehrstuhl (\verb|\institute|),
+\item die Versionsnummer (\verb|\version|),
+\item die Schlagwörter (\verb|\keywords|) und 
+\item die Lizenz (den kompletten Lizenztext mit \verb|\licensetext|
+  oder eine der vordefinierten Lizenzen mit \verb|\license|).
+\end{itemize}
+%
+Bei studentischen Abschlussarbeiten kommt der Betreuer
+(\verb|\supervisor|) hinzu. 
+
+Die Werte für \verb|\citationaddress|, \verb|\institute|,
+\verb|\postaddress|, \verb|\publishers|, und \verb|\publishersurl|
+sind bereits mit den passenden Werten für unseren Lehrstuhl vorbelegt.
+Ein Lizenztext kann sehr einfach mit \verb|\license| ausgewählt
+werden.
+
+\DescribeMacro{\keywordsname}%
+Die Schlagwörter werden mit einem entsprechenden Wort eingeleitet
+(z.B. Schlagwörter oder Key words).  Dieses Wort ist in
+\verb|keywordsname| lokalisiert gespeichert.
+
+
+
+\paragraph{Lizenzen.}
+
+Texte und Bilder (nicht deren Inhalt) sind nach dem Urheberrecht
+geschützt. Sie dürfen von anderen nicht ohne Erlaubnis benutzt
+werden. Will ein Anderer beispielsweise ein Bild verwenden, muss er
+individuell um Erlaubnis fragen, also eine Lizenz erwerben. Der Autor
+selbst kann dies aber vereinfachen, indem er das Werk unter eine
+Lizenz für die generelle Öffentlichkeit stellt. Mehr zu den Gründen,
+warum das gut sein kann und wie das geht, beschreibt die Website von
+Creative Commons (creativecommons.org).
+
+Die Organisation \emph{Creative Commons} hat dazu ein modulares
+Lizenzsystem entwickelt. Die LDV-Dokumentenklassen bieten einen
+vereinfachten Zugriff auf diese sechs Lizenzen. Wählen Sie mit dem
+Makro \verb|\license| eine der Lizenzen aus. Die Lizenzen werden über
+ihr Kürzel angegeben: CC-BY, CC-BY-SA, CC-BY-ND, CC-BY-NC,
+CC-BY-NC-SA, CC-BY-NC-ND. Was sich hinter diesen Zeichen verbirgt,
+finden Sie ausführlich erläutert auf der Website von Creative Commons
+unter \url{www.creativecommons.org}.
+
+Wer eine andere als diese sechs Lizenzen verwenden will, kann den
+Lizenztext mit dem Makro \verb|\licensetext| eingeben.
+
+
+\paragraph{Beispiel.}
+
+Das Skript zum Praktikum Informatik definiert seine bibliographischen
+Informationen mit folgendem Code:
+
+\begin{verbatim}
+\title{Programmieren in C}
+\subtitle{Der C-Kurs zum Praktikum Informatik}
+\author{K. Centmayer\and F. Obermeier}
+\version{1.1}
+\subject{Praktikumsskript}
+\keywords{C, Programmieren, Programmierkurs}
+\end{verbatim}
+
+
+\paragraph{Weitere Dokumentation.}
+\label{sec:weit-dokum}
+
+Die meisten Makros zum Steuern des Titelinhalts entstammen den
+\KOMAScript-Klassen und sind somit in scrguide.pdf (deutsch)
+bzw. scrguien.pdf (englisch) dokumentiert.
+
+
+
+
+\section{Titelei und Umschlag}
+\label{sec:titelei}
+
+Die Titelei bezeichnet den Teil eines Buches, der dem Textteil
+vorausgeht. Häufig besitzen dieser Bereich Seitenzahlen aus römischen
+Ziffern. (Vergleiche dazu den Artikel "`Titelei"' in "`Wikipedia, Die
+freie Enzyklopädie"'.) Die Titelei besteht aus
+%
+\begin{itemize}
+\item der Schmutztitelseite oder dem Vortitel (Seite 1),
+\item der Frontispizseite (Seite 2, eine Illustration, heute häufig
+  unbedruckt),
+\item dem Titelblatt bzw. der Titelseite (Seite 3)
+\item der Impressumsseite (Seite 4),
+\item einer Widmungsseite (Seite 5),
+\item den Vorworten sowie
+\item dem Inhaltsverzeichnis und anderen Verzeichnissen.
+\end{itemize}
+
+\DescribeMacro{\maketitle}%
+Einige Teile davon sind optional; erwähnenswert ist darüber hinaus,
+dass der Umschlag eines Buches nicht zur Titelei zählt. Die
+LDV-Klassen können mit dem Befehl \verb|\maketitle| die ersten fünf
+der oben genannten Punkte setzen sowie die Umschlagseite. Die Vorworte
+können Sie als Kapitel mit den Sternvarianten der Gliederungsbefehle
+kodieren. Und die diversen Verzeichnisse können Sie mit den üblichen
+\LaTeX-Werkzeugen erzeugen.
+
+Um die neuen Funktionen bezüglich des Umschlags flexibel in das Makro
+\verb|\maketitle| integrieren zu können, verwendet dieses Makro in den
+Optionen Schlüssel-Wert-Paare. Der unten dargestellte Code weist
+beispielsweise dem Schlüssel \verb|frontcover| den Wert \verb|Design1|
+zu.
+
+\paragraph{Einführendes Beispiel.}
+
+\DescribeMacro{\maketitle}%
+\DescribeMacro{\extratitle}%
+\DescribeMacro{\dedication}%
+Der folgende \LaTeX-Code realisiert ein sehr umfangreiches Beispiel,
+welches all die genannten Fähigkeiten zeigt. Er erzeugt ein
+elfseitiges Dokument, acht davon generiert der Aufruf von
+\verb|\maketitle|: Die Seiten -1 und 0 entfallen dabei auf den
+Umschlag, Seite 1 beinhaltet den Schmutztitel, Seite 2 ist leer, Seite
+3 zeigt den Haupttitel (Titelseite), Seite 4 die Impressumsseite,
+Seite 5 die Widmung, Seite 6 bleibt leer, Seite 7 beginnt das Vorwort
+und Seite 11 das Inhaltsverzeichnis. Bei kleineren Werken entfallen
+häufig der Schmutztitel, die Widmung und das Vorwort.
+
+\begin{verbatim}
+\documentclass[lang=ngerman]{ldvbook}
+\begin{document}
+
+\title{Programmieren in C}
+\subtitle{Der C-Kurs zum Praktikum Informatik}
+\author{K. Centmayer\and F. Obermeier}
+\version{1.1}
+\subject{Praktikumsskript}
+\keywords{C, Programmieren, Programmierkurs}
+
+\extratitle{{\bfseries\Large Programmieren in C}}      % Schmutztitel  (optional)
+\dedication{Gewidmet meiner Frau Theresa und meinem Freund Johannes,\\
+  für ihre Geduld und ihre tatkräftige Unterstützung}  % Widmung (optional)
+
+\maketitle[frontcover=Design1]
+
+\chapter*{Vorwort}  % Optional
+Ich würde mal sagen, Text, Text, Text.
+
+\tableofcontents
+\end{document}
+\end{verbatim}
+%
+Zu den Makros \verb|\extratitle|, \verb|\dedication| und
+\verb|\subtitle| erfahren Sie mehr in der Dokumentation zu den
+\KOMAScript-Klassen. Kapitel~\ref{sec:meta} bespricht die
+Makros \verb|\version| und \verb|\keywords|.
+
+Zusammenfassend haben Schmutztitelseite, Widmung und Vorwort bei den
+von den LDV-Klassen anvisierten Dokumentenarten eine geringe
+Bedeutung. Die Trennung von einem visuell orientierten Umschlag und
+der Titelseite ist aus gestalterischer Sicht dagegen relevant. Deshalb
+befasst sich das verbleibende Kapitel mit der Umschlagseite, der
+Titelseite und der Impressumsseite. Zusätzlich bieten die LDV-Klassen
+in Bezug auf die Titelei auch noch einige Zusatzfunktionen für
+studentische Abschlussarbeiten, die im Abschluss vorgestellt werden.
+
+\paragraph{Seitennummerierung.}
+
+\DescribeOption{pagenumber}%
+Über die Option \verb|pagenumber| können Sie die Seitennummer der
+ersten Seite der Titelei festlegen. Standardmäßig ist dies die Seite
+1. Dies kann nützlich sein, falls vorausgehende Seiten außerhalb des
+\LaTeX-Dokuments erstellt werden.
+
+\paragraph{Beispiel.} Das folgende Beispiel erzeugt keinen Umschlag
+und keinen Schmutztitel. Die Titelseite ist die erste von \LaTeX\
+generierte Seite und erhält die Seitennummer 3.
+
+\begin{verbatim}
+\title{Programmieren in C}
+\subtitle{Der C-Kurs zum Praktikum Informatik}
+\author{K. Centmayer\and F. Obermeier}
+
+\maketitle[pagenumber=3]
+\end{verbatim}
+
+\paragraph{Weitere Dokumentation.}
+
+Viele Makros rund um die Titelei sind in scrguide.pdf (deutsch)
+bzw. scrguien.pdf (englisch) dokumentiert.
+
+
+
+
+\subsection{Umschlag}
+\label{sec:umschlag}
+
+Der Umschlag, auch als Buchdeckel oder cover bezeichnet, bietet Raum
+für eine individuelle Gestaltung, frei vom Seitenspiegel und den
+anderen Layoutvorgaben des Buches. Er ist kein Teil der Titelei und
+geht auch nicht in die Seitenzählung ein. Um der eigenen Arbeit trotz
+der sonstigen Layoutvorgaben in \LaTeX\ einen individuellen Charakter
+verleihen zu können, bieten die LDV-Klassen die Möglichkeit, eines von
+mehreren Coverdesigns auszuwählen oder eine Umschlagseite einzubinden,
+die Sie in einem anderen Layoutprogramm erstellt haben.
+
+\DescribeOption{frontcover}%
+Zur Zeit gibt es nur ein vorgegebenes Coverdesign. Es wird mit der
+Option \verb|frontcover=Design1| des Makros \verb|\maketitle|
+aktiviert.
+
+\paragraph{Beispiel.} Das folgende Beispiel erzeugt eine
+Umschlagseite, eine leere Umschlagrückseite, eine Titelseite und eine
+Impressumsseite.
+
+\begin{verbatim}
+\title{Programmieren in C}
+\subtitle{Der C-Kurs zum Praktikum Informatik}
+\author{K. Centmayer\and F. Obermeier}
+
+\maketitle[frontcover=Design1]
+\end{verbatim}
+
+\paragraph{ToDo}
+
+\begin{itemize}
+\item Alternativ kann auch eine selbst gestaltete Umschlagseite
+  (PDF mit einer Seite) eingebunden werden, mit der Option
+  \verb|coverfile|. Beispiel:
+\begin{verbatim}
+\maketitle[frontcoverfile=meinumschlag.pdf]
+\end{verbatim}
+\end{itemize}
+
+
+
+\subsection{Titelseite}
+\label{sec:titelseite}
+
+Die Titelseite beinhaltet die wichtigsten bibliographischen
+Informationen auf einer Seite; sie erscheint bei Büchern zumeist auf
+Seite 3. Die LDV-Klassen ordnen auf dieser Seite
+%
+\begin{itemize}
+\item die Dokumentenart (\verb|\subject|),
+\item den Titel (\verb|\title|),
+\item den Untertitel (\verb|\subtitle|),
+\item den Autor bzw. die Autoren (\verb|\author|),
+\item das Erscheinungsdatum bzw. Kompilierdatum (\verb|\date|),
+\item eine Versionsinformation (\verb|\version|, ähnlich einer
+  Auflagennummer),
+\item einen freien Titelkopf (\verb|\titlehead|) sowie
+\item das TUM- und LDV-Logo mit den Namen von Universität und
+  Lehrstuhl
+\end{itemize}
+%
+an. Einige dieser Informationen sind optional. 
+Der Wert von \verb|\publishers| findet im Gegensatz zu den
+Standardklassen keine Beachtung, weil die Institutionsnamen und Logos
+bereits fest vorgegeben sind.
+
+\DescribeOption{titlepage}%
+Die Klassenoption \verb|titlepage=true| erzeugt einen ganzseitigen
+Titel wie oben beschrieben. Dies ist die Vorgabe bei der
+Dokumentenklasse ldvbook. Die Klassenoption \verb|titlepage=false|
+setzt den Titel dagegen an den Seitenkopf; darunter beginnt dann
+gleich der normale Text. Dies ist die Standardeinstellung für die
+Dokumentenklasse ldvarticle. Bei diesem verkürzten Titel am Seitenkopf
+werden die oben genannten Elemente anders angeordnet und keine
+Institutionsnamen abgedruckt; die Logos bleiben erhalten.
+
+
+\subsection{Impressumsseite}
+\label{sec:impressumsseite}
+
+Auf der Rückseite der Titelseite folgt die Impressumsseite, zumeist
+also auf der Seite 4. Sie enthält detaillierte Informationen zum Werk,
+vor allem Daten, die das Urheberrecht und Bibliotheken fordern. Die
+Informationen auf der Impressumsseite sind demgemäß ausschlaggebend
+für Zitate.
+
+Die LDV-Klassen erzeugen die Impressumsseite nur bei doppelseitigem
+Druck. Sie beinhaltet dann
+%
+\begin{itemize}
+\item ein Zitierungsbeispiel bestehend aus dem Autor (\verb|\author|),
+  dem Titel (\verb|\title|) mit dem Untertitel (\verb|\subtitle|), der
+  Version (\verb|\version|), der Dokumentenart (\verb|\subject|), der
+  veröffentlichende Institution (\verb|\publishers|), dem Ort der
+  Institution (\verb|\citationaddress|) und dem Erscheinungsjahr
+  (\verb|\year|),
+\item die charakterisierenden Schlüsselwörter (\verb|\keywords|),
+\item die Urheberangabe bestehend aus dem Jahr (\verb|\year|) und den
+  Autoren (\verb|\author|),
+\item die Kontaktdaten bestehend aus dem Lehrstuhlnamen
+  (\verb|\institute|), dem Universitätsnamen (\verb|\publishers|), der
+  Postadresse (\verb|\postaddress|) und der Internet-Adresse
+  (\verb|\publishersurl|),
+\item eine Lizenz (\verb|\license| oder \verb|\licensetext|) sowie
+\item freie Zusatzinformationen oben auf der Seite (z.B. zur
+  Umschlagseite, mittels \verb|\uppertitleback|).
+\end{itemize}
+
+Bei studentischen Abschlussarbeiten erscheinen hier auch noch
+Informationen zu den Betreuern (siehe
+Abschnitt~\ref{sec:sond-fur-stud}). Viele der oben genannten Punkte
+sind optional und erscheinen deshalb nur, falls sie angegeben wurden.
+
+
+\subsection{Besondere Funktionen für studentische Abschlussarbeiten}
+\label{sec:sond-fur-stud}
+
+Für studentische Abschlussarbeiten beinhalten die LDV-Klassen einige
+Automatismen. Sie sollen den Unsicherheiten bei Studenten
+entgegenwirken, welche Informationen denn wo in der Arbeit erscheinen
+sollen. 
+
+\DescribeOption{doctype}%
+Dazu geben Sie zuerst je nach Typ der Arbeit eine der folgenden
+Klassenoptionen an:
+%
+\begin{itemize}
+\item \verb|doctype=mastersthesis|
+\item \verb|doctype=bachelorsthesis|
+\item \verb|doctype=Diplomarbeit|
+\item \verb|doctype=Studienarbeit|
+\item \verb|doctype=IDP|
+\end{itemize}
+%
+Damit werden die Funktionen und Einstellungen für studentische
+Abschlussarbeiten aktiviert.
+
+\DescribeMacro{\supervisor}%
+Neben den Titel und dem Autor müssen Sie dann noch den Betreuer
+angegeben. Die LDV-Klassen bieten dazu das Makro
+\verb|\supervisor|. Abschließend stellt ein Aufruf von
+\verb|\maketitle| alle relevanten Informationen zusammen.
+
+\paragraph{Beispiel.}
+
+Den Anfang einer Masterarbeit zeigt folgendes Beispiel. Es erzeugt ein
+vierseitiges Dokument mit allen prüfungsrelevanten
+Rahmeninformationen.
+
+\begin{verbatim}
+\documentclass[doctype=mastersthesis]{ldvbook}
+
+\begin{document}
+
+\title{Modeling a machine-to-machine relaying scenario with ad-hoc segments}
+\author{Chunlong Tang}
+\supervisor{W. Bamberger}
+
+\maketitle[frontcover=Design1]
+
+...
+
+\end{document}
+\end{verbatim}
+
+\paragraph{Hinweise.}
+
+Den LDV-Klassen liegt ein etwas umfassenderes Grundgerüst einer
+Diplomarbeit bei (diplomarbeit.tex). Bitte benutzen Sie dieses als
+Vorlage für ihre Abschlussarbeit. Darüber hinaus gibt es auch ein
+umfangreiches Dokument mit Tipps zur Ausarbeitung. Bitte lesen Sie
+dieses zu Anfang aufmerksam durch.
+
+
+
+
+\section{Textauszeichnung}
+\label{sec:textauszeichnung}
+
+Die Fähigkeiten von \LaTeX\ und den \KOMAScript-Klassen für Fließtext
+sind sehr umfangreich und zumeist ausreichend. Die LDV-Klassen
+erweitern sie in diesem Bereich nur um wenige Funktionen.
+
+
+\subsection{Starke Hervorhebung}
+\label{sec:starke-hervorhebung}
+
+\DescribeMacro{\emphemph}%
+Zur Hervorhebung von Text bietet \LaTeX\ den Befehl \verb|\emph|. So
+gekennzeichneter Text soll während des Lesens den Lesefluss
+verändern. Zusätzlich sollen in manchen Texten gewisse Begriffe
+bereits beim überfliegen des Textes auffallen, um Orientierung zu
+bieten, ähnlich zu Überschriften. Dies ist eine stärkere
+Hervorhebung. Dazu definieren die LDV-Klassen den Befehl
+\verb|\emphemph|.
+
+\paragraph{Beispiel}
+
+\begin{verbatim}
+Schließlich bildet der Bereich der \emphemph{Serviceroboter} ein
+sehr vielversprechendes Anwendungsfeld.
+\end{verbatim}
+
+
+\subsection{Code in Überschriften und Bildunterschriften}
+\label{sec:code-uberschr-und}
+
+\DescribeMacro{\simpleverb}%
+\LaTeX\ bietet das Makro
+\verb|\verb|, um vorformatierten Text, also beispielsweise Quellcode,
+darzustellen. Optisch benutzt es dazu in der Regel die
+Festweitenschrift Computer Modern Typewriter ??. Dieses Makro
+funktioniert aber nicht innerhalb von Überschriften,
+Bildunterschriften, usw. Um auch innerhalb solcher Makros Quellcode
+einbetten zu können, bieten die LDV-Klassen das Makro
+\verb|\simpleverb|. 
+
+Dieses neue Makro stellt Text genauso dar wie
+\verb|\verb|, jedoch kann es nicht beliebige Zeichen unverändert
+darstellen. Vielmehr müssen Sie als Autor die Steuerzeichen von
+\LaTeX\ benutzen, um gewisse Sonderzeichen setzen zu
+können. \verb|\simpleverb| 
+verhält sich wie ein normales \LaTeX-Makro. Genau deshalb kann es auch
+innerhalb von Überschriften benutzt werden. Es setzt lediglich den
+Inhalt in der passenden Darstellungsform -- in derselben wie
+\verb|\verb|. 
+
+\paragraph{Beispiele}
+
+\begin{verbatim}
+\section{Ausgabe mit \simpleverb{printf}}
+\end{verbatim}
+
+\begin{verbatim}
+\paragraph*{Was ergibt die logische Verknüpfung \simpleverb{c = a \&\& b}?}
+\end{verbatim}
+
+
+\subsection{Bemerkungen des Autors}
+\label{sec:bemerk-des-autors}
+
+\DescribeEnv{note}%
+In Büchern sieht man immer wieder am Ende von Abschnitten einen
+abgesetzten Text mit Bemerkungen und Hinweisen des Autors. Dieses
+Vorgehen soll zusätzliche Hinweise und Interpretationen vom
+eigentlichen Inhaltsverlauf trennen. Die LDV-Klassen bieten hierfür
+die Umgebung \verb|note|.
+
+\paragraph{Beispiel}
+
+\begin{verbatim}
+\begin{note}
+  Wann immer Sie in diesem Skript auf das Symbol links stoßen, 
+  finden Sie einen Hinweis, dass Sie im Quellcodeverzeichnis ein
+  übersetzbares Beispiel zum behandelten Stoff finden. Alternativ 
+  wird Ihnen das entsprechende Programm direkt in einem Bild 
+  präsentiert (s.u.).
+\end{note}
+\end{verbatim}
+
+
+\subsection{Abbildungen}
+\label{sec:abbildungen}
+
+Die LDV-Klassen binden das \LaTeX-Paket \emph{graphicx} automatisch
+mit ein, um den grundlegenden Umgang mit Bilddateien zu
+ermöglichen. Mit pdflatex können Sie damit die Dateiformate PDF, PNG
+und JPEG direkt in \LaTeX-Dokumente einbinden.
+
+\DescribeMacro{\graphicswidth}%
+\DescribeMacro{\graphicswidthtwo}%
+Um ein stringentes Erscheinungsbild zu erhalten, druckt man die
+Grafiken in einem Dokument in einheitlichen Breiten. Dazu definieren
+die LDV-Klassen die Längenmaße \verb|\graphicswidth| und
+\verb|\graphicswidthtwo|. Das erste ist die Breite eines Bildes mit
+nahezu der Textbreite (abzüglich 2\,em für den Rand). Das zweite ist
+die Breite eines Bildes, wenn zwei Bilder nebeneinander mit einem
+Zwischenraum von 1\,em gedruckt werden sollen.
+
+Natürlich passt die (große) Breite \verb|\graphicswidth| nicht zu
+allen Bildern. Schmälere Bilder kann man dann von Text umflossen
+einbetten. Dazu gibt es diverse \LaTeX-Pakete.
+
+\paragraph{Beispiele}
+
+\begin{verbatim}
+\begin{figure}[htb]
+  \centering%
+  \includegraphics[width=\graphicswidthtwo]{img/7-1}%  
+  \caption{Bildunterschrift für das erste Bild.}
+  \label{fig:bsp1}
+\end{figure}
+\end{verbatim}
+
+\begin{verbatim}
+\begin{figure}[htb]
+  \centering%
+  \includegraphics[width=\graphicswidthtwo]{img/7-2}%
+  \quad%
+  \includegraphics[width=\graphicswidthtwo]{img/7-3}%
+  \caption{Bildunterschrift für die zweite Abbildung. Es kann auch
+    mehr Text sein.}
+  \label{fig:bsp2}
+\end{figure}
+\end{verbatim}
+
+
+
+
+\section{Mathematik}
+\label{sec:mathematik}
+
+Für den Satz von mathematischen Formeln binden die LDV-Klassen
+automatisch die Pakete \emph{amsmath} und \emph{amssymb}
+eingebunden. 
+
+\DescribeEnv{definition}%
+\DescribeEnv{theorem}%
+Auf deren Basis definieren die LDV-Klassen dann die beiden Umgebungen
+\verb|definition| und \verb|theorem|. Ersteres ist ein nummerierter
+Block für mathematische Definitionen. Zweiteres ein nummerierter Block
+für mathematische Sätze. Die Bezeichnungen im Text stehen in den
+Sprachen Deutsch und Englisch zur Verfügung.
+
+\paragraph{Beispiele}
+
+\begin{verbatim}
+\begin{definition}
+  \label{th:ueberzeugungsstaerkeverteilung}
+  Gegeben sei ein Beurteilungsrahmen~$\Theta$. Eine Abbildung $m$ 
+  über der Menge aller Teilmengen des Beurteilungsrahmens 
+  ($\{x | x \subseteq \Theta\}$) mit
+  % 
+  \begin{enumerate}
+  \item $m_\Theta(x) \geq 0$,
+  \item $m_\Theta(\emptyset) = 0$ und
+  \item $\sum_{x \subseteq \Theta} m_\Theta(x) = 1$
+  \end{enumerate}
+  % 
+  heißt \emph{Überzeugungsstärkeverteilung} (belief mass 
+  distribution, basic probability assignment). Der Wert von 
+  $m_\Theta(x)$ wird als \emph{Überzeugungsstärke} (belief mass, 
+  basic probability number) in die Behauptung $x$ bezeichnet. 
+  \cite{Joesang2007}, \cite{Shafer1976}
+\end{definition}
+\end{verbatim}
+
+\begin{verbatim}
+\begin{theorem}
+  \label{th:ueberzeugungssumme}
+  Die Summe aus Überzeugung, Gegenüberzeugung und Unsicherheit 
+  ergibt immer Eins:
+  %
+  \begin{align*}
+    \Bel(A) + \operatorname{Dou}(A) + u(A) = 1, \qquad A \in 
+    \{x | x \subseteq \Theta\},\ A \neq \emptyset.
+  \end{align*}
+\end{theorem}
+\end{verbatim}
+
+\paragraph{Weitere Dokumentation.}
+
+Weitere Dokumentation zu den Funktionen der AMS-Pakete finden Sie in
+amsldoc.pdf.
+
+
+
+
+\section{Verweise}
+\label{sec:guide-verweise}
+
+
+\subsection{Literaturverzeichnis und \BibTeX}
+\label{sec:literaturverzeichnis}
+
+Mit dem Paket \emph{natbib} lassen sich Literaturverweise flexibel
+gestalten. Deshalb wird es automatisch von den LDV-Dokumentenklassen
+eingebunden. Es bietet beispielsweise den Befehl \verb|\citet|, um
+einen Verweis zu erzeugen, bei dem der Name des Autors in den Text
+integriert ist ("`Müllers (2002) wählte den Ansatz \ldots"').
+
+\DescribeMacro{\bibliographystyle}%
+Damit die LDV-Klassen ein komplettes Stilpaket anbieten, stellen sie
+bereits einen Bibliographiestil als Vorgabewert ein. Es heißt einfach
+\emph{ldv}. Dieser Stil unterstützt folgende zusätzliche
+\BibTeX-Attribute:
+%
+\begin{itemize}
+\item \verb|isbn|
+\item \verb|issn|
+\item \verb|doi|
+\item \verb|url|
+\item \verb|language|
+\end{itemize}
+
+Sie können also eine \verb|\bibliographystyle|-Anweisung bei den
+LDV-Klassen einfach weglassen, weil ein Bibliographiestil bereits
+voreingestellt ist. Sollten Sie einen anderen Stil wollen, können sie
+diesen natürlich ganz normal mit eben jenem Befehl auswählen.
+
+natbib unterscheidet den Bibliographiestil vom Zitierstil. Ersterer
+gestaltet das Literaturverzeichnis, zweiterer den Verweis aus dem Text
+zu einem Eintrag im Literaturverzeichnis. Standardmäßig verwenden die
+LDV-Klassen den Zitierstil \emph{ldv}, welcher das Autor-Jahr-Schema
+(z.B. "`Meyer (2002)"') verwendet.  Wollen Sie dagegen lieber Verweise
+nach dem numerische Schema (z.B. "`[12]"'), dann wählen Sie den
+Zitierstil \emph{ldvplain}. Sie können ihn mit dem Befehl
+%
+\begin{verbatim}
+\citestyle{ldvplain}
+\end{verbatim}
+%
+aktivieren. Sie müssen dafür nicht zu einem anderen Bibliographiestil
+wechseln. Weitere Zitierstile finden Sie in der Dokumentation zum
+natbib-Paket.
+
+
+\paragraph{Weitere Dokumentation.}
+
+Das Dokument natbib.pdf erläutert im Detail, wie man verschiedenste
+Formen von wissenschaftlichen Literaturverweisen in \LaTeX\ umsetzen
+kann. Im Unterschied zu dieser Dokumentation generiert der Befehl
+\verb|\cite| in der LDV-Konfiguration immer Klammern um den Verweis.
+
+
+
+
+
+\subsection{Verweise innerhalb des Dokuments}
+\label{sec:verw-innerh-des}
+
+\DescribeMacro{\vref}%
+Die LDV-Dokumentenklassen binden das Paket \emph{varioref} ein. Es
+bietet im Wesentlichen den Befehl \verb|\vref|, der wie \verb|\ref|
+benutzt wird und einen intelligenten Verweis erzeugt -- zum Beispiel
+"`Abbildung 4.1 auf der vorherigen Seite"'. Ich kann \verb|\vref| vor
+allem für Verweise auf Abbildungen, Tabellen, usw. empfehlen. Kapitel
+kann man dagegen leicht durch Kolumnentitel finden, so dass für diese
+der normale \LaTeX-Befehl \verb|\ref| gut geeignet ist.
+
+\DescribeMacro{\ref}\DescribeMacro{\vref}%
+Zusätzlich sind die verweisenden Befehle wie beispielsweise
+\verb|\ref|, \verb|\vref| und \verb|\pageref| durch das eingebundene
+Paket \emph{hyperref} automatisch anklickbare Links bei PDF- oder
+HTML-Ausgabe.
+
+\paragraph{Weitere Dokumentation.}
+
+Das Dokument varioref.pdf beschreibt Mög\-lich\-kei\-ten,
+verschiedenste Verweise innerhalb eines Dokuments zu realisieren. In
+manual.pdf finden Sie darüber hinaus Informationen zu elektronischen
+Verweisen mit \LaTeX.
+
+
+
+\subsection{Externe Verweise}
+\label{sec:externe-verweise}
+
+\DescribeMacro{\url}\DescribeMacro{\href}%
+Mit dem hyperref-Paket kann man auch URLs angeben, die dann als Link
+anklickbar sind. Dazu dienen die Befehle \verb|\url| und
+\verb|\href|. Das Paket hyperref ist sehr umfangreich, so dass man bei
+Wünschen in Sachen Verweise einmal einen Blick in die Dokumentation
+werfen sollte.
+
+\paragraph{Weitere Dokumentation.}
+
+Details zu elektronischen Verweisen mit \LaTeX\ stehen im Dokument
+manual.pdf.
+
+
+
+\subsection{Probleme mit hyperref und varioref}
+
+\DescribeOption{omitpackage}%
+Insbesondere das hyperref-Paket verändert die \LaTeX-Umgebung
+weitreichend. Es ist dadurch inkompatibel zu manchen anderen
+Paketen. Deshalb können Sie hyperref und varioref bei Bedarf
+abschalten. Die Klassendefinition
+%
+\begin{verbatim}
+\documentclass[omitpackage=hyperref,omitpackage=varioref]{ldvarticle}
+\end{verbatim}
+%
+verhindert, dass die beiden Pakete automatisch geladen werden. Das ist
+auch nützlich, wenn Sie diese Pakete mit Ihren eigenen Optionen laden
+wollen. 
+
+
+
+
+\section{Layoutanpassung}
+\label{sec:layoutanpassung}
+
+\begin{itemize}
+\item \emph{color}-Paket bereits eingebunden.
+
+\item Vordefinierte Farben der
+  Corporate Identity (wie in Broschüre benannt, in CMYK-Farben für den
+  Druck):
+  \begin{itemize}
+  \item TUMBlau
+  \item TUMBlau1
+  \item TUMBlau2
+  \item TUMBlau3
+  \item TUMBlau4
+  \item TUMBlau5
+  \item TUMDunkelgrau
+  \item TUMMittelgrau
+  \item TUMHellgrau
+  \item TUMGruen
+  \item TUMOrange
+  \item TUMElfenbein
+  \end{itemize}
+
+\item Basisschrift wählen mit der Klassenoption \verb|fontstyle|:
+  \begin{itemize}
+  \item \verb|fontstyle=serif|: Normale \LaTeX-Schrift für Fließtext
+    und Überschriften.
+  \item \verb|fontstyle=sans|: Serifenlose \LaTeX-Schrift für
+    Fließtext und Überschriften (Voreinstellung).
+  \item \verb|fontstyle=helvet|: Helvetica (TUM-Schrift) für Fließtext
+    und Überschriften.
+  \end{itemize}
+
+\item Der \verb|\tolerance|-Wert von \TeX\ ist bei diesen
+  Dokumentenklassen auf 800 voreingestellt, damit es weniger übervolle
+  H-Boxen gibt bei gleichzeitig gutem Schriftbild.
+\end{itemize}
+
+
+
+\StopEventually{\PrintIndex}
+
+\DocInput{ldvcommon.dtx}
+
+\clearpage
+%\enlargethispage{-\baselineskip}
+\Finale
+
+\end{document}
+
+
+%%% Local Variables: 
+%%% TeX-PDF-mode: t
+%%% End: 

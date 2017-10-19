@@ -1,0 +1,49 @@
+The LDV LaTeX Classes
+======================================================================
+
+This document describes the installation of the LDV LaTeX classes for
+the LaTeX distributions MikTeX on Windows and TeX Live on Linux/Unix.
+
+
+MikTeX on Windows
+----------------------------------------------------------------------
+
+The basic steps of installation are to firstly extract the archive in
+a local or private TEXMF tree and to secondly update the filename
+database. You can do this with the following steps:
+
+  1. Extract the ZIP archive. A directory ldvklassen is created.
+
+  2. Copy this directory to C:\Program Files.
+
+  3. Start the application "MikTeX Options"
+     (Start -> Programs -> MikTeX 2.8 -> Maintenance -> Settings).
+
+  4. Go to the tab "Roots"
+
+  5. Choose "Add..." and select the folder 
+     C:\Program Files\ldvklassen.
+
+  6. Choose "OK" twice to agree with the settings.
+ 
+
+TeX Live on Linux/Unix
+----------------------------------------------------------------------
+
+The basic steps of installation are to firstly extract the archive in
+a local or private TEXMF tree and to secondly update the filename
+database. The install.sh script does this for you. So, perform the 
+following two steps:
+
+  1. Extract the ZIP archive. For example, type
+      
+       unzip ldvklassen.zip
+      
+     on the command line. A directory ldvklassen is created.
+    
+  2. Execute the script install.sh within this directory as root. For
+     example, type
+      
+       sudo ldvklassen/install.sh
+      
+     on the command line.
