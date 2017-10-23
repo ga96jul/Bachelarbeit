@@ -4,6 +4,11 @@
 %CmlStartup;
 clear all;
 tic;
+
+datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_01';
+datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_001';
+plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_2310';
+
 h = waitbar(0,'Calculating...');
 n = 576;                                                                   % 576:96:2304
 rate = (1/2);
@@ -19,7 +24,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 100000;  
+frames = 10000000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -90,7 +95,7 @@ end
 close(h);
 figure;
 %sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(0,5,50000);
+inter = linspace(0,5,5000000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 semilogy(inter,pFER);
 hold on;
@@ -99,21 +104,21 @@ grid on;
 try
     
     snr_FER = find(pFER < 0.01);
-    snr_FER = snr_FER(1)/10000 + 0;
+    snr_FER = snr_FER(1)/1000000 + 0;
     plot(snr_FER, 0.01, 'r*');
 catch 
     disp('No FER under 0.01');
 end
 try
     snr_FER_001 = find(pFER < 0.001);
-    snr_FER_001 = snr_FER_001(1)/10000 + 0;
+    snr_FER_001 = snr_FER_001(1)/1000000 + 0;
     plot(snr_FER_001, 0.001, 'g*');
 catch
     disp('No FER under 0.001');
 end
-
-save('FER_1_2_QPSK_1810.mat','Frame_error_rate');
-save('FER_1_2_QPSK_1810.fig','sem');
-save('snr_FER_1_2_QPSK_1810.mat','snr_FER');
+print(plotpath);
+save(datapath1,'Frame_error_rate');
+%save('FER_1_2_QPSK_1810.fig','sem');
+save(datapath2,'snr_FER');
 
 toc;
