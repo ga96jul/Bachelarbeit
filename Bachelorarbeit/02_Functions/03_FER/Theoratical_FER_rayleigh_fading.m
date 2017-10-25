@@ -24,7 +24,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 10000000;  
+frames = 100000000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 

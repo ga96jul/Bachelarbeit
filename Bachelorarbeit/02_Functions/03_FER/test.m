@@ -23,7 +23,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 100000;  
+frames = 10000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -74,12 +74,10 @@ receiv_sym = real_sym;
 
 %fade_coeff = ones(1,length(receiv_sym))*fading;
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% new
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    
-    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+power = abs(fading)^2;    
 % %% Demapping
- sym_ll = Demod2D(receiv_sym, QPSK_A , EsNo(l));                                 % transforms received symbols into log-likelihoods
+ sym_ll = Demod2D(receiv_sym, QPSK_A , 1);                                 % transforms received symbols into log-likelihoods
 % 
  llr = Somap(sym_ll);                                                       % soft demapping
 % 

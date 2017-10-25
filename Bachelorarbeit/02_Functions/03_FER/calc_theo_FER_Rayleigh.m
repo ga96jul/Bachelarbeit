@@ -1,9 +1,10 @@
 load('data');
 tic;
+h = waitbar(0,'Calculating...');
 SNR_dB = 1:50;
 FER_ray = [];
 for l = 1:length(SNR_dB)
-    h = (1/sqrt(2))*((randn(1,1000000))+1i*(randn(1,1000000)));
+    h = (1/sqrt(2))*((randn(1,100000))+1i*(randn(1,100000)));
     snr = 10.^(SNR_dB/10);
     power = abs(h).^2;
     snr_ray = power*SNR_dB(l);
@@ -19,16 +20,16 @@ for l = 1:length(SNR_dB)
         try
             FER_ray(p) = pFER(rounded);
         catch
-                FER_ray(p) = 10^-6;
+                FER_ray(p) = 10^-5;
         end
         end
     end
-    FER_rayleigh(l) = sum(FER_ray)/1000000;
+    FER_rayleigh(l) = sum(FER_ray)/100000;
     if (FER_rayleigh(l) > 1)
         FER_rayleigh(l) = 1;
     end
     
-    
+    waitbar(l/length(SNR_dB));
 end
 toc;
 

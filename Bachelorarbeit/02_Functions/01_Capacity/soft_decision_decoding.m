@@ -5,7 +5,7 @@ x_points = [j -1 -j 1 ];
 n = length(x_points);
 N = 1;
 
-snr_dB = 10;
+snr_dB = 40;
 snr_P = 10.^(snr_dB/10);
 h_N = log2(pi*exp(1));
 

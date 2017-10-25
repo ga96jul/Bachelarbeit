@@ -14,7 +14,7 @@ n = 2304;                                                                   % 57
 rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 10:0.5:15;
+snr_dB = 0:1:50;
 cnt = 1;
 Frame_errors = 0;
 
