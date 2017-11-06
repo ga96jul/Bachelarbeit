@@ -227,7 +227,7 @@ There are many forms of modulation schemes, with the most common ones being M-PS
 	\label{fig:Modulation}
 \end{figure}
 
-QPSK, which stands for Quadrature Phase shift keying is one of the easier models we will be looking at. The symbols all share the same amplitude and only differ in their respective phase angle. With the formula $s = log\textsubscript{2}(M)$ we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for QPSK the number of bits per symbol amounts to 2.
+QPSK, which stands for Quadrature Phase shift keying is one of the easier models we will be looking at. The symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$ we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for QPSK the number of bits per symbol amounts to 2.
 
 With M-QAM, Quadrature Amplitude Modulation, we add the phase shift already implemented into QPSK the additional differntiation with the amplitude of symbols. For QAM we send signals which differ in their phase shift and also the amplitude.  For 16-QAM we get a maximum of 3 bits per symbols and for 64-QAM 4 bits per symbol.
 The modulation schemes makes it possible to increase our rate of transmission and is used for any kind of practical transmission of information.
@@ -256,7 +256,7 @@ We will now look into the maximum capacity we can achieve for our communication 
 
 \section{Capacity}
 
-In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C. All the capacities we wil be looking at will be for complex channel models.
+In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C we can achieve a transmission without errors even with noise. All the capacities we wil be looking at will be for complex channel models.
 
 Capacity is the maximum Entropy or mutual Information given by the two random variables 
 % Generierung des Literaturverzeichnisses
