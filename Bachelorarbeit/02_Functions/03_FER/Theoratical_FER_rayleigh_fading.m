@@ -5,9 +5,9 @@
 clear all;
 tic;
 
-datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_01';
-datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_001';
-plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_2310';
+% datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_01';
+% datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_001';
+% plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_2310';
 
 h = waitbar(0,'Calculating...');
 n = 576;                                                                   % 576:96:2304
@@ -69,7 +69,7 @@ receiv_sym = r;
     
     
 % %% Demapping
- sym_ll = Demod2D(receiv_sym, sqrt(EsNo(l))*QPSK_A , 1 );                                 % transforms received symbols into log-likelihoods
+ sym_ll = Demod2D(receiv_sym, sqrt(EsNo(l)) , EsNo(l) );                                 % transforms received symbols into log-likelihoods
 % 
  llr = Somap(sym_ll);                                                       % soft demapping
 % 

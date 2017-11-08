@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[12pt,oneside, reqno]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{a4}
 \usepackage[none]{hyphenat} %hyphenation
@@ -18,6 +18,7 @@
 % Florian Schulze, 06.06.2012
 % v1.0, latest edit: 06.06.2012
 
+\usepackage{glossaries}
 \usepackage{enumitem} %resume counting from previous enumerate block
 \usepackage{amsmath,amssymb}
 \usepackage[format=default,font=footnotesize,labelfont=bf]{caption}
@@ -30,7 +31,6 @@
 
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 \titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{.5em}{}
-
 
 \makeindex
 \frenchspacing
@@ -167,6 +167,12 @@ München, DD.MM.YYYY\\\\\\\\\\\\
 \setcounter{secnumdepth}{3}
 \fboxsep 0mm
 
+
+\newpage
+\newglossaryentry{SNR}{ name = {SNR}, description={Signal-to-Noise-Ratio}}
+
+
+
 \tableofcontents
 
 \newpage
@@ -192,15 +198,20 @@ München, DD.MM.YYYY\\\\\\\\\\\\
 \thispagestyle{empty}
 \null
 \newpage
+\chapter{Introduction}
+\section{Motivation}
+\section{Contributions}
+
+\newpage
 \chapter{Channelmodel}
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{Channelmodel.PNG}
 	\caption{Channelmodel for general Transmitter/Receiver Chain}
 	\label{fig:Channelmodel}
 \end{figure}
 
-For my purpose we are looking at a simple model which will include a Mapper/Demapper, Encoder/Decode, Interleaving, and the needed channel. We will briefly go over all blocks depicted in the graphic below.
+For my purpose we are looking at a simple model which will include a Mapper/Demapper, Encoder/Decode, Interleaving, and the needed channel. We will briefly go over all blocks depicted in the graphic above.
 
 \section{Encoder/Decoder}
 
@@ -222,7 +233,7 @@ There are many forms of modulation schemes, with the most common ones being M-PS
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{Modulation_schemes.PNG}
+	\includegraphics[width=0.95\textwidth]{Modulation_schemes.PNG}
 	\caption{Modulation in I/Q planes for QPSK, 16-QAM and 64-QAM}
 	\label{fig:Modulation}
 \end{figure}
@@ -236,7 +247,7 @@ The modulation schemes makes it possible to increase our rate of transmission an
 The channel can be modified in many different ways. We can different sources of noise or fading, which can relate to realworld interferences. Some interferences experienced in real life transmission are e.g. thermal noise, distance, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an AWGN-Channel or Rayleigh/Rician fading. We will havea further look into the AWGN-Channel and the Rayleigh fading.
 
 \subsection{AWGN-Channel}
-The easiest channel manipulition is to add random gaussian noise to the channel, also commonly known as AWGN-Channel (Additive White Gaussian Noise). Like ths name says we will add noise which is randomly distributed in a gaussian distribution. The probability density function is defined as follows:
+The easiest channel manipulition is to add random gaussian noise to the channel, also commonly known as AWGN-Channel (Additive White Gaussian Noise). Like the name says we will add noise which is randomly distributed in a gaussian distribution. The probability density function is defined as follows:
 \begin{gather*}
 f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}*e^{-\frac{(x-\mu)^2}{2\mu}}
 \end{gather*}
@@ -250,15 +261,135 @@ f(x;\sigma) = \frac{1}{\sigma^2}e^{-\frac{x^2}{2\sigma^2}}
 
 	
 \newpage
-\chapter{Capacity in a AWGN channel}
+\chapter{Capacity in an AWGN channel}
 
 We will now look into the maximum capacity we can achieve for our communication model in Chapter 2 with added AWGN noise.
 
-\section{Capacity}
+\section{Capacity and Monte-Carlo-Simulation}
 
 In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C we can achieve a transmission without errors even with noise. All the capacities we wil be looking at will be for complex channel models.
 
-Capacity is the maximum Entropy or mutual Information given by the two random variables 
+For a AWGN-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$sigma^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
+We will calculate the capacity as the maximum of mutual information I between X and Y:
+\begin{equation}
+\label{metric}
+C = max(I(X;Y))     
+\end{equation}
+with X and Y being to independent randomly normal distributed variables.
+With the maximum mutual information we calculate the maximum information we can achieve with the given parameters, like modulation, encoding, channel. 
+\newline
+For the mutual information we can further part it into the differential entropy:
+\begin{equation}
+\label{metric}
+I(X;Y) = h(Y) - h(Y|X)
+\end{equation}
+\newline
+\begin{equation}
+\label{metric}
+h(Y) = h(X+N) = log(\pi*e^{\sigma^2+1}) \quad \textrm{and} \quad h(Y|X) = h(N) = log(\pi*e^{1})
+\end{equation}
+Further calculations will lead us to the final equation for the capacity in an AWGN-channel:
+\begin{equation}
+\label{metric}
+C = log(1+\frac{\sigma^2}{N})
+\end{equation}
+With this approach we have good approximation values for further calculations with added modulation schemes. It is given that for only AWGN the capacity is at his maximum, there should be no capacity value over the calculated ones here. 
+
+\subsection{Approach in Matlab}
+The above mentioned formula 2.4 will be simply implemented in MATLAB. With our noise being randomly distributed around 1 our formula simplifies even more into:
+\begin{equation}
+\label{metric}
+C\textsubscript{AWGN} = log(1+SNR) 
+\end{equation} 
+The SNR here must be transformed into power and not in decibel.
+
+\section{Capacity for QPSK and M-QAM}
+Now we will look into different modulation schemes, which were already mentioned in Chapter 1.3. We will implement these modulation schemes into our capacity calculations in an AWGN channel.
+\subsection{QPSK}
+For QPSK we will have 4 symbols and resulting 2 codebits per symbol. Before any simulation or calculation were run we can already be sure that we will not pass the upper bound of 2 bits/Symbol. So the plot will approach the 2 bits/Symbol for high SNR.
+After creating a random codeword modulated with the fitting modulation scheme. Noise is added to the signal, which is than received as the bit array Y. The next step to calculate the capacity differs from above. 
+\newline
+We know that our signal is normal random distributed variables and we have to calculate the differential entropy for h(Y), which is:
+\begin{equation}
+\label{metric}
+h(Y) =  \sum_{n=0}^N(-log(p(y\textsubscript{n}))) * \frac{1}{N}
+\end{equation} 
+with p(y) being the probability of y for a normal distributed variable and N the codelength.
+\begin{equation}
+\label{metric}
+p(y) = \frac{1}{n*\pi}*\sum_{i=1}^n(e^{y-x\textsubscript{i}})
+\end{equation} 
+Here we need to watch out for the number of symbols in the modulation scheme. For QPSK we have a n = 4, 16-QAM n = 16 and 64-QAM n = 64.
+\newline
+For the QAM modulation only the above mentioned n must be changed.
+ 
+
+\subsection{Implementation in Matlab}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{Capacity_QPSK_QAM.PNG}
+	\caption{Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM}
+	\label{fig:Modulation}
+\end{figure}
+The results of the calculation in MATLAB can be seen above. We can clearly see the modulated channel approaches the desired bit/symbol rate in a good speed. The gaussian channel clearly outperforms the modulated channels, clearly seen after 0 dB SNR.
+
+
+
+
+\section{Results and Conclusion}
+
+
+
+\chapter{Transmitter Receiver Chain in MATLAB}
+
+
+
+
+\section{LDPC and the CML Library}
+
+
+\section{FER and comparison with capacity plots}
+
+
+\chapter{Communication link for Rayleigh fading channels}
+
+\section{Rayleigh fading and implementation}
+
+\subsection{Channel estimation}
+
+\section{Rayleigh fading FER with AWGN channel}
+
+\section{Problems and challenges}
+
+\section{Results and comparison with AWGN channel}
+
+
+\chapter{Conclusion}
+
+\section{Comparison between fading and AWGN channel}
+
+\section{Fazit}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % Generierung des Literaturverzeichnisses
 %\bibliography{/path/to/your/.bib/file}
 

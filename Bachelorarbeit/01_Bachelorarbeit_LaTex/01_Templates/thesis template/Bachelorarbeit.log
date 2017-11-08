@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  6 NOV 2017 16:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  8 NOV 2017 16:09
 entering extended mode
 **./Bachelorarbeit.tex
 (Bachelorarbeit.tex
@@ -508,17 +508,45 @@ Package: floatflt 1997/07/16 v. 1.31
 \fltitemwidth=\dimen141
 \outputpretest=\toks21
 )
-(D:\Kevin_Uni\Latex\tex\latex\enumitem\enumitem.sty
-Package: enumitem 2011/09/28 v3.5.2 Customized lists
-\labelindent=\skip50
-\enit@outerparindent=\dimen142
-\enit@toks=\toks22
-\enit@inbox=\box35
-\enitdp@description=\count120
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\base\glossaries.sty
+Package: glossaries 2017/11/03 v4.34 (NLCT)
+
+(D:\Kevin_Uni\Latex\tex\latex\base\ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
+(D:\Kevin_Uni\Latex\tex\latex\xkeyval\xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(D:\Kevin_Uni\Latex\tex\generic\xkeyval\xkeyval.tex
+(D:\Kevin_Uni\Latex\tex\generic\xkeyval\xkvutils.tex
+\XKV@toks=\toks22
+\XKV@tempa@toks=\toks23
+)
+\XKV@depth=\count120
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(D:\Kevin_Uni\Latex\tex\latex\mfirstuc\mfirstuc.sty
+Package: mfirstuc 2016/07/31 v2.04 (NLCT)
+
+(D:\Kevin_Uni\Latex\tex\latex\etoolbox\etoolbox.sty
+Package: etoolbox 2017/01/02 v2.4 e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count121
+)
+\@glsmfirst=\toks24
+\@glsmrest=\toks25
+)
+(D:\Kevin_Uni\Latex\tex\latex\textcase\textcase.sty
+Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
+)
+(D:\Kevin_Uni\Latex\tex\latex\xfor\xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+)
+(D:\Kevin_Uni\Latex\tex\latex\datatool\datatool-base.sty
+Package: datatool-base 2016/07/28 v2.27 (NLCT)
+
 (D:\Kevin_Uni\Latex\tex\latex\amsmath\amsmath.sty
 Package: amsmath 2016/11/05 v2.16a AMS math features
-\@mathmargin=\skip51
+\@mathmargin=\skip50
 
 For additional information on amsmath, use the `?' option.
 (D:\Kevin_Uni\Latex\tex\latex\amsmath\amstext.sty
@@ -526,53 +554,194 @@ Package: amstext 2000/06/29 v2.01 AMS text
 
 (D:\Kevin_Uni\Latex\tex\latex\amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks23
-\ex@=\dimen143
+\@emptytoks=\toks26
+\ex@=\dimen142
 ))
 (D:\Kevin_Uni\Latex\tex\latex\amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen144
+\pmbraise@=\dimen143
 )
 (D:\Kevin_Uni\Latex\tex\latex\amsmath\amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count121
+\inf@bad=\count122
 LaTeX Info: Redefining \frac on input line 213.
-\uproot@=\count122
-\leftroot@=\count123
+\uproot@=\count123
+\leftroot@=\count124
 LaTeX Info: Redefining \overline on input line 375.
-\classnum@=\count124
-\DOTSCASE@=\count125
+\classnum@=\count125
+\DOTSCASE@=\count126
 LaTeX Info: Redefining \ldots on input line 472.
 LaTeX Info: Redefining \dots on input line 475.
 LaTeX Info: Redefining \cdots on input line 596.
-\Mathstrutbox@=\box36
-\strutbox@=\box37
-\big@size=\dimen145
+\Mathstrutbox@=\box35
+\strutbox@=\box36
+\big@size=\dimen144
 LaTeX Font Info:    Redeclaring font encoding OML on input line 712.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 713.
-\macc@depth=\count126
-\c@MaxMatrixCols=\count127
+\macc@depth=\count127
+\c@MaxMatrixCols=\count128
 \dotsspace@=\muskip10
-\c@parentequation=\count128
-\dspbrk@lvl=\count129
-\tag@help=\toks24
-\row@=\count130
-\column@=\count131
-\maxfields@=\count132
-\andhelp@=\toks25
-\eqnshift@=\dimen146
-\alignsep@=\dimen147
-\tagshift@=\dimen148
-\tagwidth@=\dimen149
-\totwidth@=\dimen150
-\lineht@=\dimen151
-\@envbody=\toks26
-\multlinegap=\skip52
-\multlinetaggap=\skip53
-\mathdisplay@stack=\toks27
+\c@parentequation=\count129
+\dspbrk@lvl=\count130
+\tag@help=\toks27
+\row@=\count131
+\column@=\count132
+\maxfields@=\count133
+\andhelp@=\toks28
+\eqnshift@=\dimen145
+\alignsep@=\dimen146
+\tagshift@=\dimen147
+\tagwidth@=\dimen148
+\totwidth@=\dimen149
+\lineht@=\dimen150
+\@envbody=\toks29
+\multlinegap=\skip51
+\multlinetaggap=\skip52
+\mathdisplay@stack=\toks30
 LaTeX Info: Redefining \[ on input line 2817.
 LaTeX Info: Redefining \] on input line 2818.
+)
+(D:\Kevin_Uni\Latex\tex\latex\substr\substr.sty
+Package: substr 2009/10/20 v1.2 Handle substrings
+\c@su@anzahl=\count134
+)
+(D:\Kevin_Uni\Latex\tex\latex\datatool\datatool-fp.sty
+Package: datatool-fp 2016/07/28 v2.27 (NLCT)
+
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(D:\Kevin_Uni\Latex\tex\latex\fp\defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count135
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count136
+\FP@xia=\count137
+\FP@xib=\count138
+\FP@xfa=\count139
+\FP@xfb=\count140
+\FP@rega=\count141
+\FP@regb=\count142
+\FP@regs=\count143
+\FP@times=\count144
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count145
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(D:\Kevin_Uni\Latex\tex\latex\fp\fp-eval.sty
+Package: fp-eval 1995/04/03
+)))
+\@dtl@toks=\toks31
+\@dtl@tmpcount=\count146
+\dtl@tmplength=\skip53
+\dtl@sortresult=\count147
+\@dtl@numgrpsepcount=\count148
+\@dtl@datatype=\count149
+\dtl@codeA=\count150
+\dtl@codeB=\count151
+\@dtl@foreach@level=\count152
+)
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\base\glossaries-compatible-307.sty
+Package: glossaries-compatible-307 2017/11/03 v4.34 (NLCT)
+)
+\gls@level=\count153
+\@gls@tmpb=\toks32
+\gls@tmplen=\skip54
+\glskeylisttok=\toks33
+\glslabeltok=\toks34
+\glsshorttok=\toks35
+\glslongtok=\toks36
+
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\styles\glossary-hypernav.sty
+Package: glossary-hypernav 2017/11/03 v4.34 (NLCT)
+)
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\styles\glossary-list.sty
+Package: glossary-list 2017/11/03 v4.34 (NLCT)
+\glslistdottedwidth=\skip55
+)
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\styles\glossary-long.sty
+Package: glossary-long 2017/11/03 v4.34 (NLCT)
+
+(D:\Kevin_Uni\Latex\tex\latex\tools\longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip56
+\LTright=\skip57
+\LTpre=\skip58
+\LTpost=\skip59
+\LTchunksize=\count154
+\LTcapwidth=\dimen151
+\LT@head=\box37
+\LT@firsthead=\box38
+\LT@foot=\box39
+\LT@lastfoot=\box40
+\LT@cols=\count155
+\LT@rows=\count156
+\c@LT@tables=\count157
+\c@LT@chunks=\count158
+\LT@p@ftn=\toks37
+)
+\glsdescwidth=\skip60
+\glspagelistwidth=\skip61
+)
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\styles\glossary-super.sty
+Package: glossary-super 2017/11/03 v4.34 (NLCT)
+
+(D:\Kevin_Uni\Latex\tex\latex\supertabular\supertabular.sty
+Package: supertabular 2004/02/20 v4.1e the supertabular environment
+\c@tracingst=\count159
+\ST@wd=\dimen152
+\ST@rightskip=\skip62
+\ST@leftskip=\skip63
+\ST@parfillskip=\skip64
+\ST@pageleft=\dimen153
+\ST@headht=\dimen154
+\ST@tailht=\dimen155
+\ST@pagesofar=\dimen156
+\ST@pboxht=\dimen157
+\ST@lineht=\dimen158
+\ST@stretchht=\dimen159
+\ST@prevht=\dimen160
+\ST@toadd=\dimen161
+\ST@dimen=\dimen162
+\ST@pbox=\box41
+))
+(D:\Kevin_Uni\Latex\tex\latex\glossaries\styles\glossary-tree.sty
+Package: glossary-tree 2017/11/03 v4.34 (NLCT)
+\glstreeindent=\skip65
+))
+(D:\Kevin_Uni\Latex\tex\latex\enumitem\enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip66
+\enit@outerparindent=\dimen163
+\enit@toks=\toks38
+\enit@inbox=\box42
+\enitdp@description=\count160
 )
 (D:\Kevin_Uni\Latex\tex\latex\amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
@@ -590,37 +759,43 @@ Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 (D:\Kevin_Uni\Latex\tex\latex\caption\caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen152
-\captionmargin@=\dimen153
-\captionwidth=\dimen154
-\caption@tempdima=\dimen155
-\caption@indent=\dimen156
-\caption@parindent=\dimen157
-\caption@hangindent=\dimen158
+\captionmargin=\dimen164
+\captionmargin@=\dimen165
+\captionwidth=\dimen166
+\caption@tempdima=\dimen167
+\caption@indent=\dimen168
+\caption@parindent=\dimen169
+\caption@hangindent=\dimen170
 )
-\c@ContinuedFloat=\count133
+\c@ContinuedFloat=\count161
 Package caption Info: floatflt package is loaded.
+Package caption Info: longtable package is loaded.
+
+(D:\Kevin_Uni\Latex\tex\latex\caption\ltcaption.sty
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+)
 Package caption Info: picins package is loaded.
+Package caption Info: supertabular package is loaded.
 )
 (D:\Kevin_Uni\Latex\tex\latex\listings\listings.sty
-\lst@mode=\count134
-\lst@gtempboxa=\box38
-\lst@token=\toks28
-\lst@length=\count135
-\lst@currlwidth=\dimen159
-\lst@column=\count136
-\lst@pos=\count137
-\lst@lostspace=\dimen160
-\lst@width=\dimen161
-\lst@newlines=\count138
-\lst@lineno=\count139
-\lst@maxwidth=\dimen162
+\lst@mode=\count162
+\lst@gtempboxa=\box43
+\lst@token=\toks39
+\lst@length=\count163
+\lst@currlwidth=\dimen171
+\lst@column=\count164
+\lst@pos=\count165
+\lst@lostspace=\dimen172
+\lst@width=\dimen173
+\lst@newlines=\count166
+\lst@lineno=\count167
+\lst@maxwidth=\dimen174
 
 (D:\Kevin_Uni\Latex\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count140
-\lst@skipnumbers=\count141
-\lst@framebox=\box39
+\c@lstnumber=\count168
+\lst@skipnumbers=\count169
+\lst@framebox=\box44
 )
 (D:\Kevin_Uni\Latex\tex\latex\listings\listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -638,23 +813,20 @@ Package color Info: Driver file: pdftex.def on input line 147.
 (D:\Kevin_Uni\Latex\tex\latex\algorithmicx\algpseudocode.sty
 Package: algpseudocode 
 
-(D:\Kevin_Uni\Latex\tex\latex\base\ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
 (D:\Kevin_Uni\Latex\tex\latex\algorithmicx\algorithmicx.sty
 Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
 
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count142
-\c@ALG@rem=\count143
-\c@ALG@nested=\count144
-\ALG@tlm=\skip54
-\ALG@thistlm=\skip55
-\c@ALG@Lnr=\count145
-\c@ALG@blocknr=\count146
-\c@ALG@storecount=\count147
-\c@ALG@tmpcounter=\count148
-\ALG@tmplength=\skip56
+\c@ALG@line=\count170
+\c@ALG@rem=\count171
+\c@ALG@nested=\count172
+\ALG@tlm=\skip67
+\ALG@thistlm=\skip68
+\c@ALG@Lnr=\count173
+\c@ALG@blocknr=\count174
+\c@ALG@storecount=\count175
+\c@ALG@tmpcounter=\count176
+\ALG@tmplength=\skip69
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (D:\Kevin_Uni\Latex\tex\latex\algorithms\algorithm.sty
@@ -663,22 +835,21 @@ nment
 
 (D:\Kevin_Uni\Latex\tex\latex\float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count149
-\float@exts=\toks29
-\float@box=\box40
-\@float@everytoks=\toks30
-\@floatcapt=\box41
+\c@float@type=\count177
+\float@exts=\toks40
+\float@box=\box45
+\@float@everytoks=\toks41
+\@floatcapt=\box46
 )
-\@float@every@algorithm=\toks31
-\c@algorithm=\count150
+\@float@every@algorithm=\toks42
+\c@algorithm=\count178
 )
 \@indexfile=\write3
 \openout3 = `Bachelorarbeit.idx'.
 
 
 Writing index file Bachelorarbeit.idx
-(figures/tumlogo.tex)
-No file Bachelorarbeit.aux.
+(figures/tumlogo.tex) (Bachelorarbeit.aux)
 \openout1 = `Bachelorarbeit.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
@@ -693,19 +864,20 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
+
 (D:\Kevin_Uni\Latex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count151
-\scratchdimen=\dimen163
-\scratchbox=\box42
-\nofMPsegments=\count152
-\nofMParguments=\count153
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count154
-\MPscratchDim=\dimen164
-\MPnumerator=\count155
-\makeMPintoPDFobject=\count156
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count179
+\scratchdimen=\dimen175
+\scratchbox=\box47
+\nofMPsegments=\count180
+\nofMParguments=\count181
+\everyMPshowfont=\toks43
+\MPscratchCnt=\count182
+\MPscratchDim=\dimen176
+\MPnumerator=\count183
+\makeMPintoPDFobject=\count184
+\everyMPtoPDFconversion=\toks44
 ) (D:\Kevin_Uni\Latex\tex\generic\oberdiek\pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -751,11 +923,12 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
+(Bachelorarbeit.glsdefs)
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count157
+\c@lstlisting=\count185
 
 <figures/infologo.jpg, id=1, 165.61874pt x 165.61874pt>
 File: figures/infologo.jpg Graphic file (type jpg)
@@ -807,50 +980,92 @@ Underfull \hbox (badness 10000) in paragraph at lines 141--144
  []
 
 [3] [4] (abstracte.tex) (abstractd.tex) [5]
-No file Bachelorarbeit.toc.
-\tf@toc=\write4
-\openout4 = `Bachelorarbeit.toc'.
+\@gls@deffile=\write4
+\openout4 = `Bachelorarbeit.glsdefs'.
 
-[1
+ (Bachelorarbeit.toc)
+\tf@toc=\write5
+\openout5 = `Bachelorarbeit.toc'.
+
+ [1
 
 ] [2]
-No file Bachelorarbeit.lof.
-\tf@lof=\write5
-\openout5 = `Bachelorarbeit.lof'.
+(Bachelorarbeit.lof)
+\tf@lof=\write6
+\openout6 = `Bachelorarbeit.lof'.
 
-[3
+ [3
 
 ] [4]
 Chapter 1.
+[5
+
+]
+Chapter 2.
 
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-Channelmodel.PNG, id=35, 637.63219pt x 255.20343pt>
+Channelmodel.PNG, id=38, 637.63219pt x 255.20343pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/Channelmodel.PNG Graphic file (type png)
 
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/Channelmodel.PNG>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/Channelmodel.PNG used on input line 198.
+arbeit_LaTex/02_Figures/Channelmodel.PNG used on input line 209.
 (pdftex.def)             Requested size: 318.66946pt x 127.54298pt.
- [5
+ [6
 
  <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
-/Channelmodel.PNG>] [6]
+/Channelmodel.PNG>] [7]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-Modulation_schemes.PNG, id=51, 436.63126pt x 344.03531pt>
+Modulation_schemes.PNG, id=54, 436.63126pt x 344.03531pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/Modulation_schemes.PNG Graphic file (type png)
 
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/Modulation_schemes.PNG>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/Modulation_schemes.PNG used on input line 225.
-(pdftex.def)             Requested size: 318.66946pt x 251.09119pt.
- [7 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
-res/Modulation_schemes.PNG>] [8]
-Chapter 2.
-[9
+arbeit_LaTex/02_Figures/Modulation_schemes.PNG used on input line 236.
+(pdftex.def)             Requested size: 432.48048pt x 340.76399pt.
+ [8 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Modulation_schemes.PNG>] [9] [10]
+Chapter 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 285--287
+
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 290--292
+\OT1/cmr/m/n/12 Further cal-cu-la-tions will lead us to the fi-nal equa-tion fo
+r the ca-pac-ity in an
+ []
+
+[11
+
+] [12]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+Capacity_QPSK_QAM.PNG, id=77, 578.16pt x 433.62pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/Capacity_QPSK_QAM.PNG Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Capacity_QPSK_QAM.PNG>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/Capacity_QPSK_QAM.PNG used on input line 330.
+(pdftex.def)             Requested size: 318.66946pt x 239.0012pt.
+ [13 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/Capacity_QPSK_QAM.PNG (PNG copy)>]
+Chapter 4.
+[14
+
+]
+Chapter 5.
+[15
+
+]
+Chapter 6.
+[16
 
 ] (Bachelorarbeit.aux)
 
@@ -858,28 +1073,29 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 7052 strings out of 493323
- 98085 string characters out of 3142971
- 173559 words of memory out of 3000000
- 10442 multiletter control sequences out of 15000+200000
+ 10941 strings out of 493323
+ 157128 string characters out of 3142971
+ 290665 words of memory out of 3000000
+ 14214 multiletter control sequences out of 15000+200000
  11109 words of font info for 41 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,9n,39p,634b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 53i,9n,92p,2050b,375s stack positions out of 5000i,500n,10000p,200000b,50000s
 <D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/Kevin_Uni/L
 atex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Kevin_Uni/Latex/fonts/type1/
-public/amsfonts/cm/cmmi12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/c
-m/cmmi6.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Ke
-vin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Kevin_Uni/Latex/font
-s/type1/public/amsfonts/cm/cmr12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/ams
-fonts/cm/cmr17.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr6.pfb>
-<D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Kevin_Uni/Latex
-/fonts/type1/public/amsfonts/cm/cmsl12.pfb><D:/Kevin_Uni/Latex/fonts/type1/publ
-ic/amsfonts/cm/cmsy10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cm
-sy6.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Kevin_
-Uni/Latex/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on Bachelorarbeit.pdf (14 pages, 236822 bytes).
+public/amsfonts/cm/cmex10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/c
+m/cmmi12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/K
+evin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Kevin_Uni/Latex/fon
+ts/type1/public/amsfonts/cm/cmr10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/am
+sfonts/cm/cmr12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr17.pf
+b><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/Kevin_Uni/Lat
+ex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Kevin_Uni/Latex/fonts/type1/publ
+ic/amsfonts/cm/cmsl12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/Kevin
+_Uni/Latex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Kevin_Uni/Latex/fonts/t
+ype1/public/amsfonts/cm/cmti12.pfb>
+Output written on Bachelorarbeit.pdf (21 pages, 296335 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

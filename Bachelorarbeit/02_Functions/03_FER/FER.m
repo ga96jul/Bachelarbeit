@@ -67,7 +67,20 @@ r = symbols_A + noise;
 
 sym_ll = Demod2D(r, QPSK , EsNo(l));                                          % transforms received symbols into log-likelihoods
 
-llr = Somap(sym_ll);                                                       % soft demapping
+%llr = Somap(sym_ll);                                                               % soft demapping
+
+for s = 1:N
+s1(s) = -(abs(Y(s)-x(4)).^2);
+s2(s) = -(abs(Y(s)-x(3)).^2);
+s3(s) = -(abs(Y(s)-x(2)).^2);
+s4(s) = -(abs(Y(s)-x(1)).^2);
+
+    L_y(1+(2*(s-1))) = (s1(s)+log(1+exp(s2(s)-s1(s))))/(s3(s)+log(1+exp(s4(s)-s3(s))));
+    L_y(2+(2*(s-1))) = (s3(s)+log(1+exp(s1(s)-s3(s))))/(s4(s)+log(1+exp(s2(s)-s4(s))));
+end
+
+
+
 
 deinterleaver = deintrlv(llr,perm);
 

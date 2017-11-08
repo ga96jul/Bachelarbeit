@@ -1,0 +1,30 @@
+\ifglsentryexists{SNR}{}%
+{%
+\gls@defglossaryentry{SNR}%
+{%
+name={SNR},%
+sort={SNR},%
+type={main},%
+first={SNR},%
+firstplural={SNRs},%
+text={SNR},%
+plural={SNRs},%
+description={Signal-to-Noise-Ratio},%
+descriptionplural={Signal-to-Noise-Ratio},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%

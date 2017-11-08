@@ -19,7 +19,7 @@
 
 n = 576;                                                                   % 576:96:2304
 rate = 1/2;                                                                % R = k/n
-snr_dB = 5.1;
+snr_dB = 10;
 cnt = 1;
 
 %% Encoder
