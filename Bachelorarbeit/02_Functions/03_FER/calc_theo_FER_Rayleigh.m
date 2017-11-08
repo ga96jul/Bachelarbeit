@@ -1,4 +1,4 @@
-load('data');
+%load('data');
 tic;
 h = waitbar(0,'Calculating...');
 SNR_dB = 1:50;

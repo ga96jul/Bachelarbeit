@@ -10,7 +10,7 @@ clear all;
 %estimate unknown fading
 tic;
 h = waitbar(0,'Calculating...');
-n = 2304;                                                                   % 576:96:2304
+n = 576;                                                                   % 576:96:2304
 rate = (1/2);
 ind = 0;
 % R = k/n
@@ -25,7 +25,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 10000;   
+frames = 100000;   
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 

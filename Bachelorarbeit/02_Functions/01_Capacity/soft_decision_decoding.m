@@ -36,8 +36,13 @@ s2(s) = -(abs(Y(s)-x(3)).^2);
 s3(s) = -(abs(Y(s)-x(2)).^2);
 s4(s) = -(abs(Y(s)-x(1)).^2);
 
-    L_y(1+(2*(s-1))) = log((exp(s1(s))+exp(s2(s)))/(exp(s3(s))+exp(s4(s))));
-    L_y(2+(2*(s-1))) = log((exp(s3(s))+exp(s1(s)))/(exp(s4(s))+exp(s2(s))));
+     L_y(1+(2*(s-1))) = log((exp(s1(s))+exp(s2(s)))/(exp(s3(s))+exp(s4(s))));
+
+     L_y(2+(2*(s-1))) = log((exp(s3(s))+exp(s1(s)))/(exp(s4(s))+exp(s2(s))));
+
+
+%     L_y(1+(2*(s-1))) = log((exp(s1(s))+exp(s2(s)))/(exp(s3(s))+exp(s4(s))));
+%     L_y(2+(2*(s-1))) = log((exp(s3(s))+exp(s1(s)))/(exp(s4(s))+exp(s2(s))));
 end
 
 
