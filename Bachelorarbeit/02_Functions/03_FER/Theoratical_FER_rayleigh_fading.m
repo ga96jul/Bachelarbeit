@@ -5,9 +5,15 @@
 clear all;
 tic;
 
+<<<<<<< HEAD
 % datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_01';
 % datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_001';
 % plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_2310';
+=======
+datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_0811_01';
+datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_0811_001';
+plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_0811';
+>>>>>>> 2c99282b070b8a7eeefefa9d7199ec1f665ff54e
 
 h = waitbar(0,'Calculating...');
 n = 576;                                                                   % 576:96:2304
@@ -24,7 +30,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 100000000;  
+frames = 1000000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -57,7 +63,7 @@ QPSK_A = QPSK;
 block_sym = sym_temp;
 
 %% channel
-noise = (1/sqrt(variance))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
+noise = (1/sqrt(2))*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
 
 r = amplitude * block_sym + noise;
 
@@ -68,12 +74,70 @@ receiv_sym = r;
     
     
     
+<<<<<<< HEAD
 % %% Demapping
  sym_ll = Demod2D(receiv_sym, sqrt(EsNo(l)) , EsNo(l) );                                 % transforms received symbols into log-likelihoods
+=======
+% % %% Demapping
+%  sym_ll = Demod2D(receiv_sym, sqrt(EsNo(l))*QPSK_A , 1 );                                 % transforms received symbols into log-likelihoods
+% % 
+%  llr = Somap(sym_ll);                                                       % soft demapping
+>>>>>>> 2c99282b070b8a7eeefefa9d7199ec1f665ff54e
 % 
- llr = Somap(sym_ll);                                                       % soft demapping
-% 
-deinterleaver = deintrlv(llr,perm);
+
+x = amplitude*[1 j -j -1];
+temp_snr = EsNo(l);
+for s = 1:n/2
+s1(s) = -(abs(receiv_sym(s)-x(1)).^2);    %1
+s2(s) = -(abs(receiv_sym(s)-x(2)).^2);    
+s3(s) = -(abs(receiv_sym(s)-x(3)).^2);
+s4(s) = -(abs(receiv_sym(s)-x(4)).^2);
+
+if(s2(s)<s1(s))
+    if(s4(s)<s3(s))
+
+        L_y(1+(2*(s-1))) = (s1(s)+log(1+exp(s2(s)-s1(s))))-(s3(s)+log(1+exp(s4(s)-s3(s))));
+    else
+        L_y(1+(2*(s-1))) = (s1(s)+log(1+exp(s2(s)-s1(s))))-(s4(s)+log(1+exp(s3(s)-s4(s))));
+    end
+else
+    if(s4(s)<s3(s))
+
+        L_y(1+(2*(s-1))) = (s2(s)+log(1+exp(s1(s)-s2(s))))-(s3(s)+log(1+exp(s4(s)-s3(s))));
+    else
+        L_y(1+(2*(s-1))) = (s2(s)+log(1+exp(s1(s)-s2(s))))-(s4(s)+log(1+exp(s3(s)-s4(s))));
+    end
+end
+  
+if(s1(s)<s3(s))
+    if(s2(s)<s4(s))
+        L_y(2+(2*(s-1))) = (s3(s)+log((1+exp(s1(s)-s3(s)))))-(s4(s)+log(1+exp(s2(s)-s4(s))));
+    else
+        L_y(2+(2*(s-1))) = (s3(s)+log((1+exp(s1(s)-s3(s)))))-(s2(s)+log(1+exp(s4(s)-s2(s))));
+    end
+else
+    if(s2(s)<s4(s))
+        L_y(2+(2*(s-1))) = (s1(s)+log((1+exp(s3(s)-s1(s)))))-(s4(s)+log(1+exp(s2(s)-s4(s))));
+    else
+        L_y(2+(2*(s-1))) = (s1(s)+log((1+exp(s3(s)-s1(s)))))-(s2(s)+log(1+exp(s4(s)-s2(s))));
+    end
+end
+
+%      L_y(1+(2*(s-1))) = (s1(s)+log(1+exp(s2(s)-s1(s))))/(s3(s)+log(1+exp(s4(s)-s3(s))));
+%      L_y(2+(2*(s-1))) = (s3(s)+log(1+exp(s1(s)-s3(s))))/(s4(s)+log(1+exp(s2(s)-s4(s))));
+
+
+% L_y(1+(4*(s-1))) = s1(s);
+% L_y(2+(4*(s-1))) = s2(s);
+% L_y(3+(4*(s-1))) = s3(s);
+% L_y(4+(4*(s-1))) = s4(s);
+end
+
+llr_new = -L_y;
+
+
+
+deinterleaver = deintrlv(llr_new,perm);
 
 % %% Decoder
  [output, errors] = MpDecode(-deinterleaver, H_rows, H_cols, 50, 0, 1, 1, data );     % decoder

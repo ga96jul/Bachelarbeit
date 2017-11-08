@@ -13,7 +13,7 @@ n = 576;                                                                   % 576
 rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 0:50;
+snr_dB = 50;
 cnt = 1;
 Frame_errors = 0;
 EsNo = 10.^(snr_dB/10);
@@ -23,7 +23,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 100000;  
+frames = 10000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -55,17 +55,17 @@ fading = (1/sqrt(2))*((randn(1))+1i*(randn(1)));
 
 sym_temp = symbols;
 QPSK_A = QPSK;
-block_sym = [1 sym_temp];
+block_sym = [sym_temp];
 
 %% channel
 noise = sqrt(1/2)*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:)))); 
 
-r = amplitude*block_sym*fading + noise;
+r = amplitude*block_sym + noise;
 
-est_fad = r(1)/amplitude;
-est_sym = r/est_fad;
+est_fad = fading;
+est_sym = r;
 l_sym = length(est_sym);
-real_sym = est_sym(2:l_sym);
+real_sym = est_sym(1:l_sym);
 receiv_sym = real_sym;
 
 %p = abs(est_fad);
@@ -81,13 +81,13 @@ power = abs(fading)^2;
 % % 
 %  llr = Somap(sym_ll);                                                       % soft demapping
 % 
-x = amplitude*[1 j -j -1];
+x = [1 j -j -1];
 temp_snr = EsNo(l);
 for s = 1:n/2
-s1(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(1)).^2);    %1
-s2(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(2)).^2);    
-s3(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(3)).^2);
-s4(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(4)).^2);
+s1(s) = -temp_snr*(abs(r(s)-x(1)).^2);    %1
+s2(s) = -temp_snr*(abs(r(s)-x(2)).^2);    
+s3(s) = -temp_snr*(abs(r(s)-x(3)).^2);
+s4(s) = -temp_snr*(abs(r(s)-x(4)).^2);
 
 if(s2(s)<s1(s))
     if(s4(s)<s3(s))
