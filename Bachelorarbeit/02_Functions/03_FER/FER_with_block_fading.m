@@ -69,7 +69,7 @@ for j = 1:1:(length(symbols)/T)
     
     real_sym(j,:) = est_sym(2:l_sym(2));
 end
-    receiv_sym = [];
+    receiv_sym = []; 
     receiv_sym = reshape(real_sym.',1,length(symbols));
 
 % %% Demapping
