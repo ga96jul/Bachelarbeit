@@ -46,7 +46,7 @@ symbols = Modulate(interleaver,QPSK);
 
 %% Split symbols into blocks
 
-T = n/576;
+T = n/192;
 sym_temp = [];
 variance = 1/(2*EsNo(l));
 amplitude = sqrt(EsNo(l));
