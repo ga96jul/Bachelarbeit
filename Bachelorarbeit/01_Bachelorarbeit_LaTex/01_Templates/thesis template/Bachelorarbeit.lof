@@ -1,9 +1,10 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Channelmodel for general Transmitter/Receiver Chain\relax }}{6}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Modulation in I/Q planes for QPSK, 16-QAM and 64-QAM\relax }}{8}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Channelmodel for general Transmitter/Receiver Chain\relax }}{7}{figure.caption.4}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Modulation in I/Q planes for QPSK, 16-QAM and 64-QAM\relax }}{9}{figure.caption.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM\relax }}{13}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM\relax }}{15}{figure.caption.6}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM\relax }}{18}{figure.caption.7}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
