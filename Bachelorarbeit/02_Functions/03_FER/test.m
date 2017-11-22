@@ -81,7 +81,7 @@ power = abs(fading)^2;
 % % 
 %  llr = Somap(sym_ll);                                                       % soft demapping
 % 
-x = amplitude*[1 j -j -1];
+x = amplitude*[1 1i -1i -1];
 temp_snr = EsNo(l);
 for s = 1:n/2
 s1(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(1)).^2);    %1

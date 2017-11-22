@@ -31,7 +31,10 @@
 \usepackage{float} % for [H] after floats
 
 
-\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+%\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+
+\graphicspath{{/home/ga96jul/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+
 \titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{.5em}{}
 
 \makeindex
@@ -277,7 +280,7 @@ We will now look into the maximum capacity we can achieve for our communication 
 
 In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C we can achieve a transmission without errors even with noise. All the capacities we wil be looking at will be for complex channel models.
 
-For a AWGN-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$sigma^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
+For a AWGN-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
 We will calculate the capacity as the maximum of mutual information I between X and Y:
 \begin{equation}
 \label{eq:cap}
@@ -339,7 +342,7 @@ For the QAM modulation only the above mentioned parameter n must be changed.
 \subsection{Results}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{Capacity_QPSK_QAM.PNG}
+	\includegraphics[width=0.7\textwidth]{Capacity_QPSK_QAM.png}
 	\caption{Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM}
 	\label{fig:Modulation}
 \end{figure}

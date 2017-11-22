@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \contentsline {chapter}{List of figures}{4}{chapter*.2}
 \contentsline {chapter}{\numberline {1}Introduction}{6}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{6}{section.1.1}
@@ -30,3 +31,34 @@
 \contentsline {chapter}{\numberline {6}Conclusion}{22}{chapter.6}
 \contentsline {section}{\numberline {6.1}Comparison between fading and AWGN channel}{22}{section.6.1}
 \contentsline {section}{\numberline {6.2}Fazit}{22}{section.6.2}
+=======
+\contentsline {chapter}{List of figures}{4}
+\contentsline {chapter}{\numberline {1}Introduction}{6}
+\contentsline {section}{\numberline {1.1}Motivation}{6}
+\contentsline {section}{\numberline {1.2}Contributions}{6}
+\contentsline {chapter}{\numberline {2}Channelmodel}{7}
+\contentsline {section}{\numberline {2.1}Encoder/Decoder}{7}
+\contentsline {section}{\numberline {2.2}Bitinterleave/Deinterleaver}{8}
+\contentsline {section}{\numberline {2.3}Mapper/Demapper}{9}
+\contentsline {section}{\numberline {2.4}Channel}{10}
+\contentsline {subsection}{\numberline {2.4.1}AWGN-Channel}{10}
+\contentsline {subsection}{\numberline {2.4.2}Rayleigh-Channel}{10}
+\contentsline {chapter}{\numberline {3}Capacity in an AWGN channel}{12}
+\contentsline {section}{\numberline {3.1}Capacity and Monte-Carlo-Simulation}{12}
+\contentsline {subsection}{\numberline {3.1.1}Approach in Matlab}{13}
+\contentsline {section}{\numberline {3.2}Capacity for QPSK and M-QAM}{13}
+\contentsline {subsection}{\numberline {3.2.1}QPSK}{13}
+\contentsline {subsection}{\numberline {3.2.2}Results}{14}
+\contentsline {chapter}{\numberline {4}Transmitter Receiver Chain in MATLAB}{15}
+\contentsline {section}{\numberline {4.1}LDPC and the CML Library}{15}
+\contentsline {section}{\numberline {4.2}FER and comparison with capacity plots}{15}
+\contentsline {chapter}{\numberline {5}Communication link for Rayleigh fading channels}{16}
+\contentsline {section}{\numberline {5.1}Rayleigh fading and implementation}{16}
+\contentsline {subsection}{\numberline {5.1.1}Channel estimation}{16}
+\contentsline {section}{\numberline {5.2}Rayleigh fading FER with AWGN channel}{16}
+\contentsline {section}{\numberline {5.3}Problems and challenges}{16}
+\contentsline {section}{\numberline {5.4}Results and comparison with AWGN channel}{16}
+\contentsline {chapter}{\numberline {6}Conclusion}{17}
+\contentsline {section}{\numberline {6.1}Comparison between fading and AWGN channel}{17}
+\contentsline {section}{\numberline {6.2}Fazit}{17}
+>>>>>>> 8fd6ea35f150df943244fb796ca7e21c18fa9ba5
