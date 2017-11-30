@@ -32,9 +32,9 @@
 \usepackage{float} % for [H] after floats
 
 
-\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+%\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 
-%\graphicspath{{/home/ga96jul/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+\graphicspath{{/home/ga96jul/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 
 \titleformat{\paragraph}[hang]{\normalfont\bfseries}{\theparagraph}{.5em}{}
 
@@ -176,13 +176,18 @@ München, DD.MM.YYYY\\\\\\\\\\\\
 
 \newpage
 %\newglossaryentry{gls-SNR}{name={SNR},description={The difference from the noise floor to the signal power}}]\newacronym[see={[Glossary:]{gls-SNR}}{SNR}{SNR}{Signal-to-Noise-Ratio\glsadd{gls-SNR}}
-\newacronym{SNR}{SNR}{Signal-to-Noise-Ratio}
+\newacronym{SNR}{SNR}{signal-to-noise ratio}
 %\newglossaryentry{gls-AWGN}{name={AWGN},description={Form of noise. Usually created by thermal noise and hardware}}
-\newacronym{AWGN}{AWGN}{Additive White Gaussian Noise}
+\newacronym{AWGN}{AWGN}{additive white gaussian noise}
 %\newglossaryentry{gls-LDPC}{name={LDPC},description={Method of coding/decoding bitstreams}}
-\newacronym{LDPC}{LDPC}{Low Density Parity Check}
+\newacronym{LDPC}{LDPC}{low density parity check}
 %\newglossaryentry{gls-QPSK}{name={QPSK},description={Form of modulation}}
-\newacronym{QPSK}{QPSK}{Quadrate Phase Shift Keying}
+\newacronym{QPSK}{QPSK}{quadrature phase shift keying}
+
+\newacronym{QAM}{QAM}{quadrature amplitude modulation}
+
+\newacronym{BICM}{BICM}{bit-interleaved coded modulation}
+\newacronym{SICM}{SICM}{symbol-interleaved coded modulation}
 
 \tableofcontents
 
@@ -228,20 +233,24 @@ Our link is built up in three main blocks: The transmitter, the channel and the 
 The single channel blocks will be explained shortly in the following sections.
 
 \section{Encoder/Decoder}
-\label{sec:code};
-For our Encoder/Decoder block we will be looking at a WiMax \gls{LDPC} code according to the standard IEEE 802.16e \boldred{cite}. This standard code is used in small and medium distances in urban areas, which fits our model quite well.\boldred{short exp LDPC} While it has heavy computing demands, with the growth of computing power it sees more and more use in everyday use. In our case with WiMax we have different given blocksizes ranging from 576 codewords upto 2304. The rates given are 1/2, 2/3, 3/4, and 5/6. We also only look at coding class A for our simulations. 
+\label{sec:code}
+There are many ways to make our transmission more stable and less error prone. A big role in this protection plays the encoder and its counterpart the decoder. Endoder/decoder come in many different forms taking form in hardware and also as software coding. They reach from simple linear block codes to more complex convolutional coding and so called turbo codes. It is also important to note, that codes working well in a AWGN-channel will often have the same performance in a fading channel. We will have a further look into the \gls{LDPC} codes and the resulting WiMax code according to the standard IEEE 802.16e. \boldred{cite}. While \gls{LDPC} was mainly ignored in the past, in the 1990's the introduction of turbo codes and an sharp increase in computing power helped the recognition of these forms of decoding.
+\gls{LDPC}-codes are linear block codes with a particular structure for their parity check matrix \textbf{[H]}. In the case of \gls{LDPC}-codes \textbf{H} has a small amount of nonzero entries, which means that we have a low density in the parity check matrix.
+Another important difference in LDPC to turbo codes is the complexity of encoding and decoding. While turbo codes have low complexity in encoding they have high complexity in decoding. The total opposite can be said about \gls{LDPC} with high complexity in encoding and low complexity in decoding. Another advantage of \gls{LDPC} is the ability of self correction after decoding with the help of the decoding algorith and the parity check matrix.  
+WiMax IEEE 802.16e is a standard code model used in small and medium distances in urban areas, which fits our simulation quite well. With WiMax we have different given blocksizes ranging from 576 codewords up to 2304 codewords. The code rates are also set, which are the following: 1/2, 2/3, 3/4, and 5/6. There are also two different classes of encoding (A/B), but we will use encoding class A.
 
 
 \section{Bitinterleave/Deinterleaver}
 \label{sec:BIC}
-With the help of bitinterleaving we can avoid any kind of "bursterrors", i.e., we avoid any longer blockerrors from malfunctioning transmission of bitstreams for a short period of time. \boldred{Get a paper with interleaving, especially why in LDPC important?}
+While the above mentioned coder \gls{LDPC} works really good for an AWGN channel this could not be the case for a fading channel. To give us assurance in stable performance we will introduce the method of interleaving. Interleaving will handle a major problem in fading channels, the appearance of burst errors mainly caused by deep fading over a set time. While \gls{LDPC} has the ability to correct single code errors it is usually not able to correct a stream of errors. 
+There are two main methods of interleaving today.
+\gls{SICM} will interleave our symbols after the modulator while \gls{BICM} will interlave the single bits before the modulator. With \gls{BICM} being the more dominant one of these two methods.
 \newpage
 
 \section{Mapper/Demapper}
 \label{sec:mod}
-
-The mapper or modulation is used to assign a specific codelength a symbol which is transmitted. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature Planes (I/Q-Planes). With the distance from the nullpoint of the axis giving us the amplitude of our signal and the angle to the real axis the phase shift. 
-There are many forms of modulation schemes, with the most common ones being M-PSK, M-FSK, M-AM and M-QAM. For our simulations we will have a further look in \gls{QPSK}, 16-QAM and 64-QAM, which are depicted below.
+In our mapper/modulator it is possible to compress our codeword into a set sequence of symbols. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature Planes (I/Q-Planes). With the distance from the nullpoint of the axis giving us the magnitude of our signal and the angle to the real axis the phase shift. 
+There are many forms of modulation schemes, with the most common ones being M-phase shift keying (PSK), M-frequency shift keying (FSK), M-amplitude modulation (AM) and M-\gls{QAM}. For our simulations we will have a further look at \gls{QPSK}, 16-\gls{QAM} and 64-\gls{QAM}, which are depicted below. All three modulations share the common fact being differential, which means that the symbols are located in both the real and imaginary plane. One important aspect of differential modulation is the requirement of coherent demodulation, which means that the transmitter and receiver must have matched phase $\phi$. In our case we will assume perfect phase match between those two, if not a phase recovery has to be done.  
 
 \begin{figure}[H]
 	\centering
@@ -250,14 +259,14 @@ There are many forms of modulation schemes, with the most common ones being M-PS
 	\label{fig:Modulation}
 \end{figure}
 
-With QPSK the symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$\boldred{cite} we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for QPSK the number of bits per symbol amounts to 2.
+With \gls{QPSK} the symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$\boldred{cite} we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for \gls{QPSK} the number of bits per symbol amounts to 2.
 \newline
-With M-QAM, Quadrature Amplitude Modulation, we add the phase shift already implemented into QPSK with the additional differentiation with the amplitude of symbols. For QAM we send signals which differ in their phase shift and also the amplitude.  For 16-QAM we get a maximum of 3 bits per symbols and for 64-QAM 4 bits per symbol.
-The modulation schemes make it possible to increase our rate of transmission and is used for any kind of practical transmission of information.
+With M-\gls{QAM} we add the phase shift already implemented into \gls{QPSK} with the additional differentiation with the amplitude of symbols. For \gls{QAM} we send signals which differ in their phase shift and also their amplitude.  For 16-\gls{QAM} we get a maximum of 4 bits per symbols and for 64-\gls{QAM} 6 bits per symbol.
+The modulation schemes make it possible to increase our rate/speed of transmission and is used for any kind of practical communication link.
 
 \section{Channel}
 \label{sec:channel}
-The channel can be modified in many different ways. We can apply different sources of noise or fading, which can relate to realworld interferences. Some interferences experienced in real life transmission are, e.g., thermal noise, distance fading, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an \gls{AWGN}-Channel or Rayleigh/Rician fading. We will have a further look into the \gls{AWGN}-Channel and the Rayleigh fading.
+The channel can be modified in many different ways. We can apply different sources of noise or fading, which can relate to real world interferences. Some interferences experienced in real life transmission are, e.g., thermal noise, distance fading, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an \gls{AWGN}-Channel or Rayleigh/Rician fading. We will have a further look into the \gls{AWGN}-Channel and the Rayleigh fading.
 \newline
 \boldred{Ausführen, beispiele, bilder}
 \subsection{AWGN-Channel}
@@ -273,7 +282,7 @@ With x being the aquired point, $\mu$ being the mean or expection of the distrib
 
 \subsection{Rayleigh-Channel}
 \boldred{Lookup math}
-Another common channel model used in communication theory is Rayleigh fading. Rayleigh fading is used to simulate multipath reception, which means that for a receiver antenna in a wireless link there are many reflected and scattered signals reaching it. This results into construction or destruction of waves. Rayleigh distribution can be defined like this: $R = \sqrt{X^2 + Y^2}$ with X and Y being two independent gaussian distributed random variables. Further calculations will lead to the following pdf:
+Another common channel model used in communication theory is Rayleigh fading. Rayleigh fading is used to simulate multipath reception, which means that for a receiver antenna in a wireless link there are many reflected and scattered signals reaching it. These kind of reflections are common for high density urban areas. This results into construction or destruction of waves. Rayleigh distribution can be defined like this: $R = \sqrt{X^2 + Y^2}$ with X and Y being two independent gaussian distributed random variables. Further calculations will lead to the following pdf:
 \begin{gather*}
 f(x\sigma) = \frac{1}{\sigma^2}e^{-\frac{x^2}{2\sigma^2}} 
 \end{gather*} 
@@ -287,9 +296,9 @@ We will now look into the maximum capacity we can achieve for our communication 
 
 \section{Capacity and Monte-Carlo-Simulation}
 
-In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C we can achieve a transmission without errors even with noise. All the capacities we wil be looking at will be for complex channel models.
+In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C we can achieve a transmission without errors even with noise. All the capacities we will be looking at will be for complex channel models.
 
-For a AWGN-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
+For a \gls{AWGN}-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
 We will calculate the capacity as the maximum of mutual information I between X and Y:
 \begin{equation}
 \label{eq:cap}
@@ -365,7 +374,8 @@ The results of the calculation in MATLAB can be seen above. We can clearly see t
 We will now focus in creating a functioning Transmitter-Receiver chain to simulate a wireless communication as real as possible. The blocks for the communication link were shortly introduced in the beginning, but will be explained further in the following chapters. With LDPC WiMax we use a common communication protocol, which simulates a real channel quite well. Furthermore we will use soft mapping to reconstruct our symbols not hard decoding. Later on I will explain my reasoning behind it.  
 
 \section{LDPC and the CML Library}
-With a given codeword \textit{x} of length \textit{n} and a generator matrix $G = [I^T|P]$. The parity check matrix texit{H} can now be derived as $H = [-P^T|I\textsubscript{n-k}]$. With the parity check matrix \textit{H} and a code \textit{C} $= xG$ the condition for $cH^t = 0$ must be fulfilled for the codeword to be valid.  
+With a given codeword \textit{x} of length \textit{n} and a generator matrix $G = [I^T|P]$. The parity check matrix \textbf{H} can now be derived as $\textbf{H} = [-P^T|I\textsubscript{n-k}]$. With the parity check matrix \textbf{H} and a code \textbf{C} $= xG$ the condition for $c\textbf{H}^T = 0$ must be fulfilled for the codeword to be valid. 
+\newline 
 Also with a parity check matrix error correction can be done, that means for single errors we get in our codeword the parity check matrix can selfcorrect our code.
 This whole process in MATLAB can be computed with the help of the Coded Modulation Library (CML). For this we have the given function "\textit{InitializeWiMaxLDPC}" to create the parity-check.matrix, "\textit{LdpcEncode}" and "\textit{MpDecode}" to encode and decode our codeword.
 We decided on a length of 2304, the maximum length that can be send, and self correcting for 50 iterations to be sure to correct as many errors as possible that we receive at the end of our communication chain.

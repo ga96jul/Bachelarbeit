@@ -6,9 +6,9 @@ name={SNR},%
 sort={SNR},%
 type={acronym},%
 first={Signal-to-Noise-Ratio\glsspace (SNR)},%
-firstplural={Signal-to-Noise-Ratio\acrpluralsuffix \glsspace (SNR\acrpluralsuffix )},%
+firstplural={Signal-to-Noise-Ratios\glsspace (SNRs)},%
 text={SNR},%
-plural={SNR\acrpluralsuffix },%
+plural={SNRs},%
 description={Signal-to-Noise-Ratio},%
 descriptionplural={Signal-to-Noise-Ratio\acrpluralsuffix },%
 symbol={\relax },%
@@ -36,9 +36,9 @@ name={AWGN},%
 sort={AWGN},%
 type={acronym},%
 first={Additive White Gaussian Noise\glsspace (AWGN)},%
-firstplural={Additive White Gaussian Noise\acrpluralsuffix \glsspace (AWGN\acrpluralsuffix )},%
+firstplural={Additive White Gaussian Noises\glsspace (AWGNs)},%
 text={AWGN},%
-plural={AWGN\acrpluralsuffix },%
+plural={AWGNs},%
 description={Additive White Gaussian Noise},%
 descriptionplural={Additive White Gaussian Noise\acrpluralsuffix },%
 symbol={\relax },%
@@ -66,9 +66,9 @@ name={LDPC},%
 sort={LDPC},%
 type={acronym},%
 first={Low Density Parity Check\glsspace (LDPC)},%
-firstplural={Low Density Parity Check\acrpluralsuffix \glsspace (LDPC\acrpluralsuffix )},%
+firstplural={Low Density Parity Checks\glsspace (LDPCs)},%
 text={LDPC},%
-plural={LDPC\acrpluralsuffix },%
+plural={LDPCs},%
 description={Low Density Parity Check},%
 descriptionplural={Low Density Parity Check\acrpluralsuffix },%
 symbol={\relax },%
@@ -96,9 +96,9 @@ name={QPSK},%
 sort={QPSK},%
 type={acronym},%
 first={Quadrate Phase Shift Keying\glsspace (QPSK)},%
-firstplural={Quadrate Phase Shift Keying\acrpluralsuffix \glsspace (QPSK\acrpluralsuffix )},%
+firstplural={Quadrate Phase Shift Keyings\glsspace (QPSKs)},%
 text={QPSK},%
-plural={QPSK\acrpluralsuffix },%
+plural={QPSKs},%
 description={Quadrate Phase Shift Keying},%
 descriptionplural={Quadrate Phase Shift Keying\acrpluralsuffix },%
 symbol={\relax },%
@@ -113,6 +113,96 @@ long={Quadrate Phase Shift Keying},%
 longplural={Quadrate Phase Shift Keyings},%
 short={QPSK},%
 shortplural={QPSKs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{QAM}{}%
+{%
+\gls@defglossaryentry{QAM}%
+{%
+name={QAM},%
+sort={QAM},%
+type={acronym},%
+first={quadrature amplitude modulation\glsspace (QAM)},%
+firstplural={quadrature amplitude modulations\glsspace (QAMs)},%
+text={QAM},%
+plural={QAMs},%
+description={quadrature amplitude modulation},%
+descriptionplural={quadrature amplitude modulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={quadrature amplitude modulation},%
+longplural={quadrature amplitude modulations},%
+short={QAM},%
+shortplural={QAMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{BICM}{}%
+{%
+\gls@defglossaryentry{BICM}%
+{%
+name={BICM},%
+sort={BICM},%
+type={acronym},%
+first={bit-interleaved coded modulation\glsspace (BICM)},%
+firstplural={bit-interleaved coded modulations\glsspace (BICMs)},%
+text={BICM},%
+plural={BICMs},%
+description={bit-interleaved coded modulation},%
+descriptionplural={bit-interleaved coded modulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={bit-interleaved coded modulation},%
+longplural={bit-interleaved coded modulations},%
+short={BICM},%
+shortplural={BICMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SICM}{}%
+{%
+\gls@defglossaryentry{SICM}%
+{%
+name={SICM},%
+sort={SICM},%
+type={acronym},%
+first={symbol-interleaved coded modulation\glsspace (SICM)},%
+firstplural={symbol-interleaved coded modulations\glsspace (SICMs)},%
+text={SICM},%
+plural={SICMs},%
+description={symbol-interleaved coded modulation},%
+descriptionplural={symbol-interleaved coded modulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={symbol-interleaved coded modulation},%
+longplural={symbol-interleaved coded modulations},%
+short={SICM},%
+shortplural={SICMs},%
 counter={page},%
 parent={},%
 %
