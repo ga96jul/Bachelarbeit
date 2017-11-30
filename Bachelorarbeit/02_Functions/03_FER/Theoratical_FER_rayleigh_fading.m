@@ -5,22 +5,13 @@
 clear all;
 tic;
 
-<<<<<<< HEAD
-% datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_01';
-% datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_2310_001';
-% plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_2310';
-=======
-datapath1 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_0811_01';
-datapath2 = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/03_Data/FER_AWGN_0811_001';
-plotpath = '/nas/ei/home/ga96jul/Bachelarbeit/Bachelorarbeit/04_Plots/FER_AWGN_0811';
->>>>>>> 2c99282b070b8a7eeefefa9d7199ec1f665ff54e
 
 h = waitbar(0,'Calculating...');
 n = 576;                                                                   % 576:96:2304
 rate = (1/2);
 ind = 0;
 % R = k/n
-snr_dB = 0:1:5;
+snr_dB = 0:1:6;
 cnt = 1;
 Frame_errors = 0;
 EsNo = 10.^(snr_dB/10);
@@ -30,7 +21,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 1000000;  
+frames = 100000000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -74,24 +65,15 @@ receiv_sym = r;
     
     
     
-<<<<<<< HEAD
-% %% Demapping
- sym_ll = Demod2D(receiv_sym, sqrt(EsNo(l)) , EsNo(l) );                                 % transforms received symbols into log-likelihoods
-=======
-% % %% Demapping
-%  sym_ll = Demod2D(receiv_sym, sqrt(EsNo(l))*QPSK_A , 1 );                                 % transforms received symbols into log-likelihoods
-% % 
-%  llr = Somap(sym_ll);                                                       % soft demapping
->>>>>>> 2c99282b070b8a7eeefefa9d7199ec1f665ff54e
-% 
+
 
 x = amplitude*[1 j -j -1];
 temp_snr = EsNo(l);
 for s = 1:n/2
-s1(s) = -(abs(receiv_sym(s)-x(1)).^2);    %1
-s2(s) = -(abs(receiv_sym(s)-x(2)).^2);    
-s3(s) = -(abs(receiv_sym(s)-x(3)).^2);
-s4(s) = -(abs(receiv_sym(s)-x(4)).^2);
+s1(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(1)).^2);    %1
+s2(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(2)).^2);    
+s3(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(3)).^2);
+s4(s) = -(1/EsNo(l))*(abs(receiv_sym(s)-x(4)).^2);
 
 if(s2(s)<s1(s))
     if(s4(s)<s3(s))
@@ -155,11 +137,15 @@ Frame_errors_SNR(l) = Frame_errors;
 Frame_error_rate(l) = Frame_errors/iterations;
 Frame_errors = 0;
 waitbar(l/length(snr_dB));
+temp = sprintf('Frame_errors_%d',l);
+temp2 = sprintf('FER_%d',l);
+save(temp,'Frame_errors_SNR');
+save(temp2,'Frame_error_rate');
 end
 close(h);
 figure;
 %sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(0,5,5000000);
+inter = linspace(0,5,50000000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 semilogy(inter,pFER);
 hold on;
@@ -168,14 +154,14 @@ grid on;
 try
     
     snr_FER = find(pFER < 0.01);
-    snr_FER = snr_FER(1)/1000000 + 0;
+    snr_FER = snr_FER(1)/10000000 + 0;
     plot(snr_FER, 0.01, 'r*');
 catch 
     disp('No FER under 0.01');
 end
 try
     snr_FER_001 = find(pFER < 0.001);
-    snr_FER_001 = snr_FER_001(1)/1000000 + 0;
+    snr_FER_001 = snr_FER_001(1)/10000000 + 0;
     plot(snr_FER_001, 0.001, 'g*');
 catch
     disp('No FER under 0.001');

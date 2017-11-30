@@ -272,7 +272,7 @@ We will now look into the maximum capacity we can achieve for our communication 
 
 In general capacity \textit{C} can be defined as the rate \textit{R} at which information can be reliably transmitted over a channel, which means as long $R \leq \ $C we can achieve a transmission without errors even with noise. All the capacities we wil be looking at will be for complex channel models.
 
-For a AWGN-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
+For a AWGN-Channel we will have a simple channel model defined by Y = X + N with X $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$) and N $\sim$ \textit{N}(0,1). With this our received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$+1) under the condition that X and N being independently distributed.
 We will calculate the capacity as the maximum of mutual information I between X and Y:
 \begin{equation}
 \label{metric}
@@ -349,7 +349,12 @@ For our communication protocol we will be using WiMax LDPC.
 
 
 \section{FER and comparison with capacity plots}
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{Modulation_schemes.PNG}
+	\caption{Modulation in I/Q planes for QPSK, 16-QAM and 64-QAM}
+	\label{fig:Modulation}
+\end{figure}
 
 \chapter{Communication link for Rayleigh fading channels}
 

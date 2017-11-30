@@ -11,7 +11,7 @@ clear all;
 tic;
 h = waitbar(0,'Calculating...');
 n = 576;                                                                   % 576:96:2304
-rate = (1/2);
+rate = (5/6);
 ind = 0;
 % R = k/n
 snr_dB = 0:1:50;
