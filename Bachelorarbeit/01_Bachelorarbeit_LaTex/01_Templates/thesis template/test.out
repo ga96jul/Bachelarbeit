@@ -1,0 +1,32 @@
+\BOOKMARK [0][-]{chapter*.2}{List of figures}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.1.1}{Motivation}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Contributions}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Channelmodel}{}% 5
+\BOOKMARK [1][-]{section.2.1}{Encoder/Decoder}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.2}{Bitinterleave/Deinterleaver}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.3}{Mapper/Demapper}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.4}{Channel}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.4.1}{AWGN-Channel}{section.2.4}% 10
+\BOOKMARK [2][-]{subsection.2.4.2}{Rayleigh-Channel}{section.2.4}% 11
+\BOOKMARK [0][-]{chapter.3}{Capacity in an AWGN channel}{}% 12
+\BOOKMARK [1][-]{section.3.1}{Capacity and Monte-Carlo-Simulation}{chapter.3}% 13
+\BOOKMARK [2][-]{subsection.3.1.1}{Approach in Matlab}{section.3.1}% 14
+\BOOKMARK [2][-]{subsection.3.1.2}{Monte-Carlo-Simulation}{section.3.1}% 15
+\BOOKMARK [1][-]{section.3.2}{Capacity for QPSK and M-QAM}{chapter.3}% 16
+\BOOKMARK [2][-]{subsection.3.2.1}{QPSK}{section.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.2.2}{Results}{section.3.2}% 18
+\BOOKMARK [0][-]{chapter.4}{Transmitter Receiver Chain in MATLAB}{}% 19
+\BOOKMARK [1][-]{section.4.1}{LDPC and the CML Library}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{Soft-demapping vs. Hard-demapping}{chapter.4}% 21
+\BOOKMARK [2][-]{subsection.4.2.1}{Results}{section.4.2}% 22
+\BOOKMARK [1][-]{section.4.3}{FER and comparison with capacity plots}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Communication link for Rayleigh fading channels}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Theoratical rayleigh fading FER constructed out of AWGN-Channel}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.2}{Rayleigh fading FER with AWGN channel}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.3}{Increase power of pilot symbol}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.4}{Increase of pilot symbols in one block}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.5}{Results and comparison with AWGN channel}{chapter.5}% 29
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 30
+\BOOKMARK [1][-]{section.6.1}{Comparison between fading and AWGN channel}{chapter.6}% 31
+\BOOKMARK [1][-]{section.6.2}{Fazit}{chapter.6}% 32
