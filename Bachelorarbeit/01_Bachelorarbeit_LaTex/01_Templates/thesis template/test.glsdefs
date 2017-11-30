@@ -1,0 +1,120 @@
+\ifglsentryexists{SNR}{}%
+{%
+\gls@defglossaryentry{SNR}%
+{%
+name={SNR},%
+sort={SNR},%
+type={acronym},%
+first={Signal-to-Noise-Ratio\glsspace (SNR)},%
+firstplural={Signal-to-Noise-Ratio\acrpluralsuffix \glsspace (SNR\acrpluralsuffix )},%
+text={SNR},%
+plural={SNR\acrpluralsuffix },%
+description={Signal-to-Noise-Ratio},%
+descriptionplural={Signal-to-Noise-Ratio\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Signal-to-Noise-Ratio},%
+longplural={Signal-to-Noise-Ratios},%
+short={SNR},%
+shortplural={SNRs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{AWGN}{}%
+{%
+\gls@defglossaryentry{AWGN}%
+{%
+name={AWGN},%
+sort={AWGN},%
+type={acronym},%
+first={Additive White Gaussian Noise\glsspace (AWGN)},%
+firstplural={Additive White Gaussian Noise\acrpluralsuffix \glsspace (AWGN\acrpluralsuffix )},%
+text={AWGN},%
+plural={AWGN\acrpluralsuffix },%
+description={Additive White Gaussian Noise},%
+descriptionplural={Additive White Gaussian Noise\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Additive White Gaussian Noise},%
+longplural={Additive White Gaussian Noises},%
+short={AWGN},%
+shortplural={AWGNs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{LDPC}{}%
+{%
+\gls@defglossaryentry{LDPC}%
+{%
+name={LDPC},%
+sort={LDPC},%
+type={acronym},%
+first={Low Density Parity Check\glsspace (LDPC)},%
+firstplural={Low Density Parity Check\acrpluralsuffix \glsspace (LDPC\acrpluralsuffix )},%
+text={LDPC},%
+plural={LDPC\acrpluralsuffix },%
+description={Low Density Parity Check},%
+descriptionplural={Low Density Parity Check\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Low Density Parity Check},%
+longplural={Low Density Parity Checks},%
+short={LDPC},%
+shortplural={LDPCs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{QPSK}{}%
+{%
+\gls@defglossaryentry{QPSK}%
+{%
+name={QPSK},%
+sort={QPSK},%
+type={acronym},%
+first={Quadrate Phase Shift Keying\glsspace (QPSK)},%
+firstplural={Quadrate Phase Shift Keying\acrpluralsuffix \glsspace (QPSK\acrpluralsuffix )},%
+text={QPSK},%
+plural={QPSK\acrpluralsuffix },%
+description={Quadrate Phase Shift Keying},%
+descriptionplural={Quadrate Phase Shift Keying\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Quadrate Phase Shift Keying},%
+longplural={Quadrate Phase Shift Keyings},%
+short={QPSK},%
+shortplural={QPSKs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

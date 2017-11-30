@@ -1,0 +1,190 @@
+\ifglsentryexists{gls-SNR}{}%
+{%
+\gls@defglossaryentry{gls-SNR}%
+{%
+name={Signal-to-Noise-Ratio},%
+sort={Signal-to-Noise-Ratio},%
+type={main},%
+first={Signal-to-Noise-Ratio},%
+firstplural={Signal-to-Noise-Ratios},%
+text={Signal-to-Noise-Ratio},%
+plural={Signal-to-Noise-Ratios},%
+description={The difference from the noise floor to the signal power},%
+descriptionplural={The difference from the noise floor to the signal power},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SNR}{}%
+{%
+\gls@defglossaryentry{SNR}%
+{%
+name={Signal-to-Noise-Ratio},%
+sort={Signal-to-Noise-Ratio},%
+type={main},%
+first={Signal-to-Noise-Ratio},%
+firstplural={Signal-to-Noise-Ratios},%
+text={Signal-to-Noise-Ratio},%
+plural={Signal-to-Noise-Ratios},%
+description={The difference from the noise floor to the signal power},%
+descriptionplural={The difference from the noise floor to the signal power},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{gls-AWGN}{}%
+{%
+\gls@defglossaryentry{gls-AWGN}%
+{%
+name={Additive White Gaussian Noise},%
+sort={Additive White Gaussian Noise},%
+type={main},%
+first={Additive White Gaussian Noise},%
+firstplural={Additive White Gaussian Noises},%
+text={Additive White Gaussian Noise},%
+plural={Additive White Gaussian Noises},%
+description={Form of noise. Usually created by thermal noise and hardware},%
+descriptionplural={Form of noise. Usually created by thermal noise and hardware},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{AWGN}{}%
+{%
+\gls@defglossaryentry{AWGN}%
+{%
+name={Additive White Gaussian Noise},%
+sort={Additive White Gaussian Noise},%
+type={main},%
+first={Additive White Gaussian Noise},%
+firstplural={Additive White Gaussian Noises},%
+text={Additive White Gaussian Noise},%
+plural={Additive White Gaussian Noises},%
+description={Form of noise. Usually created by thermal noise and hardware},%
+descriptionplural={Form of noise. Usually created by thermal noise and hardware},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{gls-LDPC}{}%
+{%
+\gls@defglossaryentry{gls-LDPC}%
+{%
+name={Low Density Parity Check},%
+sort={Low Density Parity Check},%
+type={main},%
+first={Low Density Parity Check},%
+firstplural={Low Density Parity Checks},%
+text={Low Density Parity Check},%
+plural={Low Density Parity Checks},%
+description={Method of coding/decoding bitstreams},%
+descriptionplural={Method of coding/decoding bitstreams},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{LDPC}{}%
+{%
+\gls@defglossaryentry{LDPC}%
+{%
+name={Low Density Parity Check},%
+sort={Low Density Parity Check},%
+type={main},%
+first={Low Density Parity Check},%
+firstplural={Low Density Parity Checks},%
+text={Low Density Parity Check},%
+plural={Low Density Parity Checks},%
+description={Method of coding/decoding bitstreams},%
+descriptionplural={Method of coding/decoding bitstreams},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={},%
+longplural={},%
+short={},%
+shortplural={},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{gls-QPSK}{}%
+{%
+\gls@defglossaryentry{gls-QPSK}%
+{%
+name={Quadrature Phase Shift Keying},%
+sort={Quadrature Phase Shift Keying},%
+type={main},%
+first={Quadrature Phase Shift Keying},%
+firstplural={Quadrature Phase Shift Keyings},%
+t

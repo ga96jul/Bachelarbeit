@@ -1,5 +1,5 @@
 \documentclass[12pt,oneside, reqno]{report}
-%\usepackage{pgfplots} 
+\usepackage{pgfplots} 
 \usepackage[utf8]{inputenc}
 \usepackage{a4}
 \usepackage{hyperref}
@@ -20,7 +20,7 @@
 % Florian Schulze, 06.06.2012
 % v1.0, latest edit: 06.06.2012
 
-\usepackage{glossaries}
+\usepackage[acronym]{glossaries}
 
 \usepackage{enumitem} %resume counting from previous enumerate block
 \usepackage{amsmath,amssymb}
@@ -175,9 +175,14 @@ München, DD.MM.YYYY\\\\\\\\\\\\
 
 
 \newpage
-\newglossaryentry{SNR}{ name = {SNR}, description={Signal-to-Noise-Ratio}}
-
-
+%\newglossaryentry{gls-SNR}{name={SNR},description={The difference from the noise floor to the signal power}}]\newacronym[see={[Glossary:]{gls-SNR}}{SNR}{SNR}{Signal-to-Noise-Ratio\glsadd{gls-SNR}}
+\newacronym{SNR}{SNR}{Signal-to-Noise-Ratio}
+%\newglossaryentry{gls-AWGN}{name={AWGN},description={Form of noise. Usually created by thermal noise and hardware}}
+\newacronym{AWGN}{AWGN}{Additive White Gaussian Noise}
+%\newglossaryentry{gls-LDPC}{name={LDPC},description={Method of coding/decoding bitstreams}}
+\newacronym{LDPC}{LDPC}{Low Density Parity Check}
+%\newglossaryentry{gls-QPSK}{name={QPSK},description={Form of modulation}}
+\newacronym{QPSK}{QPSK}{Quadrate Phase Shift Keying}
 
 \tableofcontents
 
@@ -217,25 +222,26 @@ München, DD.MM.YYYY\\\\\\\\\\\\
 	\caption{Channelmodel for general Transmitter/Receiver Chain}
 	\label{fig:Channelmodel}
 \end{figure}
-
-Above depicted is the channel model we will be working with in further simulations, which will include a Mapper/Demapper, Encoder/Decode, Interleaving, and the needed channel. We will briefly go over all blocks depicted in the graphic above.
+We first start with a small introduction of the system used for all the simulations in the following chapters. We have a few crucial parts of channel blocks needed for every communication link and a few added for improvement in performance or blocks which can be replaced for different approaches. All the blocks were chosen in direct benefit to a LDPC transmission of codewords to make the simulations as simple and effecient as possible. 
+Our link is built up in three main blocks: The transmitter, the channel and the receiver. With the transmitter handling the creation of the random codeword, coding with \gls{LDPC} and mapping in different modulation schemes. The channel simulating incoming/existing noise, e.g., \glsl{AWGN}. In the end the receiver will demap and decode our transmitted symbols and compare the decoded bitstream with the initially created codeword.
+\newline
+The single channel blocks will be explained shortly in the following sections.
 
 \section{Encoder/Decoder}
-
-For our Encoder/Decoder block we will be looking at a WiMax LDPC code according to the standard IEEE 802.16e. This standard code is used in small and medium distances in urban areas and fits our model quite well. LDPC, which stands for Low Density Parity Check, is a linear error correction code. While it has heavy computing demands, with the growth of computing power it sees more and more use in everyday use. In our case with WiMax we have different given blocksizes ranging from 576 codewords upto 2304. The rates given are 1/2, 2/3, 3/4, and 5/6. We also only look at coding class A for our simulations. 
+\label{sec:code};
+For our Encoder/Decoder block we will be looking at a WiMax \gls{LDPC} code according to the standard IEEE 802.16e \boldred{cite}. This standard code is used in small and medium distances in urban areas, which fits our model quite well.\boldred{short exp LDPC} While it has heavy computing demands, with the growth of computing power it sees more and more use in everyday use. In our case with WiMax we have different given blocksizes ranging from 576 codewords upto 2304. The rates given are 1/2, 2/3, 3/4, and 5/6. We also only look at coding class A for our simulations. 
 
 
 \section{Bitinterleave/Deinterleaver}
-
-With the help of bitinterleaving we can avoid any kind of "bursterrors", i.e. we avoid any longer blockerrors. The interleaving in MATLAB is accomplished by creating a random permutation array \textit{k}. The permutation array can be used to randomly shuffle our codeword and also return them back to default at receiver side. In our simulations we will create a codeword out of random bits. This codeword will be randomly shuffled again and reconstructed after demodulation has been done. 
-
+\label{sec:BIC}
+With the help of bitinterleaving we can avoid any kind of "bursterrors", i.e., we avoid any longer blockerrors from malfunctioning transmission of bitstreams for a short period of time. \boldred{Get a paper with interleaving, especially why in LDPC important?}
 \newpage
 
 \section{Mapper/Demapper}
 \label{sec:mod}
 
-The mapper or modulation is used to assign a specific codelength a symbol which is transmitted. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature Planes (I/Q). With the distance from the nullpoint of the axis giving us the amplitude of our signal and the angle to the real axis the phase shift. 
-There are many forms of modulation schemes, with the most common ones being M-PSK, M-FSK, M-AM and M-QAM. For our simulations we will have a further look in QPSK, 16-QAM and 64-QAM, which are depicted below.
+The mapper or modulation is used to assign a specific codelength a symbol which is transmitted. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature Planes (I/Q-Planes). With the distance from the nullpoint of the axis giving us the amplitude of our signal and the angle to the real axis the phase shift. 
+There are many forms of modulation schemes, with the most common ones being M-PSK, M-FSK, M-AM and M-QAM. For our simulations we will have a further look in \gls{QPSK}, 16-QAM and 64-QAM, which are depicted below.
 
 \begin{figure}[H]
 	\centering
@@ -244,17 +250,20 @@ There are many forms of modulation schemes, with the most common ones being M-PS
 	\label{fig:Modulation}
 \end{figure}
 
-QPSK, which stands for Quadrature Phase shift keying is one of the easier models we will be looking at. The symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$ we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for QPSK the number of bits per symbol amounts to 2.
-
+With QPSK the symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$\boldred{cite} we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for QPSK the number of bits per symbol amounts to 2.
+\newline
 With M-QAM, Quadrature Amplitude Modulation, we add the phase shift already implemented into QPSK with the additional differentiation with the amplitude of symbols. For QAM we send signals which differ in their phase shift and also the amplitude.  For 16-QAM we get a maximum of 3 bits per symbols and for 64-QAM 4 bits per symbol.
-The modulation schemes makes it possible to increase our rate of transmission and is used for any kind of practical transmission of information.
+The modulation schemes make it possible to increase our rate of transmission and is used for any kind of practical transmission of information.
 
 \section{Channel}
-The channel can be modified in many different ways. We can apply different sources of noise or fading, which can relate to realworld interferences. Some interferences experienced in real life transmission are e.g. thermal noise, distance, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an AWGN-Channel or Rayleigh/Rician fading. We will have a further look into the AWGN-Channel and the Rayleigh fading.
-
+\label{sec:channel}
+The channel can be modified in many different ways. We can apply different sources of noise or fading, which can relate to realworld interferences. Some interferences experienced in real life transmission are, e.g., thermal noise, distance fading, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an \gls{AWGN}-Channel or Rayleigh/Rician fading. We will have a further look into the AWGN-Channel and the Rayleigh fading.
+\newline
+\boldred{Ausführen, beispiele, bilder}
 \subsection{AWGN-Channel}
 \boldred{Lookup math}
-The easiest channel manipulation is to add random gaussian noise to the channel, also commonly known as AWGN-Channel (Additive White Gaussian Noise). Like the name says we will add noise which is randomly distributed in a gaussian distribution. The probability density function is defined as follows:
+\newline
+The easiest kind of channel manipulation is to add random gaussian noise to the channel, also commonly known as AWGN-Channel. Like the name says we will add noise which is randomly distributed in a gaussian distribution. The probability density function is defined as follows:
 \begin{gather*}
 f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}*e^{-\frac{(x-\mu)^2}{2\mu}}
 \end{gather*}
