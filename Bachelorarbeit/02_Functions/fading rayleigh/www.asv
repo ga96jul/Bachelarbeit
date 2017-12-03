@@ -1,0 +1,13 @@
+sigmal 
+t1 = 0:10000;
+noise1=(sigma1/sqrt(2))*(randn(size(t1))+j*randn(size(t1)));
+
+NFFT=1024;      
+L=length(x);         
+X=fftshift(fft(x,NFFT));         
+Px=X.*conj(X)/(NFFT*L); %Power of each freq components       
+fVals=fs*(-NFFT/2:NFFT/2-1)/NFFT;        
+plot(fVals,10*log10(Px),'b');        
+title('Power Spectral Density');         
+xlabel('Frequency (Hz)')         
+ylabel('Power');

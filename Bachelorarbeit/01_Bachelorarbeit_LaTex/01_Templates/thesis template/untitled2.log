@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  1 DEC 2017 11:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  3 DEC 2017 12:00
 entering extended mode
-**./test.tex
-(test.tex
+**./untitled2.tex
+(untitled2.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 (D:\Kevin_Uni\Latex\tex\latex\base\report.cls
@@ -1303,12 +1303,12 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@algorithm=\count281
 )
 \@indexfile=\write4
-\openout4 = `test.idx'.
+\openout4 = `untitled2.idx'.
 
 
-Writing index file test.idx
-(figures/tumlogo.tex) (test.aux)
-\openout1 = `test.aux'.
+Writing index file untitled2.idx
+(figures/tumlogo.tex) (untitled2.aux)
+\openout1 = `untitled2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
@@ -1316,5 +1316,4 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info: 
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on in

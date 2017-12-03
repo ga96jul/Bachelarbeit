@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  1 DEC 2017 11:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  3 DEC 2017 21:10
 entering extended mode
-**./test.tex
-(test.tex
+**./bachelor_4.tex
+(bachelor_4.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 75 language(s) loaded.
 (D:\Kevin_Uni\Latex\tex\latex\base\report.cls
@@ -1303,12 +1303,19 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@algorithm=\count281
 )
 \@indexfile=\write4
-\openout4 = `test.idx'.
+\openout4 = `bachelor_4.idx'.
 
 
-Writing index file test.idx
-(figures/tumlogo.tex) (test.aux)
-\openout1 = `test.aux'.
+Writing index file bachelor_4.idx
+(figures/tumlogo.tex) (bachelor_4.aux
+
+LaTeX Warning: Label `sec:channel' multiply defined.
+
+
+LaTeX Warning: Label `fig:Modulation' multiply defined.
+
+)
+\openout1 = `bachelor_4.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
@@ -1317,4 +1324,348 @@ LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 83.
 LaTeX Font Info:    ... okay on input line 83.
 LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 83.
-LaTeX Font Info: 
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 83.
+LaTeX Font Info:    ... okay on input line 83.
+ (D:\Kevin_Uni\Latex\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count282
+\scratchdimen=\dimen295
+\scratchbox=\box59
+\nofMPsegments=\count283
+\nofMParguments=\count284
+\everyMPshowfont=\toks59
+\MPscratchCnt=\count285
+\MPscratchDim=\dimen296
+\MPnumerator=\count286
+\makeMPintoPDFobject=\count287
+\everyMPtoPDFconversion=\toks60
+) (D:\Kevin_Uni\Latex\tex\latex\oberdiek\epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+
+(D:\Kevin_Uni\Latex\tex\latex\oberdiek\grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+38.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+)
+ABD: EveryShipout initializing macros
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
+ick labels; missing features). Consider writing \pgfplotsset{compat=1.15} into 
+your preamble.
+ on input line 83.
+
+\AtBeginShipoutBox=\box60
+Package hyperref Info: Link coloring OFF on input line 83.
+(D:\Kevin_Uni\Latex\tex\latex\hyperref\nameref.sty
+Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+
+(D:\Kevin_Uni\Latex\tex\generic\oberdiek\gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count288
+)
+LaTeX Info: Redefining \ref on input line 83.
+LaTeX Info: Redefining \pageref on input line 83.
+LaTeX Info: Redefining \nameref on input line 83.
+ (bachelor_4.out)
+(bachelor_4.out)
+\@outlinefile=\write5
+\openout5 = `bachelor_4.out'.
+
+ (bachelor_4.glsdefs)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count289
+
+<figures/infologo.jpg, id=134, 165.61874pt x 165.61874pt>
+File: figures/infologo.jpg Graphic file (type jpg)
+
+<use figures/infologo.jpg>
+Package pdftex.def Info: figures/infologo.jpg used on input line 105.
+(pdftex.def)             Requested size: 91.04742pt x 91.04762pt.
+ [1
+
+{C:/Users/Kevin/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./figures/i
+nfologo.jpg>]
+LaTeX Font Info:    Try loading font information for U+msa on input line 135.
+
+(D:\Kevin_Uni\Latex\tex\latex\amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 135.
+
+(D:\Kevin_Uni\Latex\tex\latex\amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [2]
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 146--149
+
+ []
+
+[3] [4] (abstracte.tex) (abstractd.tex) [5]
+\@gls@deffile=\write6
+\openout6 = `bachelor_4.glsdefs'.
+
+ (bachelor_4.tocpdfTeX warning (ext4): destination with the same identifier (na
+me{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.30 ...{\numberline {6}Conclusion}{26}{chapter.6}
+                                                   [1
+
+])
+\tf@toc=\write7
+\openout7 = `bachelor_4.toc'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.193 \newpage
+               [2]pdfTeX warning (ext4): destination with the same identifier (
+name{page.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.206 \newpage
+               [3] (bachelor_4.lof)
+\tf@lof=\write8
+\openout8 = `bachelor_4.lof'.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.212 \newpage
+               [4
+
+]pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.215 \newpage
+               [5]
+Chapter 1.
+[6
+
+]
+Chapter 2.
+
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+Channelmodel.PNG, id=231, 1061.46562pt x 506.6428pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/Channelmodel.PNG Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Channelmodel.PNG>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/Channelmodel.PNG used on input line 225.
+(pdftex.def)             Requested size: 455.24408pt x 217.28781pt.
+ [7
+
+ <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
+/Channelmodel.PNG>] [8]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+interleaver.png, id=260, 349.305pt x 166.37157pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/interleaver.png Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/interleaver.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/interleaver.png used on input line 249.
+(pdftex.def)             Requested size: 318.66946pt x 151.78929pt.
+ [9 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/interleaver.png>]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+Modulation_schemes.PNG, id=277, 436.63126pt x 344.03531pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/Modulation_schemes.PNG Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Modulation_schemes.PNG>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/Modulation_schemes.PNG used on input line 266.
+(pdftex.def)             Requested size: 432.48048pt x 340.76399pt.
+ [10]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+reflections.png, id=295, 1029.8475pt x 548.80031pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/reflections.png Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/reflections.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/reflections.png used on input line 283.
+(pdftex.def)             Requested size: 432.48048pt x 230.46104pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 279--286
+
+ []
+
+[11 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Modulation_schemes.PNG>] [12 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01
+_Bachelorarbeit_LaTex/02_Figures/reflections.png>]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+AWGN.png, id=309, 891.33pt x 292.09125pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/AWGN.png Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/AWGN.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/AWGN.png used on input line 309.
+(pdftex.def)             Requested size: 432.48048pt x 141.72647pt.
+ [13 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/AWGN.png (PNG copy)>]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+rayleigh.png, id=324, 421.575pt x 316.18124pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/rayleigh.png Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/rayleigh.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/rayleigh.png used on input line 341.
+(pdftex.def)             Requested size: 432.48048pt x 324.36769pt.
+ [14] [15 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/0
+2_Figures/rayleigh.png (PNG copy)>]
+Chapter 3.
+[16
+
+]
+Underfull \hbox (badness 1838) in paragraph at lines 378--380
+\OT1/cmr/m/n/12 Further cal-cu-la-tions will lead us to the fi-nal equa-tion fo
+r the ca-pac-ity in an
+ []
+
+[17]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+Capacity_QPSK_QAM.png, id=355, 578.16pt x 433.62pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/Capacity_QPSK_QAM.png Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Capacity_QPSK_QAM.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/Capacity_QPSK_QAM.png used on input line 419.
+(pdftex.def)             Requested size: 318.66946pt x 239.0012pt.
+ [18] [19 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/0
+2_Figures/Capacity_QPSK_QAM.png (PNG copy)>]
+Chapter 4.
+[20
+
+]
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+QPSK.png, id=371, 421.575pt x 316.18124pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/QPSK.png Graphic file (type png)
+
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/QPSK.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/QPSK.png used on input line 450.
+(pdftex.def)             Requested size: 318.66946pt x 239.00726pt.
+ [21] [22 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/0
+2_Figures/QPSK.png (PNG copy)>]
+Chapter 5.
+[23
+
+] [24] [25]
+Chapter 6.
+[26
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 560.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 560.
+ (bachelor_4.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 560.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 560.
+Package rerunfilecheck Info: File `bachelor_4.out' has not changed.
+(rerunfilecheck)             Checksum: 767F13213C6353C402E7ED97FF700E38;2246.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 560.
+ ) 
+Here is how much of TeX's memory you used:
+ 34284 strings out of 493323
+ 752030 string characters out of 3142971
+ 979502 words of memory out of 3000000
+ 37088 multiletter control sequences out of 15000+200000
+ 12037 words of font info for 44 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 62i,7n,96p,1978b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{glo:QPSK} has been referenced but does not exist,
+ replaced by a fixed one
+
+pdfTeX warning (dest): name{glo:QAM} has been referenced but does not exist, re
+placed by a fixed one
+
+pdfTeX warning (dest): name{glo:BICM} has been referenced but does not exist, r
+eplaced by a fixed one
+
+pdfTeX warning (dest): name{glo:SICM} has been referenced but does not exist, r
+eplaced by a fixed one
+
+pdfTeX warning (dest): name{glo:AWGN} has been referenced but does not exist, r
+eplaced by a fixed one
+
+pdfTeX warning (dest): name{glo:LDPC} has been referenced but does not exist, r
+eplaced by a fixed one
+
+<D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/Kevin_Uni/Lat
+ex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Kevin_Uni/Latex/fonts/type1/pu
+blic/amsfonts/cm/cmex10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/
+cmmi12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmmi6.pfb><D:/Kev
+in_Uni/Latex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Kevin_Uni/Latex/fonts
+/type1/public/amsfonts/cm/cmr10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsf
+onts/cm/cmr12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+<D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/Kevin_Uni/Latex
+/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Kevin_Uni/Latex/fonts/type1/public
+/amsfonts/cm/cmsl12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/Kevin_U
+ni/Latex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Kevin_Uni/Latex/fonts/typ
+e1/public/amsfonts/cm/cmti12.pfb>
+Output written on bachelor_4.pdf (31 pages, 491241 bytes).
+PDF statistics:
+ 476 PDF objects out of 1000 (max. 8388607)
+ 95 named destinations out of 1000 (max. 500000)
+ 314 words of extra memory for PDF output out of 10000 (max. 10000000)
+

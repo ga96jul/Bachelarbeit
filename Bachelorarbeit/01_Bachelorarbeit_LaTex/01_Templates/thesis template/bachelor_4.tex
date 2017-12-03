@@ -218,38 +218,48 @@ München, DD.MM.YYYY\\\\\\\\\\\\
 \section{Contributions}
 
 \newpage
-\chapter{Channelmodel}
+\chapter{Channel model}
 \label{sec:channel}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{Channelmodel.PNG}
-	\caption{Channelmodel for general Transmitter/Receiver Chain}
+	\includegraphics[width=1\textwidth]{Channelmodel.PNG}
+	\caption{Channel model for general Transmitter/Receiver Chain}
 	\label{fig:Channelmodel}
 \end{figure}
-We first start with a small introduction of the system used for all the simulations in the following chapters. We have a few crucial parts of channel blocks needed for every communication link and a few added for improvement in performance or blocks which can be replaced for different approaches. All the blocks were chosen in direct benefit to a LDPC transmission of codewords to make the simulations as simple and effecient as possible. 
-Our link is built up in three main blocks: The transmitter, the channel and the receiver. With the transmitter handling the creation of the random codeword, coding with \gls{LDPC} and mapping in different modulation schemes. The channel simulating incoming/existing noise, e.g., \gls{AWGN}. In the end the receiver will demap and decode our transmitted symbols and compare the decoded bitstream with the initially created codeword.
+First a short introduction of the system for all simulations will be given (Fig. \ref{fig:Channelmodel}). A few crucial parts of channel blocks are needed for every communication link and a few blocks are added for improvement in performance. All the blocks were chosen in direct benefit to a LDPC transmission of codewords to make the simulations as simple and efficient as possible. 
+The link is built up of three main blocks: The transmitter, the channel and the receiver. With the transmitter handling the creation of the random code words, coding with \gls{LDPC} and mapping in different modulation schemes. The channel will simulate any incoming and existing noise, e.g., \gls{AWGN}. In the end the receiver will demap and decode our transmitted symbols and compare the decoded bitstream with the initially created codeword.
 \newline
 The single channel blocks will be explained shortly in the following sections.
 
 \section{Encoder/Decoder}
 \label{sec:code}
-There are many ways to make our transmission more stable and less error prone. A big role in this protection plays the encoder and its counterpart the decoder. Endoder/decoder come in many different forms taking form in hardware and also as software coding. They reach from simple linear block codes to more complex convolutional coding and so called turbo codes. It is also important to note, that codes working well in a AWGN-channel will often have the same performance in a fading channel. We will have a further look into the \gls{LDPC} codes and the resulting WiMax code according to the standard IEEE 802.16e. \boldred{cite}. While \gls{LDPC} was mainly ignored in the past, in the 1990's the introduction of turbo codes and an sharp increase in computing power helped the recognition of these forms of decoding.
-\gls{LDPC}-codes are linear block codes with a particular structure for their parity check matrix \textbf{[H]}. In the case of \gls{LDPC}-codes \textbf{H} has a small amount of nonzero entries, which means that we have a low density in the parity check matrix.
-Another important difference in LDPC to turbo codes is the complexity of encoding and decoding. While turbo codes have low complexity in encoding they have high complexity in decoding. The total opposite can be said about \gls{LDPC} with high complexity in encoding and low complexity in decoding. Another advantage of \gls{LDPC} is the ability of self correction after decoding with the help of the decoding algorith and the parity check matrix.  
-WiMax IEEE 802.16e is a standard code model used in small and medium distances in urban areas, which fits our simulation quite well. With WiMax we have different given blocksizes ranging from 576 codewords up to 2304 codewords. The code rates are also set, which are the following: 1/2, 2/3, 3/4, and 5/6. There are also two different classes of encoding (A/B), but we will use encoding class A.
+There are many ways to make our transmission more stable and less error prone. A major role in this protection plays the encoder and its counterpart the decoder. Encoder/decoder come in many different forms taking form in hardware coder and also as software coder. They reach from simple linear block codes to more complex convolutional coding and so called turbo codes. It is also important to note, that codes working well in a AWGN-channel will often not have the same performance in a fading channel. A further look will be taken into \gls{LDPC} codes and the based on these, the WiMax code according to the standard IEEE 802.16e. \boldred{citation}. While \gls{LDPC} was mainly ignored in the past, in the 1990's the introduction of turbo codes and an sharp increase in computing power helped the recognition of these forms of decoding.
+\newline
+\gls{LDPC}-codes are linear block codes with a particular structure for their parity check matrix \textbf{[H]}. In the case of \gls{LDPC}-codes \textbf{H} has a small amount of nonzero entries, which means that there is a low density in the parity check matrix.
+Another important difference in LDPC to turbo codes is the complexity of encoding and decoding. While turbo codes have low complexity in encoding they have high complexity in decoding. The total opposite can be said about \gls{LDPC} with high complexity in encoding and low complexity in decoding. Another advantage of \gls{LDPC} is the ability of self correction after decoding with the help of the decoding algorithm and the parity check matrix.  
+\newline
+WiMax IEEE 802.16e is a standard code model used in small and medium distances in urban areas, which fits the simulations quite well. With WiMax there are different given blocksizes ranging from 576 codewords up to 2304 codewords. The code rates are also set, which are the following: 1/2, 2/3, 3/4, and 5/6. While there are also two different classes of encoding (A/B), only encoding class A will be used in this setup.
+\newpage
 
-
-\section{Bitinterleave/Deinterleaver}
+\section{Bit interleave/Deinterleaver}
 \label{sec:BIC}
-While the above mentioned coder \gls{LDPC} works really good for an AWGN channel this could not be the case for a fading channel. To give us assurance in stable performance we will introduce the method of interleaving. Interleaving will handle a major problem in fading channels, the appearance of burst errors mainly caused by deep fading over a set time. While \gls{LDPC} has the ability to correct single code errors it is usually not able to correct a stream of errors. 
-There are two main methods of interleaving today.
-\gls{SICM} will interleave our symbols after the modulator while \gls{BICM} will interlave the single bits before the modulator. With \gls{BICM} being the more dominant one of these two methods.
+While the above mentioned coder \gls{LDPC}  (Chapter \ref{sec:code}) works really well for an AWGN channel this is not always the case in a fading channel. This is where the next important channel block comes into play. To guarantee a stable performance the method of interleaving will be introduced. Interleaving will handle a major problem in fading channels, the appearance of burst errors mainly caused by deep fading over a set time. While \gls{LDPC} has the ability to correct single code errors it is usually not able to correct a stream of errors. With the interleaver the codeword will be shuffled into a new random gaussian distributed code word, which will be passed through our channel. At the receiver a restoration of the shuffled codeword back into its intial state will take place.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{interleaver.png}
+	\caption{Example of interleaving}
+	\label{fig:interleaver}
+\end{figure}
+As clearly seen in figure \ref{fig:interleaver} the interleaver will not remove any errors but will prevent or at least mitigate the presence of burst errors. Single errors can be corrected by the LDPC algorithm again.
+There are two main methods of interleaving today: 
+\gls{SICM} will interleave our symbols after the modulator while \gls{BICM} will interlave the single bits before the modulator, with \gls{BICM} being the more dominant one of these two methods. BICM will also be used for this thesis for its more dominant position in pratical communcation systems. \boldred{cite}
 \newpage
 
 \section{Mapper/Demapper}
 \label{sec:mod}
-In our mapper/modulator it is possible to compress our codeword into a set sequence of symbols. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature Planes (I/Q-Planes). With the distance from the nullpoint of the axis giving us the magnitude of our signal and the angle to the real axis the phase shift. 
-There are many forms of modulation schemes, with the most common ones being M-phase shift keying (PSK), M-frequency shift keying (FSK), M-amplitude modulation (AM) and M-\gls{QAM}. For our simulations we will have a further look at \gls{QPSK}, 16-\gls{QAM} and 64-\gls{QAM}, which are depicted below. All three modulations share the common fact being differential, which means that the symbols are located in both the real and imaginary plane. One important aspect of differential modulation is the requirement of coherent demodulation, which means that the transmitter and receiver must have matched phase $\phi$. In our case we will assume perfect phase match between those two, if not a phase recovery has to be done.  
+In the mapper, also called modulator, it is possible to compress the codeword into a set sequence of symbols. Group of bits are taken from the bit stream to combine them to specific constellation points. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature Planes (I/Q-Planes). With the distance from the nullpoint of the axis giving the magnitude of the signal and the angle to the real axis the phase shift. 
+\newline
+There are many forms of modulation schemes, with the most common ones being M-phase shift keying (PSK), M-frequency shift keying (FSK), M-amplitude modulation (AM) and M-\gls{QAM}. For the simulation a further look will be taken at \gls{QPSK}, 16-\gls{QAM} and 64-\gls{QAM}, which are depicted below (Fig. \ref{fig:Modulation}). All three modulations share the common fact of being differential, which means that the symbols are located in both the real and imaginary plane. One important aspect of differential modulation is the requirement of coherent demodulation, which means that the transmitter and receiver must have matched phase $\phi$. In the simulation it will be assumed that perfect phase match is guaranteed between those two. If not, a phase recovery has to be done.  
 
 \begin{figure}[H]
 	\centering
@@ -258,33 +268,80 @@ There are many forms of modulation schemes, with the most common ones being M-ph
 	\label{fig:Modulation}
 \end{figure}
 
-With \gls{QPSK} the symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$\boldred{cite} we can identify the maximum number of bits we can assign in every symbol, with M being the number of symbols in the modulation scheme. So for \gls{QPSK} the number of bits per symbol amounts to 2.
+With \gls{QPSK} the symbols all share the same amplitude and only differ in their respective phase angle. With the information entropy $S = log\textsubscript{2}(M)$\boldred{cite} the maximum number of bits can be identified which are assigned in every symbol, with M being the number of symbols in the modulation scheme. So for \gls{QPSK} the number of bits per symbol amounts to 2.
 \newline
-With M-\gls{QAM} we add the phase shift already implemented into \gls{QPSK} with the additional differentiation with the amplitude of symbols. For \gls{QAM} we send signals which differ in their phase shift and also their amplitude.  For 16-\gls{QAM} we get a maximum of 4 bits per symbols and for 64-\gls{QAM} 6 bits per symbol.
-The modulation schemes make it possible to increase our rate/speed of transmission and is used for any kind of practical communication link.
+With M-\gls{QAM}  the phase shift  already implemented in \gls{QPSK} will be used and also a differentiation by magnitude of the signal will be added. So for \gls{QAM}, signals which differ in their phase shift and also their amplitude, will be send.  For 16-\gls{QAM} a maximum of 4 bits per symbols and for 64-\gls{QAM} 6 bits per symbol can be achievied.
+\newline
+The modulation schemes make it possible to increase the rate/speed of transmission and are used for any kind of practical communication link. In a practical case modulation will protect the signal from outside noise and interferences, e.g., other mobile handheld devices, GPS-signals or wifi signals. It can also increase the range of communication by transmitting over higher carrier frequencies. 
 
 \section{Channel}
 \label{sec:channel}
-The channel can be modified in many different ways. We can apply different sources of noise or fading, which can relate to real world interferences. Some interferences experienced in real life transmission are, e.g., thermal noise, distance fading, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an \gls{AWGN}-Channel or Rayleigh/Rician fading. We will have a further look into the \gls{AWGN}-Channel and the Rayleigh fading.
+The channel can be modified in many different ways. Different sources of noise or fading can be applied, which relate to real world interferences. Some interferences experienced in real life transmission are, e.g., thermal noise, distance fading, doppler effect and reflection of signals. To approach those kind of interferences there are many different channel models in simulations, like an \gls{AWGN}-Channel or Rayleigh/Rician fading. A further look into the \gls{AWGN}-Channel and the Rayleigh fading will be given. A small graphic will further illustrate the usual culprits for degradation of signal power and resulting loss in communication performance (Fig. \ref{fig:interferences}).
 \newline
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{reflections.png}
+	\caption{Interferences in a normal transmission between two devices}qq
+	\label{fig:interferences}
+\end{figure}
 \boldred{Ausführen, beispiele, bilder}
+\newpage
 \subsection{AWGN-Channel}
 \boldred{Lookup math}
 \newline
-The easiest kind of channel manipulation is to add random gaussian noise to the channel, also commonly known as an \gls{AWGN}-Channel. Like the name says we will add noise to an existing transmitted signal which is randomly distributed in a gaussian distribution with flat spectral density. The probability density function is defined as follows:
-\begin{gather*}
-f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}*e^{-\frac{(x-\mu)^2}{2\mu}}
-\end{gather*}
-With x being the aquired point, $\mu$ being the mean or expection of the distribution and $\sigma^2$ the variance of the distribution. For our gaussian noise we will take a mean of 0 and a variance of 1, which will simplify further calculations in the following chapters. We will also always look at complex gaussian noise in our simulations. More or less every communication link will have some kind of gaussian noise interference, so we will add the AWGN-Channel to every simulation we run.
-
+The easiest kind of channel manipulation is to add random gaussian noise to the channel, also commonly known as an \gls{AWGN}-Channel. Like the name says we will add noise, which is a random gaussian distribution with flat spectral density, to an existing transmitted signal. Our channel will receive a signal like this:
+\begin{equation}
+\label{eq:1.1}
+Y = X + N ,
+\end{equation}
+ with Y being the received signal, X the send codeword and N the AWGN noise.
+\newline
+The probability density function is defined as follows:
+\begin{equation}
+\label{eq:AWGNpdf}
+f(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}*e^{-\frac{(x-\mu)^2}{2\mu}},  
+\end{equation}
+with x being the acquired point, $\mu$ being the mean or expectation of the distribution and $\sigma^2$ the variance of the distribution. 
+\newline
+More or less every communication link will have some kind of gaussian noise interference, so the AWGN-channel will be added to every simulation run.  Below (Fig. \ref{fig:AWGN}) a depiction of the spectral power distribution of AWGN. It can be clearly seen that is flat and spread evenly over the whole spectrum.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{AWGN.png}
+	\caption{Power spectral density of an AWGN channel}
+	\label{fig:AWGN}
+\end{figure}
 \boldred{Add picture of AWGN, pdf or distribution}
 
+\newpage
 \subsection{Rayleigh-Channel}
 \boldred{Lookup math}
-Another common channel model used in communication theory is Rayleigh fading. Rayleigh fading is used to simulate multipath reception, which means that for a receiver antenna in a wireless link there are many reflected and scattered signals reaching it. These kind of reflections are common for high density urban areas. This results into construction or destruction of waves. Rayleigh distribution can be defined like this: $R = \sqrt{X^2 + Y^2}$ with X and Y being two independent gaussian distributed random variables. Further calculations will lead to the following pdf:
-\begin{gather*}
-f(x\sigma) = \frac{1}{\sigma^2}e^{-\frac{x^2}{2\sigma^2}} 
-\end{gather*} 
+\newline
+Another common channel model used in communication theory is Rayleigh fading. Rayleigh fading is used to simulate multipath reception, which means that for a receiver antenna in a wireless link there are many reflected and scattered signals reaching it (Fig. \ref{fig:interferences}). These kind of reflections are common for high density urban areas. This results into construction or destruction of waves. Rayleigh distribution can be defined like this: 
+\newline
+\begin{equation}
+\label{eq:rayleigh}
+ H = \sqrt{X^2 + Y^2},
+\end{equation}
+with X and Y being two independent gaussian distributed random variables. This leads our channel to look like this:
+\newline
+\begin{equation}
+\label{eq:rayleighchan}
+Y = H * X + N,
+\end{equation}
+with the newly added fading coefficient H.
+\newline
+Further calculations will lead to the following pdf:
+\begin{equation}
+\label{eq:raypdf}
+f(x\sigma) = \frac{1}{\sigma^2}e^{-\frac{x^2}{2\sigma^2}},
+\end{equation}
+this time only with sigma being the variance of the pdf. The graphic (Fig. \ref{fig:rayleigh}) shows the power distribution over 12000 samples. Being gaussian randomly distributed there are now these so called "deep fadings" where the power of the fading drops, which will also decrease the signal power of the received signal drop significantly. This results in the so called burst errors, which was mentioned in chapter \ref{sec:BIC}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.95\textwidth]{rayleigh.png}
+	\caption{Power spectral density of an rayleigh channel}
+	\label{fig:rayleigh}
+\end{figure}
 
 \boldred{Add pictures, spreading, reflection...}
 	
@@ -340,7 +397,7 @@ Monte Carlo Simulation is widely used in stochastic to get solutions for random 
 Now we will look into different modulation schemes, which were already mentioned in Chapter~\autoref{sec:mod}. We will implement these modulation schemes into our capacity calculations in an AWGN channel.
 \subsection{QPSK}
 For QPSK we will have 4 symbols and resulting 2 bits per symbol. Before any simulation or calculation were run we can already be sure that we will not pass the upper bound of 2 bits/Symbol. So the plot will approach the 2 bits/Symbol for high SNR.
-After creating a random codeword modulated with the fitting modulation scheme. Noise is added to the signal, which is than received as the bit array Y. The next step to calculate the capacity differs from above. 
+After creating a random codeword modulated with the fitting modulation scheme. Noise is added to the signal, which is than received as the bit array Y. The next step to calculate the capacity differs from above. While 
 \newline
 We know that our signal is normal random distributed variables and we have to calculate the differential entropy for h(Y), which is: 
 \begin{equation}
@@ -392,7 +449,7 @@ With many modern systems achieving great computing capability and our desire to 
 	\centering
 	\includegraphics[width=0.7\textwidth]{QPSK.png}
 	\caption{Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM}
-	\label{fig:Modulation}
+	\label{fig:QPSKmod}
 \end{figure}
  
 With QPSK we have 4 different symbol constellation also depicted above: (0,0),(0,1),(1,1) and (1,0). The loglikelihood ratio is defined as below
@@ -495,25 +552,6 @@ We can clearly see a distinct performance difference between the two error floor
 \section{Comparison between fading and AWGN channel}
 
 \section{Fazit}
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 % Generierung des Literaturverzeichnisses
