@@ -1,0 +1,91 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\fwidth,
+height=\fheight,
+at={(0\fwidth,0\fheight)},
+scale only axis,
+xmin=-5,
+xmax=25,
+xlabel style={font=\color{white!15!black}},
+xlabel={SNR in dB},
+ymin=0,
+ymax=4.5,
+ylabel style={font=\color{white!15!black}},
+ylabel={Bits per symbol},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={FER (0.001) of QAM16 with Gaussian fading},
+xmajorgrids,
+ymajorgrids,
+legend style={at={(0.18,0.669)}, anchor=south west, legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1]
+  table[row sep=crcr]{%
+-6	0.328621714082722\\
+-5	0.410274595889064\\
+-4	0.497750186881902\\
+-3	0.599712705644915\\
+-2	0.714042374792633\\
+-1	0.861837472466473\\
+0	1.00371041314962\\
+1	1.17925231331639\\
+2	1.36317896763643\\
+3	1.56645355738085\\
+5	1.9914221739593\\
+7	2.45551845122164\\
+8	2.70357747937736\\
+9	2.93827693641367\\
+10	3.18009610376135\\
+11	3.38994681065897\\
+12	3.57915476353915\\
+13	3.73698103166151\\
+14	3.85191363323502\\
+15	3.93083271031978\\
+16	3.98124687547666\\
+17	3.98873587025561\\
+18	3.9999092584337\\
+19	3.99126898886324\\
+20	4.00461627105919\\
+22	3.99570005449973\\
+23	4.00385440769931\\
+24	3.99872083361317\\
+25	4.0013615285833\\
+26	3.99772619520965\\
+};
+\addlegendentry{QAM-16}
+
+\addplot [color=blue, draw=none, mark size=5.0pt, mark=asterisk, mark options={solid, blue}]
+  table[row sep=crcr]{%
+8.4925	2\\
+};
+\addlegendentry{R = 1/2}
+
+\addplot [color=blue, draw=none, mark size=5.0pt, mark=asterisk, mark options={solid, blue}]
+  table[row sep=crcr]{%
+10.94	2.66666666666667\\
+};
+\addlegendentry{R = 2/3}
+
+\addplot [color=blue, draw=none, mark size=5.0pt, mark=asterisk, mark options={solid, blue}]
+  table[row sep=crcr]{%
+11.9828	3\\
+};
+\addlegendentry{R = 3/4}
+
+\addplot [color=blue, draw=none, mark size=5.0pt, mark=asterisk, mark options={solid, blue}]
+  table[row sep=crcr]{%
+12.9956	3.33333333333333\\
+};
+\addlegendentry{R = 5/6}
+
+\end{axis}
+\end{tikzpicture}%

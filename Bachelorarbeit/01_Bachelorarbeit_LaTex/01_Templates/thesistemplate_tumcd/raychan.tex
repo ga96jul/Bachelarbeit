@@ -1,0 +1,90 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Capacity for a Rayleigh Channel} 
+\label{chap:raychan}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+
+
+We will now discuss the above implemented simulation in AWGN with the addition of Rayleigh fading. 
+There are many different fading processes that can be considered for simulation. In this thesis we will look at the so called block fading channel. In a block fading channel the fading coefficient $H$ is constant over the block length \textbf{T}. After every block the fading coefficient will change to a new independent value based on the distribution used.
+In our case the fading used is called Rayleigh fading, also mentionend before in chapter \eref{sec:rayleigh}. For the whole block fading simulation 2 different scenarios will be considered:
+\newline
+First of all for both scenarios "Channel distribution information" (CDI) will be applied, which means that both for the transmitter and the receiver the distribution of the fading coefficient is known. Now for the first scenario, additionally to CDI, the knowledge of the fading coefficient power will be given to the receiver. This scenario is also known as "Receiver CSI", with CSI standing for "channel side information".
+\newline
+In the second scenario the information of the fading coefficient power will be unknown, which means a method is needed to try to estimate the coefficient as accurate as possible.  
+
+\section{Fading Channel}
+(!! add fading channel picture!!)
+Different to the \gls{AWGN} channel where only additive noise is added to the sent information signal in the fading channel before addition of noise the signal is scaled with the fading coefficient. Also mentioned in chapter \eref{rayleigh} and the corresponding \eqref{eq:rayleigh1}.
+(!!add figure with fading!! scatterplot)
+As seen in the figure above with various fading coefficients the overall power of the signal can increase or decrease. Which also results in a bigger/lesser interference of AWGN noise. Still it is important to know, while higher "power" is beneficial for the error probability in the system it is not needed to maintain stable information rate. At the same time a decrease in "power" will make the system suffer a loss in information. So in the end it is from utmost importance to try and reduce the fading from the received signal \textbf{Y}.
+\section{Receiver CSI}
+We will now discuss recovering the signal with perfect channel knowledge. 
+\begin{equation}
+\underline{Y} = H * \underline{X} + \underline{N},
+\end{equation}
+With the knowledge of the fading coefficient a simple division of the equation will solve the problem.
+\begin{equation}
+\underline{\hat{Y}} = \underline{X} + \underline{\hat{N}},
+\end{equation}
+with $\underline{\hat{Y}}$ being the new estimation of the received code word and $\underline{\hat{N}}$ the division of the noise with the fading coefficient.
+Although the fading has been removed from the initial sent code word the restored code word \textbf{$\underline{\hat{Y}}$} has still to be considered a fading channel because of $\underline{\hat{N}}$. It is expected to have a decrease in performance in comparison to a normal AWGN channel.
+
+\section{Fading estimation with pilot symbol}
+In this section the scenario is taken into consideration that the receiver does not know the fading coefficient, but still has the information of fading block length. Now a method of restoring the code word \textbf{\underline{Y}} has to be found.
+\newline
+One common and simple method used is the addition of pilot symbols into the codeword. To specify this procedure look at the code word of length N. To this code word additional pilot symbols will be added. In this simulation only one pilot symbol per block will be added. 
+\begin{equation}
+\underline{X} = [X_T, X_1, ..., X_N]
+\end{equation}
+The pilot symbol $X_T$ has a set constant value both known at the transmitter and receiver side. With this knowledge an easy estimate can be given for the fading coefficient for each block.
+\begin{equation}
+Y_T = H * X_T + N
+\end{equation}
+\begin{equation}
+\hat{H} = \frac{Y_T}{X_T},
+\end{equation}
+being an estimate because of the unknown portion of noise. With an increase in transmission power an increase of accuracy in the estimation of $H$ can be given.
+A recovery of the received signal \textbf{Y} with the estimate \textbf{$\hat{H}$} will be done. It is to be expected, that this method will result in a worse performance than the recovery with the perfect channel knowledge. 
+
+\section{Results}
+This section will cover some cases simulated in this thesis. We will differentiate between different block sizes,
+(!!Add figure with perfect channel knowledge and pilot symbol!!)
+
+\begin{figure}[!htb]
+	\setlength\fwidth{0.8\textwidth}
+	\setlength\fheight{0.4\textheight}
+	\centering
+	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/rayferfirst.tex}	
+	\caption{Simulation for rayleigh channel with known and estimated fading coefficient}
+	\label{fig:rayferfirst}
+\end{figure}
+
+As seen above the simulation with perfect channel knowledge clearly outperforms the one with unknown fading coefficient. To be exact for both the \gls{FER} of $10^{-2}$ and $10^{-3}$ a improvement of about 3.5dB to 4 dB can be seen. This corresponds to more than the power consumption in the estimated channel to get the same performance than the perfect channel.
+
+\begin{figure}[!htb]
+	\setlength\fwidth{0.8\textwidth}
+	\setlength\fheight{0.4\textheight}
+	\centering
+	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/rayfersec.tex}
+	\caption{Simulation for rayleigh channel with different blocklengths}
+	\label{fig:rayfersec}
+\end{figure}
+In the second figure different block lengths \textbf{T} are simulated for the channel with unknown fading coefficient. The block lengths here consists of the previous two plots and the new additional block lengths of two blocks and sixteen blocks per transmission.
+An observation can be given for low and high \gls{SNR} behavior. For shorter block lengths, which means more blocks per transmission, the performance in low SNR is slightly worse while the performance in high \gls{SNR} is slightly improved. For sixteen blocks per transmission this decline/improvement is not very noticeable.
+\newline
+In the last figure the extreme case of 1 symbol per block will be simulated. That means \textbf{T} = number of transmission symbols. This kind of transmission from the view of viability is not feasible, because for every symbol a pilot symbol is added. With an addition for every symbol the whole transmission is slowed down by exactly half the rate, because overall twice the number of symbols need to be transmitted. But for this case the behavior for low and high SNR can be examined more precisely. 
+\newline
+Here it is very clear that the newly simulated channel performs worse than the estimated channel for low SNR from 0dB upto 16dB, afterwards the channel outperforms the estimated channel and closely approaches the \gls{FER} of the channel with perfect channel knowledge. It can be assumed that for low SNR the fading can be very strong, especially modulating every symbol independently it is to be expected that some of them will be modulated with very deep fading. The same independent single symbol fading can be an advantage for higher SNR. At the same time for higher SNR the occurence of deep fading will reduce. Of course some cases of deep fading will still happen, but only affecting one single symbol every time, this can be easily recovered by the decoder. If deep fading occurs for longer block lengths it can be very obstructing even in higher SNR. This can be mitigated with the single symbol per block or just small block length transmission.
+\begin{figure}[!htb]
+	\setlength\fwidth{0.8\textwidth}
+	\setlength\fheight{0.4\textheight}
+	\centering
+		\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/rayferthird.tex}
+	\caption{Simulation for rayleigh channel with blocklength = number of symbols in transmission}
+	\label{fig:rayferthird}
+\end{figure}
+
+
+
+\clearpage

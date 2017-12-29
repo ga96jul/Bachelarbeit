@@ -21,7 +21,7 @@ EsNo = 10.^(snr_dB/10);
 
 for l = 1:length(snr_dB)
     pause(1);
-frames = 100000000;  
+frames = 100000;  
 %% Encoder
 [H_rows, H_cols, P] = InitializeWiMaxLDPC(rate, n);                        % creating H-Matrix r x n
 
@@ -137,15 +137,15 @@ Frame_errors_SNR(l) = Frame_errors;
 Frame_error_rate(l) = Frame_errors/iterations;
 Frame_errors = 0;
 waitbar(l/length(snr_dB));
-temp = sprintf('Frame_errors_%d',l);
-temp2 = sprintf('FER_%d',l);
-save(temp,'Frame_errors_SNR');
-save(temp2,'Frame_error_rate');
+% temp = sprintf('Frame_errors_%d',l);
+% temp2 = sprintf('FER_%d',l);
+% save(temp,'Frame_errors_SNR');
+% save(temp2,'Frame_error_rate');
 end
 close(h);
 figure;
 %sem = semilogy(snr_dB,Frame_error_rate);
-inter = linspace(0,5,50000000);
+inter = linspace(0,5,500000);
 pFER = interp1(snr_dB,Frame_error_rate,inter);
 semilogy(inter,pFER);
 hold on;
@@ -166,9 +166,9 @@ try
 catch
     disp('No FER under 0.001');
 end
-print(plotpath);
-save(datapath1,'Frame_error_rate');
-%save('FER_1_2_QPSK_1810.fig','sem');
-save(datapath2,'snr_FER');
+% print(plotpath);
+% save(datapath1,'Frame_error_rate');
+% %save('FER_1_2_QPSK_1810.fig','sem');
+% save(datapath2,'snr_FER');
 
 toc;

@@ -1,0 +1,149 @@
+% Document class / Dokumentenklasse:
+\documentclass{LNTthesis}
+
+\usepackage[acronym]{glossaries}
+
+\usepackage{tikz}
+\usepackage{pgfplots} 
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\pgfplotsset{compat=newest} 
+\pgfplotsset{plot coordinates/math parser=false}
+
+\newlength\fwidth
+\newlength\fheight
+
+% Parameters of the LNTthesis class:
+% DIV12       = document layout: DIV factor = 12 (larger number creates larger pages)
+% BCOR12mm    = binding correction: 12mm
+% headsepline = separate page head by a line
+% twoside     = twosided document
+% 11pt        = font size 11 point
+% openright   = start new chapters only on right pages (odd numbered pages)
+% more information: http://tug.ctan.org/tex-archive/macros/latex/contrib/koma-script/scrguien.pdf
+
+% Packages used in LNTthesis class:
+% package[english]{babel}   % english language / Englische Sprache
+% package{LNTthesis}        % LNT specific definitions / LNT spezifische Definitionen
+% package{graphicx}         % for using eps images / Einbinden von EPS Grafiken
+% package{verbatim}         % for quickly commenting out large parts of your text / Um viel Text schnell auskommentieren zu koennen
+% package{amssymb}          % additional math symbols / Zusaetzliche mathematische Symbole
+% package{amsmath}          % additional math commands / Zusaetzliche mathematische Befehle
+% package{amsxtra}          % even more math symbols / Noch mehr mathematische Symbole
+% package{amsthm}           % theorem environment etc / Theorem Umgebung usw
+% more information on amsmath: http://www.ctan.org/get/macros/latex/required/amslatex/math/amsldoc.pdf
+
+% package{psfrag}           % psfrag: http://www.ctan.org/get/macros/latex/contrib/psfrag/pfgguide.pdf
+% package{subfigure}        % enable subfigures / Ermoeglicht Subfigures (mehrere Figures neben/untereinander)
+
+% !! PLEASE READ THE LATEX HELP IF YOU HAVE ANY QUESTIONS !!
+% http://tobi.oetiker.ch/lshort/lshort.pdf
+
+
+% Macros:
+    \newcommand{\eq}[1]{Equation (\ref{#1})}        % \eg{eq:golomb}  --> Equation (2.15)
+    \newcommand{\eref}[1]{(\ref{#1})}               % \eg{eq:golomb}  --> (2.15)
+    \newcommand{\fig}[1]{Figure \ref{#1}}           % \fig{fig:golomb}--> Figure 2.15
+    \newcommand{\tab}[1]{Table \ref{#1}}            % \tab{tab:lala}  --> Table 2.15
+    \newtheorem{prop}{Proposition}
+
+% Abbreviations
+    \newcommand{\equivalent}{\triangleq}
+    \newcommand{\given}{\:\!\vert\:\!}
+   
+
+\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+
+% Document:
+\begin{document}
+
+\usetikzlibrary{positioning}
+% ###################################
+% Title page / Titelseite
+% ###################################
+\LNTtitle{Bachelor's Thesis}          % Thesis type / Art der Arbeit (Master's Thesis, Diplomarbeit)
+    {Communication over unknown channel}                  % Thesis title / Titel der Arbeit
+    {Kevin Li}                  % Your name / Name des Diplomanden
+    {Marcin Pikus}            % Advisor / Betreuer
+    {M\"unchen, January 2018}          % Munich, Date / Muenchen, Datum
+    {Kevin Li\\                 % Your Address / Anschrift des Diplomanden
+    Am R\"omerbrunnen 6\\
+    85586 Poing\\
+    kev.li1010@gmail.com}
+
+\LNTrecht{Kevin Li}             % Your name / Name des Studenten
+    {M\"unchen, 22.01.2018}         % Munich, Date / Muenchen, Datum
+
+\cleardoubleemptypage   % start new double page / neue Doppelseite
+
+% ########################################
+% Table of Contents / Inhaltsverzeichnis
+% ########################################
+
+% roman page numbering, starting with page number 1 / roemische Seitennummerierung beginnend mit Seite 1
+    \setcounter{page}{1}
+    \pagenumbering{roman}
+
+        \tableofcontents    % Table of contents / Inhaltsverzeichnis
+        \listoffigures      % List of figures / Abbildungsverzeichnis
+        \listoftables       % List of tables / Tabellenverzeichnis
+        
+        \newpage
+		%\newglossaryentry{gls-SNR}{name={SNR},description={The difference from the noise floor to the 		signal 		power}}]\newacronym[see={[Glossary:]{gls-SNR}}{SNR}{SNR}{Signal-to-Noise-Ratio\glsadd{gls-	SNR}}
+		\newacronym{FER}{FER}{frame error rate}
+		\newacronym{CML}{CML}{Coded Modulation Library}
+	\newacronym{SNR}{SNR}{signal-to-noise ratio}
+	%\newglossaryentry{gls-AWGN}{name={AWGN},description={Form of noise. Usually created by thermal noise 		and hardware}}
+	\newacronym{AWGN}{AWGN}{additive white gaussian noise}
+	%\newglossaryentry{gls-LDPC}{name={LDPC},description={Method of coding/decoding bitstreams}}
+	\newacronym{LDPC}{LDPC}{low density parity check}
+	%\newglossaryentry{gls-QPSK}{name={QPSK},description={Form of modulation}}
+	\newacronym{QPSK}{QPSK}{quadrature phase shift keying}
+
+	\newacronym{QAM}{QAM}{quadrature amplitude modulation}
+
+	\newacronym{BICM}{BICM}{bit-interleaved coded modulation}
+	\newacronym{SICM}{SICM}{symbol-interleaved coded modulation}
+		\newacronym{MC}{MC}{Monte-Carlo-Simulation}
+        \cleardoubleemptypage   % start new double page / neue Doppelseite
+
+% ########################################
+% Chapters / Kapitel:
+% ########################################
+
+% arabic page numbering, starting with page number 1 / arabische Seitennummerierung beginnend mit Seite 1
+    \setcounter{page}{1}
+    \pagenumbering{arabic}
+
+        %\include{abstract}     % Include abstract / Einbinden von Kurzfassung und Abstract
+        \include{commchain}  % Include introduction / Einbinden des Kapitels Einleitung/Problemstellung
+        \include{awgnchan}
+        \include{awgnchain}
+        \include{raychan}
+        \include{raychain}
+        %\include{...}          % Include ... / Einbinden des Kapitels ...
+        %\include{simulation}   % Include simulation results / Einbinden des Kapitels Simulation
+        %\include{conclusion}   % Include conclusion/summary / Einbinden des Kapitels Zusammenfassung/Ausblick
+        
+        \cleardoubleemptypage
+
+
+% ########################################
+% Appendix / Anhang:
+% ########################################
+
+% roman page numbering, starting with page number 1 (capitals)/ roemische Seitennummerierung beginnend mit Seite 1 (gross)
+    \appendix
+    \setcounter{page}{1}
+    \pagenumbering{Roman}
+
+        % Use IEEE DIN 1505 style for bibliography / Literaturverzeichnisses
+        \bibliographystyle{ieeetransa}
+        %\nocite{*}              % Include all references without checking / Alle References immer aufführen
+        \bibliography{literature}
+
+\end{document}
+
+%
+% EOF!
+%

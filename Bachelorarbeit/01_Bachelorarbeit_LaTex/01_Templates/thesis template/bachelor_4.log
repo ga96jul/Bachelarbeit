@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  3 DEC 2017 21:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.11.6)  4 DEC 2017 10:24
 entering extended mode
 **./bachelor_4.tex
 (bachelor_4.tex
@@ -1627,7 +1627,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 560.
 Here is how much of TeX's memory you used:
  34284 strings out of 493323
  752030 string characters out of 3142971
- 979502 words of memory out of 3000000
+ 979503 words of memory out of 3000000
  37088 multiletter control sequences out of 15000+200000
  12037 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1663,7 +1663,7 @@ onts/cm/cmr12.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmr17.pfb>
 10.pfb><D:/Kevin_Uni/Latex/fonts/type1/public/amsfonts/cm/cmsy6.pfb><D:/Kevin_U
 ni/Latex/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/Kevin_Uni/Latex/fonts/typ
 e1/public/amsfonts/cm/cmti12.pfb>
-Output written on bachelor_4.pdf (31 pages, 491241 bytes).
+Output written on bachelor_4.pdf (31 pages, 491215 bytes).
 PDF statistics:
  476 PDF objects out of 1000 (max. 8388607)
  95 named destinations out of 1000 (max. 500000)

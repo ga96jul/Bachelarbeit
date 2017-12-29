@@ -1,0 +1,300 @@
+\ifglsentryexists{FER}{}%
+{%
+\gls@defglossaryentry{FER}%
+{%
+name={FER},%
+sort={FER},%
+type={acronym},%
+first={frame error rate\glsspace (FER)},%
+firstplural={frame error rates\glsspace (FERs)},%
+text={FER},%
+plural={FERs},%
+description={frame error rate},%
+descriptionplural={frame error rate\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={frame error rate},%
+longplural={frame error rates},%
+short={FER},%
+shortplural={FERs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{CML}{}%
+{%
+\gls@defglossaryentry{CML}%
+{%
+name={CML},%
+sort={CML},%
+type={acronym},%
+first={Coded Modulation Library\glsspace (CML)},%
+firstplural={Coded Modulation Librarys\glsspace (CMLs)},%
+text={CML},%
+plural={CMLs},%
+description={Coded Modulation Library},%
+descriptionplural={Coded Modulation Library\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Coded Modulation Library},%
+longplural={Coded Modulation Librarys},%
+short={CML},%
+shortplural={CMLs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SNR}{}%
+{%
+\gls@defglossaryentry{SNR}%
+{%
+name={SNR},%
+sort={SNR},%
+type={acronym},%
+first={signal-to-noise ratio\glsspace (SNR)},%
+firstplural={signal-to-noise ratios\glsspace (SNRs)},%
+text={SNR},%
+plural={SNRs},%
+description={signal-to-noise ratio},%
+descriptionplural={signal-to-noise ratio\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={signal-to-noise ratio},%
+longplural={signal-to-noise ratios},%
+short={SNR},%
+shortplural={SNRs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{AWGN}{}%
+{%
+\gls@defglossaryentry{AWGN}%
+{%
+name={AWGN},%
+sort={AWGN},%
+type={acronym},%
+first={additive white gaussian noise\glsspace (AWGN)},%
+firstplural={additive white gaussian noises\glsspace (AWGNs)},%
+text={AWGN},%
+plural={AWGNs},%
+description={additive white gaussian noise},%
+descriptionplural={additive white gaussian noise\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={additive white gaussian noise},%
+longplural={additive white gaussian noises},%
+short={AWGN},%
+shortplural={AWGNs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{LDPC}{}%
+{%
+\gls@defglossaryentry{LDPC}%
+{%
+name={LDPC},%
+sort={LDPC},%
+type={acronym},%
+first={low density parity check\glsspace (LDPC)},%
+firstplural={low density parity checks\glsspace (LDPCs)},%
+text={LDPC},%
+plural={LDPCs},%
+description={low density parity check},%
+descriptionplural={low density parity check\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={low density parity check},%
+longplural={low density parity checks},%
+short={LDPC},%
+shortplural={LDPCs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{QPSK}{}%
+{%
+\gls@defglossaryentry{QPSK}%
+{%
+name={QPSK},%
+sort={QPSK},%
+type={acronym},%
+first={quadrature phase shift keying\glsspace (QPSK)},%
+firstplural={quadrature phase shift keyings\glsspace (QPSKs)},%
+text={QPSK},%
+plural={QPSKs},%
+description={quadrature phase shift keying},%
+descriptionplural={quadrature phase shift keying\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={quadrature phase shift keying},%
+longplural={quadrature phase shift keyings},%
+short={QPSK},%
+shortplural={QPSKs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{QAM}{}%
+{%
+\gls@defglossaryentry{QAM}%
+{%
+name={QAM},%
+sort={QAM},%
+type={acronym},%
+first={quadrature amplitude modulation\glsspace (QAM)},%
+firstplural={quadrature amplitude modulations\glsspace (QAMs)},%
+text={QAM},%
+plural={QAMs},%
+description={quadrature amplitude modulation},%
+descriptionplural={quadrature amplitude modulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={quadrature amplitude modulation},%
+longplural={quadrature amplitude modulations},%
+short={QAM},%
+shortplural={QAMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{BICM}{}%
+{%
+\gls@defglossaryentry{BICM}%
+{%
+name={BICM},%
+sort={BICM},%
+type={acronym},%
+first={bit-interleaved coded modulation\glsspace (BICM)},%
+firstplural={bit-interleaved coded modulations\glsspace (BICMs)},%
+text={BICM},%
+plural={BICMs},%
+description={bit-interleaved coded modulation},%
+descriptionplural={bit-interleaved coded modulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={bit-interleaved coded modulation},%
+longplural={bit-interleaved coded modulations},%
+short={BICM},%
+shortplural={BICMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{SICM}{}%
+{%
+\gls@defglossaryentry{SICM}%
+{%
+name={SICM},%
+sort={SICM},%
+type={acronym},%
+first={symbol-interleaved coded modulation\glsspace (SICM)},%
+firstplural={symbol-interleaved coded modulations\glsspace (SICMs)},%
+text={SICM},%
+plural={SICMs},%
+description={symbol-interleaved coded modulation},%
+descriptionplural={symbol-interleaved coded modulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={symbol-interleaved coded modulation},%
+longplural={symbol-interleaved coded modulations},%
+short={SICM},%
+shortplural={SICMs},%
+counter={page},%
+parent={},%
+%
+}%
+}%
+\ifglsentryexists{MC}{}%
+{%
+\gls@defglossaryentry{MC}%
+{%
+name={MC},%
+sort={MC},%
+type={acronym},%
+first={Monte-Carlo-Simulation\glsspace (MC)},%
+firstplural={Monte-Carlo-Simulations\glsspace (MCs)},%
+text={MC},%
+plural={MCs},%
+description={Monte-Carlo-Simulation},%
+descriptionplural={Monte-Carlo-Simulation\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Monte-Carlo-Simulation},%
+longplural={Monte-Carlo-Simulations},%
+short={MC},%
+shortplural={MCs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

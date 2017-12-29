@@ -1,0 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Capacity in AWGN Channel} \label{chap:awgnchan}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+
+In this section we will discuss the capacity of a wireless channel with \gls{AWGN} noise interfering with the transmission between transmitter and receiver. 
+\newline
+In general capacity \textit{C} can be defined as the maximum data rate \textit{R} at which information can be reliably transmitted over a channel, that means the highest rate of transmission with a very low error probability rate. It is proven that any rate exceeding the maximum capacity rate of the channel will result in error rates deviating from zero (!!cite!!). In modern technology with the help of smart modulation schemes and coding methods a rate close to the capacity can be achieved. 
+All the capacities in the following simulations will be complex and also time-discrete. While time-continuous systems are analyzed for real world applications most systems can be converted into a time-discrete model with same capacity results. The transformation will also be shown in the following sections. 
+\section{Capacity and Monte-Carlo-Simulation}
+\label{sec:capAWGN}
+
+For a \gls{AWGN}-Channel the simple channel model already defined in \eq{eq:1.1} will be used:
+\begin{equation}
+\label{eq:chanAWGN}
+Y = X + N,   
+\end{equation}
+with X $\sim$ \textit{N}(0,$\sigma\textsubscript{T}^2$) and N $\sim$ \textit{N}(0,1). The received signal Y will have a distribution of Y $\sim$ \textit{N}(0,$sigma^2$+1) under the condition that X and N being independently distributed.
+Now the capacity as a maximum of mutual information I between X and Y will be calculated:
+\begin{equation}
+\label{eq:cap}
+C = max(I(X;Y)),     
+\end{equation}
+with X and Y being to independent randomly normal distributed variables.
+\newline
+For the mutual information further calculations will lead to the differential entropy:
+\begin{equation}
+I(X;Y) = h(Y) - h(Y|X)
+= h(Y) - h(N),
+\end{equation}
+with N also being independent from X.
+\newline
+Which further simplifies to 
+\begin{equation}
+h(Y) = h(X+N) = log(\pi*e^{\sigma^2+1}) \quad \textrm{and} \quad h(Y|X) = h(N) = log(\pi*e^{1}),
+\end{equation}
+which will lead us to the final equation for the capacity in an AWGN-channel:
+\begin{equation}
+\label{eq:AWGNcap}
+C = log(1+\sigma^2)
+\end{equation}
+With this approach a good approximation of values for further calculations with added modulation schemes has been given. The above calculated data rate can be used as upper bound for any further capacity calculation done, this means there should be no capacity rate, especially for real world applications, exceeding this capacity rate (\eq{eq:AWGNcap}).
+
+
+\section{Capacity for QPSK and M-QAM}
+Now the capacity will be calculated for the three above mentioned modulation schemes (Chapter \eref{sec:mod}). The schemes will be plotted with the capacity calculations for the AWGN channel to give us a overall comparison and overview.
+\newline
+Before the simulation or any calculation is done it can already be assumed how QPSK will behave for high SNR. As stated before QPSK (Chapter \eref{sec:mapper)}) can transmit up to 2 bits per symbol, but no more without losing its reliability in transmission. So the plot will approach the 2 bit per symbol border for high SNR. The same assumption can be applied to both 16-QAM and 64-QAM.
+After creating a random codeword modulated with the fitting modulation scheme, noise is added to the signal, which is than received as the bit stream Y. The next step is to calculate the capacity. 
+\newline
+Starting with the mutual information again we get:
+\begin{equation}
+I(X_Q;Y) = h(Y) - h(Y|X_Q) = h(Y) - h(N)
+\end{equation}
+It is known that the signal is normal random distributed variable and now the differential entropy for h(Y) has to be calculated: 
+\begin{equation}
+h(Y) = \int p(y) * [-log(p(y))] \mathrm{dx}
+\end{equation}
+Applying the Monte-Carlo-Simulation will simplify the above equation so it can be solved numerically, turning the time-continuous system into a time-discrete form. The Monte-Carlo-Simulation will be further explained in the following chapter (Ch. \ref{sec:MCS}).
+\begin{equation}
+\label{eq:entropy1}
+h(Y) =  \sum_{n=0}^N(-log(p(y\textsubscript{n}))) * \frac{1}{N},
+\end{equation} 
+with p(y) being the probability of y for a normal distributed variable and N the number of iterations. Now p(y) has to be further defined as it takes in consideration the possible input and output pairs $x \in X$ and $y \in Y$. The sum over all these pairs is taken:
+\begin{equation}
+\label{eq:entropy2}
+p(y) = \frac{1}{n*\pi}*\sum_{i=1}^n(e^{y-x\textsubscript{i}}),
+\end{equation} 
+with x being the constellation points and y the received symbol.
+Here we only need to watch out for the number of symbols in the modulation scheme. For QPSK we have a n = 4, 16-QAM n = 16 and 64-QAM n = 64.
+\newline
+\subsection{Monte-Carlo-Simulation}
+\label{sec:MCS}
+Monte Carlo Simulation is widely used in stochastics to get solutions for random experiments. It is applied to solve analytical unsolvable problems numerically. MC is based upon the law of large numbers, which says that a large number of performing the same experiment will lead the average of the results close to the expected value. We take this as a base to get reliable results. The Monte Carlo simulations will be used for two calculations, once already used above for calculating the differential entropy and later once to calculate a theoretical Rayleigh fading curve out of the AWGN channel. 
+
+\subsection{Implementaion in MATLAB}
+\label{AWGNMAT}
+We now implement all the above mentioned equations in MATLAB and plot the results. The code has to take into consideration the modulation scheme used, the range of calculation (SNR) and the sample size N. The code runs through the SNR range, here ranging from -10 to 30dB in step sizes of 0.5dB. The sample size N also has to be large enough to apply the Monte-Carlo simulation reliably. In our simulation N has to be higher than 10000 samples to receive dependable results. First a random bit stream, functioning as the data, is initialized. The bit stream is passed through a modulator which assigns the corresponding symbol. We scale the created constellation point with the SNR value. After passing \underline{X} through the complex AWGN channel the resulting symbols \underline{Y} and \underline{X} are put into equation \eref{eq:entropy1} and equation \eref{eq:entropy2}. Done for every stepsize a resulting plot for the capacity over SNR in decibel is created.  
+    
+
+\section{Results}
+\begin{figure}[!htb]
+		\setlength\fwidth{0.8\textwidth}
+	\setlength\fheight{0.4\textheight}
+	\centering
+	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/CapQPSK.tex}
+	\caption{Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM}
+	\label{fig:capmod}
+\end{figure}
+The results of the calculation in MATLAB can be seen above. The plot shows the capacity for a simple AWGN channel and the three modulation schemes mentioned before (Chapter \eqref{sec:mapper}). We plot the resulting capacity calculated over the corresponding SNR value. 
+It can be seen that for all three modulation schemes that for higher \gls{SNR} they approach the desired maximum number of bits per symbol.
+Also the Gaussian channel clearly outperforms the modulated channels, especially seen after 0 dB SNR. Noted before that the Gaussian capacity is the upper bound with no modulation exceeding it the first hurdle of confirming our simulation is overcome.
+
+
+\clearpage

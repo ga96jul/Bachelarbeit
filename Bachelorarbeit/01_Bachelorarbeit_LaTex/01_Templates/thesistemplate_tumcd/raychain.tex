@@ -1,0 +1,53 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Experiments} \label{chap:Experiments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
+
+In this next chapter we will discuss further simulations done to support the previous chapters. First of all a simulation to compare the \gls{FER} simulated in chapter 5 will bbe initialized.
+
+\section{Simulated Rayleigh FER with AWGN channel}
+\label{RAYAWGN}
+
+In this section a simulation based on the AWGN channel will be done to create a theoretical \gls{FER} for a Rayleigh channel. This is done to have a reliable comparison for our simulation in Chapter 5. 
+With the AWGN channel the reliability of the channel has already been proven with the capacity calculations from chapter 3. In chapter 4 the \gls{FER} from the AWGN channel was in range of 0db upto 5 db SNR. In this region a valid \gls{FER} was given with the number of frames set. 
+For this simulation first of all an AWGN channel will be simulated for the given range of 0 to 5dB SNR. Then SNR from 0 to 50dB SNR will be initialized. The SNR will be modulated with complex gaussian noise to simulate the Rayleigh fading channel. For the now modulated SNR the corresponding \gls{FER} can now be picked out. To get reliable results the \gls{MC} will be applied again. For every step of SNR many independent fading coefficients will be created. The mean of all the \gls{FER} values will be taken to get the final data point plotted for the corresponding \gls{SNR} value.    
+
+\begin{equation}
+SNR_{ray} = SNR_{AWGN} * \textbf{H}
+\end{equation}
+\begin{equation}
+FER_{ray} = FER_{AWGN}(SNR_{ray})
+\end{equation}
+
+\begin{figure}[!htb]
+	\setlength\fwidth{0.8\textwidth}
+	\setlength\fheight{0.4\textheight}
+    \centering
+    \input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/FERAWGN.tex}
+    \caption{FER for a simulated AWGN channel}
+    \label{fig:FERAWGN}
+\end{figure}
+In the plot above the \gls{FER} for the AWGN channel is depicted. As mentioned above the valid range is only for 0dB upto 5 dB, which will be a problem for higher \gls{SNR} values. For higher SNR values an error floor must be initialized. The error floor is the lowest probability the \gls{FER} can take. It is proven that every transmission will have a small probability of failure, no transmission will have 0 \gls{FER} which would mean that a transmission can always be without any errors. In practical transmissions this is not achievable. In this simulation we will also have a look into taking different values for the error floors, especially if a \gls{FER} of 0 will result in better/worse performance.
+\begin{figure}[!htb]
+	\setlength\fwidth{0.95\textwidth}
+	\setlength\fheight{0.4\textheight}
+	\centering
+	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/FERRAY.tex}
+	\caption{Comparison between AWGN FER and Rayleigh FER}
+	\label{fig:FERAWGNRAY}
+\end{figure}
+In this plot the \gls{FER} of the AWGN channel is compared to the simulated \gls{FER} of the rayleigh channel with error floors of $0$ and $10^{-6}$. It can be observed that rayleigh fading deteriorates the channel performace by a lot in comparison to the simple AWGN channel. Furthermore as seen in the graphic the value of the error floor also needs to be determined. There is a offset when simulating the \gls{FER} for different error floors, with the 0 error floor achieving way better \gls{FER} than the one with an error floor of $10^{-6}$. Now comparing the simulated rayleigh fading based on the proven AWGN channel with our rayleigh fading from the rayleigh channel a statement can be given if the rayleigh channel was run properly.
+\begin{figure}[!htb]
+	\setlength\fwidth{0.95\textwidth}
+	\setlength\fheight{0.4\textheight}
+	\centering
+	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/FERRAYCOMP.tex}
+	\caption{Comparison of rayleigh FER based on AWGN channel and rayleigh channel simulation}
+	\label{fig:AWGNRAY}
+\end{figure}
+As seen in the figure above the simulated results based on the AWGN channel and the simulated rayleigh channel itself relate closely and behave the same way for different \gls{SNR} values. With this section we proved that the simulated rayleigh channel is working as intended. 
+\section{Error floor calculation}
+As mentioned in chapter \eref{RAYAWGN} the error floor should be determined to achieve proper results. 
+
+
+\clearpage
