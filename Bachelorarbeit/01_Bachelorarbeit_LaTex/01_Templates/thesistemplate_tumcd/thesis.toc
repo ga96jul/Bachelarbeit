@@ -26,5 +26,8 @@
 \contentsline {section}{\numberline {4.4}Results}{23}
 \contentsline {chapter}{\numberline {5}Experiments}{27}
 \contentsline {section}{\numberline {5.1}Simulated Rayleigh FER with AWGN channel}{27}
-\contentsline {section}{\numberline {5.2}Error floor calculation}{29}
+\contentsline {section}{\numberline {5.2}Error floor calculation}{31}
+\contentsline {chapter}{\numberline {6}Summary}{33}
+\contentsline {section}{\numberline {6.1}AWGN vs. Rayleigh Comparison}{33}
+\contentsline {part}{\numberline {I}title}{35}
 \contentsline {chapter}{\nonumberline Bibliography}{I}

@@ -21,4 +21,8 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces FER for a simulated AWGN channel}}{28}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Comparison between AWGN FER and Rayleigh FER}}{29}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Comparison of rayleigh FER based on AWGN channel and rayleigh channel simulation}}{30}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Data points from error plot simulation}}{31}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Plot of error floor calculation}}{32}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces PDF $p_N(N)$ of the number N of times that the head side is up.}}{37}
 \addvspace {10\p@ }

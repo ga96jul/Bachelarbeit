@@ -9,7 +9,8 @@
 %
 \begin{tikzpicture}
 
-\begin{axis}[%
+\begin{axis}
+[%
 width=0.951\fwidth,
 height=\fheight,
 at={(0\fwidth,0\fheight)},
@@ -131,7 +132,7 @@ legend style={at={(0.1,0.1)}, anchor=south west, legend cell align=left, align=l
 49	1.00000000000018e-06\\
 50	1.00000000000018e-06\\
 };
-\addlegendentry{$\text{Estimated Rayleigh FER, ErrorFloor: 10}^\text{-}^\text{6}$}
+\addlegendentry{$\text{Estimated Rayleigh FER, ErrorFloor: 10}^\text{-6}$}
 
 \addplot [color=red, draw=none, mark=asterisk, mark options={solid, red}]
   table[row sep=crcr]{%

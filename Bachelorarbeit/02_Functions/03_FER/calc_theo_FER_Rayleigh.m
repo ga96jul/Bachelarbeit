@@ -12,7 +12,7 @@ for l = 1:length(SNR_dB)
         power = abs(h(p))^2;
         snr_rayleigh = power*snr(l);
         snr_real = 10*log10(snr_rayleigh);
-        slot_FER = snr_real*100000;
+        slot_FER = snr_real*1000000;
         if (slot_FER < 0)
             FER_ray(p) = 1;
         else
@@ -24,7 +24,7 @@ for l = 1:length(SNR_dB)
         end
         end
     end
-    FER_rayleigh(l) = sum(FER_ray)/10000;
+    FER_rayleigh(l) = sum(FER_ray)/100000;
     if (FER_rayleigh(l) > 1)
         FER_rayleigh(l) = 1;
     end

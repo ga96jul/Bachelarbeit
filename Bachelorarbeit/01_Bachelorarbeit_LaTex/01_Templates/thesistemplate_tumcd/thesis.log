@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  29 DEC 2017 19:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  31 DEC 2017 16:31
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1061,7 +1061,7 @@ LaTeX Warning: Label `fig:llr' multiply defined.
 
 LaTeX Warning: Label `fig:llr' multiply defined.
 
-) (raychan.aux) (raychain.aux))
+) (raychan.aux) (raychain.aux) (summary.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
@@ -1598,47 +1598,27 @@ de=log unsupported (yet).
 )
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 FERRAY.tex
-Package pgfplots info on input line 33: Using 'lua backend=false' for axis: ymo
-de=log unsupported (yet).
-
-! Double superscript.
-\pgfplots@already@computed@legend@node ...ext {-}^
-                                                  \text {6}$};\\\pgfplots@sh...
-l.200 \end{axis}
-                
-I treat `x^1^2' essentially like `x^1{}^2'.
-
-)
-Overfull \hbox (17.37253pt too wide) in paragraph at lines 201--36
- [][] 
- []
-
-
-(C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-FERRAYCOMP.tex
 Package pgfplots info on input line 34: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
-
-! Double superscript.
-\pgfplots@already@computed@legend@node ...ext {-}^
-                                                  \text {6}$};\\\pgfplots@sh...
-l.388 \end{axis}
-                
-I treat `x^1^2' essentially like `x^1{}^2'.
-
 )
-Overfull \hbox (17.37253pt too wide) in paragraph at lines 389--45
- [][] 
- []
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [28]
+(C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+FERRAYCOMP.tex
+Package pgfplots info on input line 35: Using 'lua backend=false' for axis: ymo
+de=log unsupported (yet).
+)
+Overfull \hbox (17.37253pt too wide) in paragraph at lines 390--47
+ [][] 
+ []
+
+
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
@@ -1646,7 +1626,75 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[30]) (thesis.bbl
+[30]
+
+LaTeX Warning: Reference `FER' on page 31 undefined on input line 59.
+
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+FERTable.png, id=169, 561.59813pt x 155.07938pt>
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/FERTable.png Graphic file (type png)
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/FERTable.png>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/FERTable.png  used on input line 62. on input line 62.
+Package pdftex.def Info: Requested size: 338.02007pt x 93.33939pt on input line
+ 62.
+
+(C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+ErrorFloor.tex
+Package pgfplots info on input line 27: Using 'lua backend=false' for axis: ymo
+de=log unsupported (yet).
+)
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[31
+
+ <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
+/FERTable.png>]
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[32])
+\openout2 = `summary.aux'.
+
+ (summary.tex
+chapter 6.
+[33
+
+
+
+
+
+] [34
+
+
+]
+part I.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 7.
+[35] [36]
+File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
+ures/Channelmodel.PNG Graphic file (type png)
+<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/Channelmodel.PNG>
+Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
+arbeit_LaTex/02_Figures/Channelmodel.PNG  used on input line 11. on input line 
+11.
+Package pdftex.def Info: Requested size: 338.02007pt x 161.34047pt on input lin
+e 11.
+
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[37]) [38
+
+
+
+
+] (thesis.bbl
 chapter without number
 
 Underfull \hbox (badness 5924) in paragraph at lines 70--73
@@ -1656,12 +1704,8 @@ Underfull \hbox (badness 5924) in paragraph at lines 70--73
 ) [1
 
 
-
-
-
-
 ] (thesis.aux (commchain.aux) (awgnchan.aux) (awgnchain.aux) (raychan.aux)
-(raychain.aux))
+(raychain.aux) (summary.aux))
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
@@ -1674,13 +1718,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 34260 strings out of 493312
- 830600 string characters out of 3138899
- 1317650 words of memory out of 3000000
- 37079 multiletter control sequences out of 15000+200000
- 18410 words of font info for 70 fonts, out of 3000000 for 9000
+ 34305 strings out of 493312
+ 832330 string characters out of 3138899
+ 1316109 words of memory out of 3000000
+ 37113 multiletter control sequences out of 15000+200000
+ 18717 words of font info for 71 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,21n,128p,8820b,2286s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 74i,20n,128p,8820b,2286s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/P
 rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
@@ -1700,9 +1744,9 @@ blic/amsfonts/cm/cmsl10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 /cmsy6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis.pdf (41 pages, 517100 bytes).
+Output written on thesis.pdf (49 pages, 533523 bytes).
 PDF statistics:
- 239 PDF objects out of 1000 (max. 8388607)
+ 267 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 53 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
