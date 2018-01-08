@@ -1,10 +1,15 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: introduction.aux
-The style file: ieeetransa.bst
-Database file #1: literature.bib
--- IEEEtranSA.bst version 1.12 (2007/01/11) by Michael Shell.
+A level-1 auxiliary file: commchain.aux
+A level-1 auxiliary file: awgnchan.aux
+A level-1 auxiliary file: awgnchain.aux
+A level-1 auxiliary file: raychan.aux
+A level-1 auxiliary file: raychain.aux
+A level-1 auxiliary file: summary.aux
+The style file: IEEEtran.bst
+Database file #1: citations.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-** Sorting Alpha version - not for normal IEEE work.
 
 Done.

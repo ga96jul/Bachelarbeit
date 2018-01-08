@@ -4,12 +4,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 
-This section will further built upon the topics discussed in the previous chapters. We will now build a communication chain using the blocks discussed in chapter \eref{sec:commchain}. After the transmission the \gls{FER} will be determined. The \gls{FER} is the estimated rate of faulty transmissions in one whole simulation. We will be sending frames of code words each consisting of 256 up to 2048 bits. After comparison between the sent code word and the decoded code word at the receiver we determine a frame error. If the decoded codeword has any wrong bit the whole frame will be marked as a faulty frame. This will be done for a certain amount of frames.
+This section will further built upon the topics discussed in the previous chapters. We will now build a communication chain using the blocks discussed in chapter \eref{chap:commchain}. After the transmission the \gls{FER} will be determined. The \gls{FER} is the estimated rate of faulty transmissions in one whole simulation. We will be sending frames of code words each consisting of 256 up to 2048 bits. After comparison between the sent code word and the decoded code word at the receiver we determine a frame error. If the decoded codeword has any wrong bit the whole frame will be marked as a faulty frame. This will be done for a certain amount of frames.
 
 \section{LDPC and the Coded Modulation Library}
 Already explained in Chapter 1 the whole transmission will be done with the coding method of \gls{LDPC}. For the coding and decoding we will be using the Coded Modulation Library. This library and the functions used in this simulation will be further explained now.
 \newline
-The Iterative Solutions Coded Modulation Library (ISCML) is an open source toolbox for simulating capacity approaching codes in Matlab. (!cite!) The toolbox supports many different standard linear block codes and turbo codes. With many of complex and computational heavy codes implemented in C and ported back to MATLAB as so called C-mex functions. (!cite!)
+The Iterative Solutions Coded Modulation Library (ISCML) is an open source toolbox for simulating capacity approaching codes in Matlab. (!cite!) The toolbox supports many different standard linear block codes and turbo codes. With many of the complex and computational heavy codes implemented in C and ported back to MATLAB as so called C-mex functions. (!cite!)
 \newline 
 For this thesis a further look will be taken at the WiMax LDPC code. The coder function will create the parity-check-matrix \textbf{H} with a given code word length n and rate r. The code word which will be sent will be created like this:
 \begin{equation}
@@ -21,7 +21,7 @@ with $a$ being the code word transmitted. Further noted $a$ consists of the rele
 \label{eq:LDPC2}
 a_r = (\boldmath{H}_k)^{-1} * H_l * a_n
 \end{equation}
-The decoding will be also be done by the \gls{CML} which again uses the parity-check matrix \textbf{H}. The received code word has to fulfill this condition:
+The decoding will also be done by the \gls{CML} which again uses the parity-check matrix \textbf{H}. The received code word has to fulfill this condition:
 \begin{equation}
 \label{eq:LDPC3}
 \boldmath{H}*b^T = 0,
@@ -29,7 +29,7 @@ The decoding will be also be done by the \gls{CML} which again uses the parity-c
 with $b^T$ being the received code word. This will be checked with typical graph solving algorithms. For LDPC the commonly used algorithm is the sum-product algorithm. (explain? a lot of computation and explaining...)
 With the \gls{CML} the first and last block of the full communication chain (\fig{fig:commchain}) is implemented.
 \section{Demapping after AWGN}
-Another big part of a functioning communication chain is the estimation of the code word from the received symbol stream \textbf{Y}, which passed the channel experiencing various kind of noises and fadings. There are two main forms a restoring the code word, namely hard-decision demapping and soft-decision demapping.
+Another big part of a functioning communication chain is the estimation of the code word from the received symbol stream $\boldmath\underline{Y}$, which passed the channel experiencing various kind of noises and fadings. There are two main forms a restoring the code word, namely hard-decision demapping and soft-decision demapping.
 \subsection{Hard-Decision Demapping vs. Soft-Decision Demapping}
 We will now discuss the benefits between hard-decision and soft-decision demapping. Hard-decision demapping makes a decision based on the decision boundary of the received symbol. While soft demapping will take into consideration all symbol constellations in the modulation scheme.
 It is proven that soft demapping will achieve better demapping results while hard demapping is not as complex as soft demapping. (!!cite!!)In our case we do not mind a complex system which takes more time but are more focused on achieving the maximum rate of successful transmissions.
@@ -47,7 +47,7 @@ As seen in the figure above we have a \gls{QPSK} modulated codeword. Symbols \te
 With QPSK consisting of two bit blocks $[B_1B_2]$ first a differentiation for the first bit is done.
 \begin{equation}
 \label{eq:llr1}
-L^n = log\frac{P(B_1=0)|Y)}{P(B_1=0)|Y)}
+L^n = log\frac{P(B_1=0|Y)}{P(B_1=0|Y)}
 \end{equation}
 With Baye's rule:
 \begin{equation}
@@ -67,28 +67,23 @@ With \eq{eq:AWGNpdf} the log likelihood for bit $B_1$ can now be calculated. The
 \section{FER}
 The \gls{FER} can now be determined with the help of the two previous sections. By dividing the number of faulty frames from the total number of frames we get the \gls{FER}. It should be noted that not every \gls{FER} calculated is a reliable result for our simulation. For a whole simulation run a certain amount of faulty frames is needed, usually at least 50 faulty frames need to be detected. It can be seen like this: A simulation run for 100 frames with 1 faulty frame does not give a confident result of a \gls{FER} of 0.01. While a simulation ran for 10000 frames with 100 faulty frames will be seen as a more reliable result of a \gls{FER} of 0.01. 
 \newline
-With the proposition above for a \gls{FER} of $10^{-4}$ we would need to run a simulation with $10^6$ frames. Now the problem of simulation time length arises. If lower \gls{FER} need to be calculated the number of frames will rise. Also while maybe feasible for short SNR-ranges some calculations will need longer SNR-ranges, which becomes a problem in the further chapters for fading channels. Both combined will make the simulation run rather long.
+With the proposition above for a \gls{FER} of $10^{-4}$ we would need to run a simulation with $10^6$ frames. Now the problem of simulation time length arises. If lower \gls{FER} needs to be calculated the number of frames will rise. Also while maybe feasible for short SNR-ranges some calculations will need longer SNR-ranges, which becomes a problem in the further chapters for fading channels. Both combined will make the simulation run rather long.
 \newline
 Two methods to reduce the simulation time are now implemented: The first one being a premature break of the simulation after reaching 100 faulty frames and dividing by the number of iterations ran. Even if running the whole simulation resulting in more precise \gls{FER}, 100 faulty frames are enough for plotting a reliable result. Another technique is to increase the step size of the SNR between simulations, which will allow us to keep the SNR range at the expense of plot resolution. This can be mitigated by interpolating the results, which means we numerically create more data samples to increase the plot resolution.
 
 \newpage
-\section{Results}
-All the above sections will again be combined in a MATLAB script.
-(Maybe add the Algo Flow???)
+\section{Simulation Results}
+All the above discussed methods are implemented in MATLAB.
 The simulation will be run for an SNR range of 0-10 SNR. Furthermore a \gls{FER} of at least $10^{-3}$ should be calculated, which is a total of 10000 frames run. The following plot shows the \gls{FER} plots for all three modulation schemes.
-
-!!! find the capacity plots!!!!
-
-Now with the  \gls{FER} calculated the capacity plots from chapter \eref{chap:awgnchan} can be used again for comparison. In this part the FER calculation are used by examining the interpolated data. Setting a threshhold at $10^{-3}$ FER the corresponding SNR value is noted down. The value is then plotted into the capacity plot. It has to be taken into account the rate of \gls{LDPC} coding. The rate defines the amount of relevant data in a whole frame/code word. That means for a rate of $1/2$ the transmission of relevant data is halved. For QPSK with a maximum of 2 bits per symbols and a rate of $1/2$ a information value of only 1 bit per symbol can be achieved.
+Now with the  \gls{FER} calculated the capacity plots from chapter \eref{chap:awgnchan} can be used again for comparison. In this part the FER calculation are used by examining the interpolated data. Setting a threshold at $10^{-3}$ FER the corresponding SNR value is noted down. The value is then plotted into the capacity plot. It has to be taken into account the rate of \gls{LDPC} coding. The rate defines the amount of relevant data in a whole frame/code word. That means for a rate of $1/2$ the transmission of relevant data is halved. For QPSK with a maximum of 2 bits per symbols and a rate of $1/2$ a information value of only 1 bit per symbol can be achieved.
 \newline
-Below are the plots for the comparison between capacity and \gls{FER}.
 \begin{figure}[!htb]
 	\setlength\fwidth{0.9\textwidth}
 	\setlength\fheight{0.4\textheight}
 	\centering
 	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/CapFERQPSK.tex}
 	\caption{Capacity to FER comparison for QPSK}
-	\label{fig:llr}
+	\label{fig:llr1}
 \end{figure}
 \begin{figure}[!htb]
 	\setlength\fwidth{0.9\textwidth}
@@ -96,20 +91,25 @@ Below are the plots for the comparison between capacity and \gls{FER}.
 	\centering
 	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/CapFERQ16.tex}
 	\caption{Capacity to FER comparison for 16-QAM}
-	\label{fig:llr}
+	\label{fig:llr2}
 \end{figure}
-\begin{figure}[!htb]
+\begin{figure}[!h]
 	\setlength\fwidth{0.9\textwidth}
 	\setlength\fheight{0.4\textheight}
 	\centering
 	\input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/CapFERQ64.tex}
 	\caption{Capacity to FER comparison for 64-QAM}
-	\label{fig:llr}
+	\label{fig:llr3}
 \end{figure}
-\newpage
-For all three plots the same procedure has been done. For all four available rates in WiMax coding the corresponding SNR value for the \gls{FER} of $10^{-3}$ is plotted. It can be observed for all three plots that the for every transmission to achieve our desired \gls{FER} we have an increase in SNR, which means that the transmission power needs to be higher. This is to be expected for a real communication system simulation with the simulated capacity being the upper bound of data rate that can be achieved. 
 
-\clearpage
+\newpage
+The first \fig{fig:llr1} shows the QPSK capacity plot from \fig{fig:capmod}. The capacity plot is needed to give reference for the \gls{FER} points. For any \gls{FER} point found it needs to be close to the capacity plot but not surpass or even touch the plot. It can be seen that for all four rates simulated the points are not surpassing the \gls{SNR}, and therefore the efficiency, of the initial  capacity plot.
+\newline
+For the next two figures, \fig{fig:llr2} and \fig{fig:llr3}, the same procedure has been done. For all four available rates in WiMax coding the corresponding SNR value for the \gls{FER} of $10^{-3}$ is plotted. It can be observed that also for these plots every rate is below the before calculated capacity plot. Transmission to achieve our desired \gls{FER} will lead to an increase of \gls{SNR} which also means that the overall transmission power need to increased. In \fig{fig:llr1} to reach the \gls{FER} for the rate of $1/2$ from the capacity plot an increase of about 2\,\gls{SNR} is needed. This corresponds to a increase of the factor 1.6 in terms of power needed to reach the \gls{FER} of 0.001. The same observation done for both 16-QAM and 64-QAM will result in deviating results. For 16-QAM an increase of about 3\,dB is needed, which corresponds to an increase of power of the factor 2. 64-QAM on the other hand needs about 5\,dB, which results into a overall increase of power consumption of the factor 3.
+\newline
+Another observation from all three plots is the decrease in \gls{SNR} needed for higher rates. While not very significant for \gls{QPSK} where the decrease for the rate $1/2$ to $5/6$ is not very noticeable, the decrease in the other two plots is remarkable. For 16-QAM we save about 1\,dB and for 64-QAM the save is 2\,dB.
+In general it is to be expected that for a real communication system simulation that it is always performing worse than the capacity from a simple channel simulation. With the comparison between the \gls{FER} points and the previous calculated capacity plots the simulation for a working transmitter receiver is confirmed and can be used for further simulations with different channel settings.
+
 
 
 

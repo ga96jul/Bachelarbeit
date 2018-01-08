@@ -9,11 +9,11 @@
 clear all;
 tic;
 h = waitbar(0,'Calculating...');
-n = 576;                                                                   % 576:96:2304
+n = 2304;                                                                   % 576:96:2304
 rate = (5/6);
 ind = 0;
 % R = k/n
-snr_dB = 0:50;
+snr_dB = 20:25;
 cnt = 1;
 Frame_errors = 0;
 EsNo = 10.^(snr_dB/10);
@@ -63,7 +63,7 @@ noise = sqrt(1/2)*(randn(size(block_sym(1,:)))+1i*randn(size(block_sym(1,:))));
 r = amplitude*block_sym*fading + noise;
 
 est_fad = r(1)/amplitude;
-est_sym = r/est_fad;
+est_sym = r/fading;
 l_sym = length(est_sym);
 real_sym = est_sym(2:l_sym);
 receiv_sym = real_sym;

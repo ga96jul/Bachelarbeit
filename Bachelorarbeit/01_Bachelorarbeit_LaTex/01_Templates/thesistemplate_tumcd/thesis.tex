@@ -116,6 +116,7 @@
     \pagenumbering{arabic}
 
         %\include{abstract}     % Include abstract / Einbinden von Kurzfassung und Abstract
+        \include{introduction}
         \include{commchain}  % Include introduction / Einbinden des Kapitels Einleitung/Problemstellung
         \include{awgnchan}
         \include{awgnchain}
@@ -139,9 +140,9 @@
     \pagenumbering{Roman}
 
         % Use IEEE DIN 1505 style for bibliography / Literaturverzeichnisses
-        \bibliographystyle{ieeetransa}
-        %\nocite{*}              % Include all references without checking / Alle References immer aufführen
-        \bibliography{literature}
+        \bibliographystyle{IEEEtran}
+        \nocite{*}              % Include all references without checking / Alle References immer aufführen
+        \bibliography{citations}
 
 \end{document}
 
