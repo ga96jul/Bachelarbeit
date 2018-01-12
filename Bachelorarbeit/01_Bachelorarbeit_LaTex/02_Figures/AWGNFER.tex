@@ -1,0 +1,44 @@
+% This file was created by matlab2tikz.
+%
+%The latest updates can be retrieved from
+%  http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz
+%where you can also make suggestions and rate matlab2tikz.
+%
+\definecolor{mycolor1}{rgb}{0.00000,0.44700,0.74100}%
+%
+\begin{tikzpicture}
+
+\begin{axis}[%
+width=0.951\fwidth,
+height=\fheight,
+at={(0\fwidth,0\fheight)},
+scale only axis,
+xmin=0,
+xmax=6,
+xlabel style={font=\color{white!15!black}},
+xlabel={SNR in dB},
+ymode=log,
+ymin=1e-10,
+ymax=1,
+yminorticks=true,
+ylabel style={font=\color{white!15!black}},
+ylabel={FER},
+axis background/.style={fill=white},
+title style={font=\bfseries},
+title={FER in AWGN Channel},
+xmajorgrids,
+ymajorgrids,
+yminorgrids,
+legend style={legend cell align=left, align=left, draw=white!15!black}
+]
+\addplot [color=mycolor1, line width=1.0pt]
+  table[row sep=crcr]{%
+0	0.970873786407765\\
+1	0.561801025423803\\
+2	0.0274983941638387\\
+3	0.000110109540972448\\
+4	2.20000440021017e-10\\
+};
+
+\end{axis}
+\end{tikzpicture}%

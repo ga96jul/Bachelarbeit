@@ -1,10 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Further simulations to support the thesis} \label{chap:Experiments}
+\chapter{Further Simulations to Support the Rayleigh Channel} \label{chap:Experiments}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 
 In this chapter we will discuss further simulations done to support the previous chapters. First of all a simulation to compare the \gls{FER} simulated in chapter 5 will be initialized.
-\section{Simulated Rayleigh FER with AWGN channel}
+\section{Simulated Rayleigh FER with AWGN Channel}
 \label{RAYAWGN}
 
 In this section a simulation based on the AWGN channel will be done to create a theoretical \gls{FER} for a Rayleigh channel. This is done to have a reliable comparison for our simulation in Chapter 5. 
@@ -22,7 +22,7 @@ FER_{ray} = FER_{AWGN}(SNR_{ray})
 	\setlength\fwidth{0.8\textwidth}
 	\setlength\fheight{0.4\textheight}
     \centering
-    \input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/FERAWGN.tex}
+    \input{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/AWGNFER.tex}
     \caption{FER for a simulated AWGN channel}
     \label{fig:FERAWGN}
 \end{figure}
@@ -37,7 +37,7 @@ In \fig{fig:FERAWGN} the \gls{FER} for the AWGN channel is depicted. As mentione
 	\label{fig:FERAWGNRAY}
 \end{figure}
 \newpage
-In \fig{fig:FERAWGNRAY} the \gls{FER} of the AWGN channel is compared to the simulated \gls{FER} of the rayleigh channel with error floors of $0$ and $10^{-6}$. It can be observed that Rayleigh fading deteriorates the channel performace by a lot in comparison to the simple AWGN channel. Furthermore as seen in the graphic the value of the error floor also needs to be determined. There is a offset when simulating the \gls{FER} for different error floors, with the 0 error floor achieving way better \gls{FER} than the one with an error floor of $10^{-6}$. Now comparing the simulated Rayleigh fading based on the proven AWGN channel with our rayleigh fading from the rayleigh channel a statement can be given if the rayleigh channel was run properly.
+In \fig{fig:FERAWGNRAY} the \gls{FER} of the AWGN channel is compared to the simulated \gls{FER} of the rayleigh channel with error floors of $0$ and $10^{-6}$. It can be observed that Rayleigh fading deteriorates the channel performace by a lot in comparison to the simple AWGN channel. Furthermore as seen in the graphic the value of the error floor also needs to be determined. There is a offset when simulating the \gls{FER} for different error floors, with the 0 error floor achieving way better \gls{FER} than the one with an error floor of $10^{-6}$. Comparing the now simulated theoretical Rayleigh \gls{FER} with the previously simulated Rayleigh channel in Chapter 5 a definite answer for the previously implemented Rayleigh channel can be given.
 \newpage
 \begin{figure}[!htb]
 	\setlength\fwidth{0.95\textwidth}
@@ -51,18 +51,17 @@ As seen in the last \fig{fig:AWGNRAYCOMP} the simulated results based on the AWG
 
 \clearpage
 
-\section{Error floor calculation}
+\section{Error Floor Calculation}
 As mentioned in chapter \eref{RAYAWGN} the error floor should be determined to achieve proper results. In the previous simulation it was also determined that a deviation of a factor of 100 does not change the result of the plot by a lot. 
 In our case it should be determined that the previous error floor of $10^{-6}$ is valid. 
 \newline
-For determining the error floor the simulation of the \gls{AWGN} channel is run. Important for this simulation is that the number of frames need to be changed. As mentioned in chapter \eref{FER} the validation of low \gls{FER} needs high number frames. In our case we need a total number of $10^{8}$ frames for every step of SNR.
-\begin{figure}[!htb]
+To determine the error floor the simulation of the \gls{AWGN} channel is run. Important for this simulation is that the number of frames need to be changed. As mentioned in chapter \eref{sec:FER} the validation of low \gls{FER} needs high number frames. In our case we need a total number of $10^{8}$ frames for every step of SNR.
+\begin{table}[!htb]
 	\centering
 	\includegraphics[width=0.8\textwidth]{FERTable.png}
 	\caption{Data points from error plot simulation}
 	\label{fig:ErrorTable}
-\end{figure}
-And the corresponding plot of the data points.
+\end{table}
 \begin{figure}[!htb]
 	\setlength\fwidth{0.95\textwidth}
 	\setlength\fheight{0.4\textheight}
@@ -71,7 +70,9 @@ And the corresponding plot of the data points.
 	\caption{Plot of error floor calculation}
 	\label{fig:ErrorFloor}
 \end{figure}
-As seen in the figure and more importantly the data points our error floor of $10^{-6}$ can be confirmed. As mentioned before a minimum number of frame errors are needed to confirm a \gls{FER}. While 36 frame errors are not the optimal number of errors it is still enough to validate an error floor of $10^{-6}$.
+As mentioned before a minimum number of frame errors are needed to confirm a \gls{FER}. While 36 frame errors are not the optimal number of errors it is still enough to validate an error floor of $10^{-6}$.
+Seen in \fig{fig:ErrorFloor} the \gls{FER} decreases ever so slowly for higher \gls{SNR}. The break in the rapid decrease of \gls{FER} indicates the start of the error floor, also called "watefall" curves\cite{Richardson}. 
+ 
 
 
 

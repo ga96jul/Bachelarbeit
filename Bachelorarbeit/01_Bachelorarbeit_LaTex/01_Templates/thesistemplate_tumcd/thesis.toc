@@ -1,6 +1,7 @@
 \select@language {english}
 \contentsline {chapter}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {1.1}Intro}{1}
+\contentsline {section}{\numberline {1.1}Motivation}{1}
+\contentsline {section}{\numberline {1.2}Research and Road Map}{2}
 \contentsline {chapter}{\numberline {2}Communication Chain}{3}
 \contentsline {section}{\numberline {2.1}Encoder/Decoder}{4}
 \contentsline {section}{\numberline {2.2}Bit interleaver/De-interleaver}{5}
@@ -14,22 +15,20 @@
 \contentsline {subsection}{\numberline {3.2.1}Monte-Carlo-Simulation}{15}
 \contentsline {subsection}{\numberline {3.2.2}Implementation in MATLAB}{15}
 \contentsline {section}{\numberline {3.3}Results}{16}
-\contentsline {chapter}{\numberline {4}Frame Error Rate for AWGN Channel}{17}
-\contentsline {section}{\numberline {4.1}LDPC and the Coded Modulation Library}{17}
-\contentsline {section}{\numberline {4.2}Demapping after AWGN}{18}
-\contentsline {subsection}{\numberline {4.2.1}Hard-Decision Demapping vs. Soft-Decision Demapping}{18}
-\contentsline {subsection}{\numberline {4.2.2}Log-Likelihood Ratio}{19}
-\contentsline {section}{\numberline {4.3}FER}{20}
-\contentsline {section}{\numberline {4.4}Simulation Results}{21}
-\contentsline {chapter}{\numberline {5}Capacity in a Rayleigh Channel}{25}
-\contentsline {section}{\numberline {5.1}Fading Channel}{26}
-\contentsline {section}{\numberline {5.2}Receiver CSI}{28}
-\contentsline {section}{\numberline {5.3}Fading estimation with pilot symbol}{28}
-\contentsline {section}{\numberline {5.4}Simulation Results}{29}
-\contentsline {chapter}{\numberline {6}Further simulations to support the thesis}{33}
-\contentsline {section}{\numberline {6.1}Simulated Rayleigh FER with AWGN channel}{33}
-\contentsline {section}{\numberline {6.2}Error floor calculation}{37}
-\contentsline {chapter}{\numberline {7}Summary}{39}
-\contentsline {section}{\numberline {7.1}AWGN vs. Rayleigh Comparison}{39}
-\contentsline {part}{\numberline {I}title}{41}
+\contentsline {chapter}{\numberline {4}Frame Error Rate for AWGN Channel}{19}
+\contentsline {section}{\numberline {4.1}LDPC and the Coded Modulation Library}{19}
+\contentsline {section}{\numberline {4.2}Demapping after AWGN}{20}
+\contentsline {subsection}{\numberline {4.2.1}Hard-Decision Demapping vs. Soft-Decision Demapping}{20}
+\contentsline {subsection}{\numberline {4.2.2}Log-Likelihood Ratio}{21}
+\contentsline {section}{\numberline {4.3}FER}{22}
+\contentsline {section}{\numberline {4.4}Simulation Results}{23}
+\contentsline {chapter}{\numberline {5}Capacity in a Rayleigh Channel}{27}
+\contentsline {section}{\numberline {5.1}Fading Channel}{28}
+\contentsline {section}{\numberline {5.2}Receiver CSI}{30}
+\contentsline {section}{\numberline {5.3}Fading Estimation with Pilot Symbol}{30}
+\contentsline {section}{\numberline {5.4}Simulation Results}{31}
+\contentsline {chapter}{\numberline {6}Further Simulations to Support the Rayleigh Channel}{35}
+\contentsline {section}{\numberline {6.1}Simulated Rayleigh FER with AWGN Channel}{35}
+\contentsline {section}{\numberline {6.2}Error Floor Calculation}{39}
+\contentsline {chapter}{\numberline {7}Summary}{41}
 \contentsline {chapter}{\nonumberline Bibliography}{I}

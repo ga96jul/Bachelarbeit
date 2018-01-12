@@ -2,17 +2,14 @@
 \chapter{Summary} \label{chap:ending}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
-\section{AWGN vs. Rayleigh Comparison}
-In this section a short summary between the two simulated channel is given. We will compare the methods and efficiency of both channels and relate it to real world applications. 
-\part{title}
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Channelmodel.PNG}
-    \caption{PDF $p_N(N)$ of the number N of times that the head side is up.}
-    \label{fig:coin_bino}
-\end{figure}
-
+In this section a short summary between the two simulated channel is given. We will compare the methods and efficiency of both channels.
+The purpose for this thesis was to analyze the WiMax protocol in both the AWGN and Rayleigh block fading channel with BICM. We simulated both \gls{FER} for both channels and also calculated the capacity plots for the AWGN channel with different modulation schemes. In chapter five the simulated Rayleigh fading channel was compared with another simulated Rayleigh channel based on the AWGN channel.
+\newline
+We had a closer look at the BICM channel and its reasoning for using it in a Rayleigh fading channel. Comparing the AWGN channel to the Rayleigh fading a distinct difference in performance was detected between those channels. 
+Another important distinction between the block length in block fading was observed. Changing block lengths drastically increased/decreased the \gls{FER} to the corresponding \gls{SNR}. It was concluded that for improving \gls{FER} one has to take in account the additional cost in transmission time.
+\newline
+Overall a small introduction was given for the Rayleigh fading channel with BICM on the basis of an AWGN channel. While the Rayleigh channel plays an important part in wireless communication chains and real world applications many more different channels could be modulated. In the future the addition of the Rician fading channel would be a first step. Also with LTE being the major communication protocol right now this single channel simulation could be expanded to a Multiple Input Multiple Output system.
+\newline
 
 
 \clearpage

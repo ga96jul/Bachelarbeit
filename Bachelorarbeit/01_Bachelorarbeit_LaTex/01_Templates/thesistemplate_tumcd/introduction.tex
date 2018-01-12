@@ -4,19 +4,28 @@
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 
 
-\section{Intro}
+\section{Motivation}
 
-With the ever growing market of mobile devices and the slow approach of next generation of wireless communication in form of 5G an utmost importance and interest is set on wireless communication. While in itself LTE or 4G can be explained shortly for a layman to understand there are many techniques and difficulties behind it before reaching a feasible wireless transmission. Most recently seen in the development of the 5G network with its unofficial launch date as standard communication system in 2020. (!!cite!!) In this thesis we will discuss the difficulties of transmission of data in unknown channel. A functioning channel consisting of transmitter and receiver will be built and different channel settings will be tested. Different solutions will be given to increase transmission efficiency and error rates of the system.
+Wireless communication was an industrial revolution that started with the introduction of the first generation (1G) wireless cellular technology in the 1980's. 10 years later the 1G network was replaced with the second generation (2G) network, with the main difference in 1G and 2G being the form of data transmission. 1G was still sending analog signals, while 2G already implemented digital data transmission.
+\newline
+With an ever growing demand for faster connection and lower latency the third generation (3G) was created in the mid 2000's. With 3G, better known as Universal Mobile Telecommunication Network (UMTS), and further development in form of 3.5G (HSDPA\footnote{High Speed Downlink Packet Access}) it was possible,\,e.g., to stream simple videos and overall improve the speed of transmission in mobile devices. In 2009 the latest and to this date used fourth generation (4G) of wireless communication was introduced commercially. Right now Long Term Evolution Advanced (LTE-Advanced) is the most widely used cellular wireless network allowing people all over the world to connect to the internet in instant speed. Also with LTE came the introduction of WiMax\footnote{Worldwide Interoperability for Microwave Access} as a broadband communication system.
+\newline
+Up to this date, in 2018, a great deal of research has been invested in the fifth generation (5G) of wireless network. With the exponentially increasing demand for more bandwidth around the globe an utmost importance and interest is set on the development of wireless networks. 
+Most recently seen in the development of the 5G network with its unofficial launch date as standard communication system in 2020.  (!!cite!!)
+\newline
+In this thesis we will discuss the difficulties of transmission of data in an unknown channel. A functioning communication chain consisting of transmitter, channel and receiver will be built and different channel settings will be tested. Various solutions will be given to increase transmission efficiency and decrease error rates of the system. 
 
+\clearpage
 
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Channelmodel.PNG}
-    \caption{PDF $p_N(N)$ of the number N of times that the head side is up.}
-    \label{fig:coin_bino}
-\end{figure}
+\section{Research and Road Map}
+In this thesis we will be looking at the WiMax LDPC code used in commercial high speed products. Especially important is the use of the Bit-Interleaved Coded Modulation (BICM) in this thesis. Both the basic AWGN channel and the block fading channel will be simulated and analyzed with these techniques.
+\newline
+In the first chapter an introduction of the communication chain and the functionality of the single blocks building up the communication chain is given.
+In the second chapter the first communication chain between transmitter and receiver is simulated with capacity calculations for different modulation schemes.
+In the third chapter the frame error rate (FER) of an AWGN channel will be simulated, analyzed and compared to the previous findings in the 2nd chapter.
+The fourth chapter will introduce the block fading channel with Rayleigh fading and its FER for different block lengths.
+The last simulations in chapter five will support simulations done in chapter four.
+The last chapter will include and compare all the results in the previous chapters.
 
 
 

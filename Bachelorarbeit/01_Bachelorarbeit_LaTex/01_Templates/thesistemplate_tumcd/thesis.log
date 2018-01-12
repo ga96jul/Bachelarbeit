@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  8 JAN 2018 11:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  12 JAN 2018 16:03
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1051,15 +1051,8 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \fheight=\skip82
 \c@prop=\count178
  (thesis.aux
-(introduction.aux) (commchain.aux) (awgnchan.aux) (awgnchain.aux) (raychan.aux
-
-LaTeX Warning: Label `fig:AWGN' multiply defined.
-
-) (raychain.aux) (summary.aux
-
-LaTeX Warning: Label `fig:coin_bino' multiply defined.
-
-))
+(introduction.aux) (commchain.aux) (awgnchan.aux) (awgnchain.aux) (raychan.aux)
+(raychain.aux) (summary.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
@@ -1074,7 +1067,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
 LaTeX Font Info:    ... okay on input line 58.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
 LaTeX Font Info:    ... okay on input line 58.
- (C:\Users\Kevin\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+
+(C:\Users\Kevin\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count179
 \scratchdimen=\dimen190
@@ -1241,61 +1235,58 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
  (introduction.tex
 chapter 1.
-<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-Channelmodel.PNG, id=50, 1087.06125pt x 523.9575pt>
-File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
-ures/Channelmodel.PNG Graphic file (type png)
-<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
-res/Channelmodel.PNG>
-Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/Channelmodel.PNG  used on input line 16. on input line 
-16.
-Package pdftex.def Info: Requested size: 338.02007pt x 162.92082pt on input lin
-e 16.
 [1
 
 
 
- <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
-/Channelmodel.PNG>])
+]
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[2
+
+])
 \openout2 = `commchain.aux'.
 
- (commchain.tex [2
-
-
-
-
-
-]
+ (commchain.tex
 chapter 2.
+<C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+Channelmodel.PNG, id=58, 1087.06125pt x 523.9575pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/Channelmodel.PNG Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/Channelmodel.PNG>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/Channelmodel.PNG  used on input line 10. on input line 
-10.
+arbeit_LaTex/02_Figures/Channelmodel.PNG  used on input line 11. on input line 
+11.
 Package pdftex.def Info: Requested size: 401.39601pt x 193.46948pt on input lin
-e 10.
+e 11.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3]
+ [3
+
+
+
+
+
+ <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
+/Channelmodel.PNG>]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [4]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-interleaver.png, id=70, 349.305pt x 166.37157pt>
+interleaver.png, id=69, 349.305pt x 166.37157pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/interleaver.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/interleaver.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/interleaver.png  used on input line 34. on input line 3
-4.
+arbeit_LaTex/02_Figures/interleaver.png  used on input line 35. on input line 3
+5.
 Package pdftex.def Info: Requested size: 338.02007pt x 161.00702pt on input lin
-e 34.
+e 35.
 
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
@@ -1303,15 +1294,15 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 [5 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figur
 es/interleaver.png>]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-IQ.png, id=75, 938.75719pt x 590.205pt>
+IQ.png, id=74, 938.75719pt x 590.205pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/IQ.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/IQ.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/IQ.png  used on input line 49. on input line 49.
+arbeit_LaTex/02_Figures/IQ.png  used on input line 50. on input line 50.
 Package pdftex.def Info: Requested size: 338.02007pt x 212.50966pt on input lin
-e 49.
+e 50.
 
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 QPSKMod.tex)
@@ -1319,7 +1310,7 @@ QPSKMod.tex)
 Q16Mod.tex)
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 Q64Mod.tex)
-Overfull \hbox (10.33366pt too wide) in paragraph at lines 60--71
+Overfull \hbox (10.33366pt too wide) in paragraph at lines 61--72
 [][][]  [][]
  []
 
@@ -1336,16 +1327,16 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 [7]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-reflections.png, id=84, 1029.8475pt x 548.80031pt>
+reflections.png, id=83, 1029.8475pt x 548.80031pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/reflections.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/reflections.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/reflections.png  used on input line 86. on input line 8
-6.
+arbeit_LaTex/02_Figures/reflections.png  used on input line 87. on input line 8
+7.
 Package pdftex.def Info: Requested size: 401.39601pt x 213.89726pt on input lin
-e 86.
+e 87.
 
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
@@ -1355,22 +1346,22 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
  <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
 /reflections.png>]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-AWGN.png, id=89, 891.33pt x 292.09125pt>
+AWGN.png, id=88, 891.33pt x 292.09125pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/AWGN.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/AWGN.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/AWGN.png  used on input line 118. on input line 118.
+arbeit_LaTex/02_Figures/AWGN.png  used on input line 120. on input line 120.
 Package pdftex.def Info: Requested size: 401.39601pt x 131.53789pt on input lin
-e 118.
+e 120.
 
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [9 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figur
 es/AWGN.png (PNG copy)>]
-Overfull \hbox (7.64983pt too wide) in paragraph at lines 125--126
+Overfull \hbox (7.64983pt too wide) in paragraph at lines 127--128
 \OT1/cmr/m/n/10.95 Another com-mon chan-nel model used in com-mu-ni-ca-tion the
 -ory is Rayleigh fad-ing. Rayleigh
  []
@@ -1382,10 +1373,10 @@ ures/rayleigh.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/rayleigh.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/rayleigh.png  used on input line 149. on input line 149
+arbeit_LaTex/02_Figures/rayleigh.png  used on input line 151. on input line 151
 .
 Package pdftex.def Info: Requested size: 401.39601pt x 301.05074pt on input lin
-e 149.
+e 151.
 )
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
@@ -1409,14 +1400,11 @@ chapter 3.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13]
-Underfull \vbox (badness 4084) has occurred while \output is active []
-
-
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 68--72
+Underfull \hbox (badness 10000) in paragraph at lines 70--74
 
  []
 
@@ -1430,10 +1418,20 @@ CapQPSK.tex)
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[16])
+[16]
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[17])
 \openout2 = `awgnchain.aux'.
 
- (awgnchain.tex
+ (awgnchain.tex [18
+
+
+
+
+
+]
 chapter 4.
 
 LaTeX Font Warning: Command \boldmath invalid in math mode on input line 17.
@@ -1493,13 +1491,7 @@ LaTeX Font Warning: Command \boldmath invalid in math mode on input line 27.
 LaTeX Font Warning: Command \mathversion invalid in math mode on input line 27.
 
 
-[17
-
-
-
-
-
-]
+[19]
 
 LaTeX Font Warning: Command \boldmath invalid in math mode on input line 32.
 
@@ -1511,9 +1503,9 @@ LaTeX Font Warning: Command \mathversion invalid in math mode on input line 32.
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[18]
+[20]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-llr.png, id=133, 417.81094pt x 331.99031pt>
+llr.png, id=139, 417.81094pt x 331.99031pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/llr.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1529,12 +1521,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[19 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+[21 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/llr.png>]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[20]
+[22]
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 CapFERQPSK.tex)
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
@@ -1548,30 +1540,27 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[21]
-Underfull \vbox (badness 1132) has occurred while \output is active []
-
-
-Overfull \vbox (1.39674pt too high) has occurred while \output is active []
-
-
-[22])
-Overfull \vbox (1.39674pt too high) has occurred while \output is active []
-
-
 [23]
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[24])
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[25]
 \openout2 = `raychan.aux'.
 
- (raychan.tex [24
+ (raychan.tex [26
 
 
 
 
 ]
 chapter 5.
-[25]
+[27]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-fadingChannel.png, id=157, 316.18124pt x 187.45032pt>
+fadingChannel.png, id=166, 204.01219pt x 127.22531pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/fadingChannel.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1579,7 +1568,7 @@ res/fadingChannel.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
 arbeit_LaTex/02_Figures/fadingChannel.png  used on input line 19. on input line
  19.
-Package pdftex.def Info: Requested size: 401.39601pt x 237.98773pt on input lin
+Package pdftex.def Info: Requested size: 401.39601pt x 250.33054pt on input lin
 e 19.
 
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
@@ -1595,14 +1584,14 @@ LaTeX Font Warning: Command \mathversion invalid in math mode on input line 33.
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[26
+[28
 
  <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
 /fadingChannel.png>]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[27]
+[29]
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 rayferfirst.tex
 Package pgfplots info on input line 34: Using 'lua backend=false' for axis: ymo
@@ -1611,7 +1600,7 @@ de=log unsupported (yet).
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[28
+[30
 
 ]
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
@@ -1627,21 +1616,18 @@ de=log unsupported (yet).
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[29]
-Underfull \vbox (badness 3623) has occurred while \output is active []
-
-
+[31]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[30]
+[32]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[31])
+[33])
 \openout2 = `raychain.aux'.
 
- (raychain.tex [32
+ (raychain.tex [34
 
 
 
@@ -1651,7 +1637,7 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 chapter 6.
 
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-FERAWGN.tex
+AWGNFER.tex
 Package pgfplots info on input line 33: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
 )
@@ -1663,11 +1649,11 @@ de=log unsupported (yet).
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[33]
+[35]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[34]
+[36]
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 FERRAYCOMP.tex
 Package pgfplots info on input line 35: Using 'lua backend=false' for axis: ymo
@@ -1681,16 +1667,13 @@ Overfull \hbox (17.37253pt too wide) in paragraph at lines 390--47
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[35]
+[37]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[36]
-
-LaTeX Warning: Reference `FER' on page 37 undefined on input line 58.
-
+[38]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-FERTable.png, id=194, 561.59813pt x 155.07938pt>
+FERTable.png, id=202, 561.59813pt x 155.07938pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/FERTable.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1702,67 +1685,59 @@ Package pdftex.def Info: Requested size: 338.02007pt x 93.33939pt on input line
 
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 ErrorFloor.tex
-Package pgfplots info on input line 27: Using 'lua backend=false' for axis: ymo
+Package pgfplots info on input line 33: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
 )
+Overfull \hbox (14.63197pt too wide) in paragraph at lines 45--70
+ [][] 
+ []
+
+
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[37
+[39
 
  <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
 /FERTable.png>]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[38])
+[40])
 \openout2 = `summary.aux'.
 
  (summary.tex
 chapter 7.
-[39
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--13
+
+ []
+
+[41
 
 
 
 
 
-] [40
-
-
-]
-part I.
-Package scrkbase Info: You've told me to use the font selection of the element
-(scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 7.
-[41] [42]
-File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
-ures/Channelmodel.PNG Graphic file (type png)
-<use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
-res/Channelmodel.PNG>
-Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/Channelmodel.PNG  used on input line 11. on input line 
-11.
-Package pdftex.def Info: Requested size: 338.02007pt x 162.92082pt on input lin
-e 11.
-
-Overfull \vbox (1.39674pt too high) has occurred while \output is active []
-
-
-[43]) [44
+]) [42
 
 
 
 
 ] (thesis.bbl
 chapter without number
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 40.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 31.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¶ in font cmr10!
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¼ in font cmr10!
 ) [1
 
 
@@ -1773,19 +1748,13 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 34383 strings out of 493312
- 834893 string characters out of 3138899
- 1786571 words of memory out of 3000000
- 37171 multiletter control sequences out of 15000+200000
- 21259 words of font info for 81 fonts, out of 3000000 for 9000
+ 34376 strings out of 493312
+ 834729 string characters out of 3138899
+ 1787549 words of memory out of 3000000
+ 37164 multiletter control sequences out of 15000+200000
+ 20952 words of font info for 80 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  74i,20n,128p,8820b,2286s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/P
@@ -1796,22 +1765,24 @@ s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX
 s/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-sl10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis.pdf (55 pages, 688993 bytes).
+/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C
+:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmti10.pfb>
+Output written on thesis.pdf (53 pages, 715259 bytes).
 PDF statistics:
- 298 PDF objects out of 1000 (max. 8388607)
+ 299 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 

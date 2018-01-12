@@ -4,7 +4,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
 
-First, the communication chain for simulations is introduced in \fig{fig:commchain}. The link is built up of three main blocks: The transmitter, channel and receiver. Transmitter in turn contains the encoder, interleaver and mapper. We start with feeding a random generated bit stream, representing a message, \underline{u} into the encoder. The resulting encoded code word \underline{c} is next processed in the interleaver producing the shuffled code word \underline{$c$}'. The mapper can now modulate \underline{$c$}' into the desired modulation scheme with the symbol array \underline{$x$}. In the channel various kind of noises and fading can be added to the modulated signal,\,e.g., \gls{AWGN}. In the later half the receiver, consisting of the counterparts build in the transmitter, will first demap the signal \underline{$y$} to the estimated code word \underline{$\hat{c}$}. After de-interleaving and decoding the transmitted symbol an estimate \underline{$\hat{u}$} is determined. In the simulation we will compare the decoded message \underline{$\hat{u}$} with the initially created input message \underline{$u$} to calculate the error rate in the system.
+
+First, the communication chain for simulations is introduced in Figure (2.1). The link is built up of three main blocks: Transmitter, channel, and receiver. The transmitter contains the encoder, interleaver, and mapper. We start with feeding a random generated bit stream, representing a message, \underline{U} into the encoder. The resulting encoded code word \underline{C} is next processed in the interleaver producing the shuffled code word \underline{C}'. The mapper can now modulate \underline{C}' into the desired modulation scheme with the symbol array \underline{X}. In the channel various kind of noises and fading can be added to the modulated signal,\,e.g., \gls{AWGN}. Next the receiver, consisting of the counterparts build in the transmitter, will first demap the signal \underline{Y} to the estimated code word \underline{$\hat{\textrm{U}}$}. After de-interleaving and decoding the transmitted symbol an estimate \underline{$\hat{\textrm{U}}$} is determined. In the simulation we will compare the estimated \underline{$\hat{\textrm{U}}$} with the initially created input message \underline{U} to calculate the error rate in the system.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.95\textwidth]{Channelmodel.PNG}
@@ -15,20 +16,20 @@ First, the communication chain for simulations is introduced in \fig{fig:commcha
 \section{Encoder/Decoder}
 \label{sec:enc}
 
-There are many ways to make the transmission more stable and less error prone. A major role in this protection plays the encoder and its counterpart the decoder. Encoder/decoder come in many different forms and shapes,\,e.g., as pre-built circuits in systems but more commonly today as software coder. They reach from simple linear block codes to more complex convolutional coding to the latest turbo codes. It is also important to note, that one coder working well in \gls{AWGN} channel will often not have the same performance in a fading channel. (cite)
+There are many ways to make the transmission more stable and less error prone. A major role in this protection plays the encoder and its counterpart the decoder. Encoder/decoder come in many different forms and shapes,\,e.g., as pre-built circuits in systems but more commonly today in form of coder performed as software in CPU's. They reach from simple linear block codes to more complex convolutional codes to the latest turbo codes. It is also important to note, that one coder working well in \gls{AWGN} channel will often not have the same performance in a fading channel \cite[p.~262]{Goldsmith08}.
 \newline
-A further look will be taken into \gls{LDPC} codes, in particular the WiMax code. !!citation!!. While \gls{LDPC} was mainly ignored in the past, since the 1999's the introduction of turbo codes and a sharp increase in computing power helped the recognition of these forms of channel coding.
+A further look will be taken into \gls{LDPC} codes, in particular the WiMax code. While \gls{LDPC} was mainly ignored in the past, since the 1999's the introduction of turbo codes and a sharp increase in computing power helped the recognition of these forms of channel coding.
 \newline
-\gls{LDPC} codes are linear block codes with a particular structure for their parity check matrix \textbf{H}. In the case of \gls{LDPC}-codes \textbf{H} has only a small amount of nonzero entries, which means that there is a low density in the parity check matrix.
+\gls{LDPC} codes are linear block codes with a particular structure for their parity check matrix \textbf{H}. In the case of \gls{LDPC} codes \textbf{H} has only a small amount of nonzero entries, which means that there is a low density in the parity check matrix.
 Another important difference in LDPC to turbo codes is the complexity of encoding and decoding. While turbo codes have low complexity in encoding they have high complexity in decoding. The total opposite can be said about \gls{LDPC} with high complexity in encoding and low complexity in decoding.  
 \newline
-WiMax IEEE 802.16e is a standard code model used in small and medium distances in urban areas, which fits the simulations quite well. It should be noted, that for WiMax there are predefined code lengths and code rates and encoding classes. Code lengths can range from 576 bits up to 2034 bits. Code rates !!footnote!! are divided into four rates\footnote{$R = \frac{\textrm{Number of relevent data bits}}{\textrm{Number of overall data bits}} $}: 1/2, 2/3, 3/4, 5/6 and the coding class used is only A, class B will be ignored.
+WiMax IEEE 802.16e is a standard code model used in small and medium distances in urban areas. It should be noted, that for WiMax there are predefined code lengths, code rates and encoding classes. Code lengths can range from 576 bits up to 2034 bits. Code rates are divided into four rates\footnote{$R = \frac{\textrm{number of data bits in a message}}{\textrm{number of bits in the codeword}} $}: 1/2, 2/3, 3/4, 5/6. Also the code is divided into two encoding classes A and B, which only A will be used in the simulations \cite{WIMAX}.
 \newpage
 
 \section{Bit interleaver/De-interleaver}
 \label{sec:interleaver}
 
-While the above mentioned \gls{LDPC} codes (Chapter \eref{sec:enc}) work really well for an AWGN channel this is not always the case in a fading channel. Therefore another important block must be included in the channel. To guarantee a stable performance the method of interleaving will be introduced. Interleaving will handle a major problem in fading channels, namely the appearence of burst errors caused by deep fading over a set time. \gls{LDPC} coding suffers from loss of performance trying to correct these burst errors, deteriorating even more with the increase of the burst error length. With the interleaver the code word will be shuffled into a new random Gaussian distributed code word, which will be passed through the channel. At the receiver a restoration of the shuffled code word back into its initial state will take place.
+While the above mentioned \gls{LDPC} codes (Chapter \eref{sec:enc}) work really well for an AWGN channel this is not always the case in a fading channel. Therefore another important block must be included in this channel. To guarantee a stable performance the method of interleaving will be introduced. Interleaving will handle a major problem in fading channels, namely the appearance of burst errors caused by deep fading over a set time. \gls{LDPC} coding suffers from loss of performance trying to correct these burst errors, deteriorating even more with the increase of the burst error length. With the interleaver the code word will be shuffled into a new code word, uniformly distributing the burst errors. At the receiver a restoration of the shuffled code word back into its initial state will take place (\fig{fig:interleaver}). The interleaver while very important for fading channels also has benefits for the AWGN channel. While there is no deep fading in AWGN channel, burst of errors can also occur for different modulation schemes when the noise distorts the message by a lot.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.8\textwidth]{interleaver.png}
@@ -36,14 +37,14 @@ While the above mentioned \gls{LDPC} codes (Chapter \eref{sec:enc}) work really 
 	\label{fig:interleaver}
 \end{figure}
 
-As clearly seen in \fig{fig:interleaver} the interleaver will not remove any errors but will prevent or at least mitigate the presence of burst errors. The \gls{LDPC} decoder can correct single errors again. There are two main methods of interleaving today: symbol-interleaved coded modulation (SICM) will interleave the symbols after the modulator while \gls{BICM} will interleave the single bits before the modulator block. \gls{BICM} will be used in this thesis for having a more dominant position in practical communication systems. !!cite!!
+As clearly seen in \fig{fig:interleaver} the interleaver will not remove any errors but will prevent or at least mitigate the presence of burst errors. The \gls{LDPC} decoder can correct single errors again. There are two main methods of interleaving today: symbol-interleaved coded modulation (SICM) will interleave the symbols after the modulator while \gls{BICM} will interleave the single bits before the modulator block. \gls{BICM} will be used in this thesis for having a more dominant position in practical communication systems \cite{Fabregas03}.
 
 \clearpage
 
 \section{Mapper/Demapper}
 \label{sec:mapper}
 
-In this block the mapper, also called the modulator, makes it possible to assign the code word a specific symbol. Group of bits are taken from the bit stream to combine them to specific constellation points. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature planes (I/Q-planes). With the distance from the nullpoint of the axis giving us the magnitude of the signal and the angle to the real axis the phase shift. 
+In this block the mapper, also called the modulator, makes it possible to create a sequence of symbols out of the codeword. Group of bits are taken from the bit stream to combine them to specific constellation symbol. The symbols are located in a real/imaginary plane, also called Inphase/Quadrature planes (I/Q-planes). With the distance from the null point of the axis giving us the magnitude of the signal and the angle to the real axis the phase shift. 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.8\textwidth]{IQ.png}
@@ -74,7 +75,7 @@ There are many forms of modulation schemes, with the most common ones being M-ph
 
 With \gls{QPSK} the symbols all share the same amplitude and only differ in their respective phase angle. To each symbol we can assign $log2(M)$ bits, with M being the number of symbols in the scheme. Therefore, for \gls{QPSK} the number of bits per symbol amount to 2.
 \newline
-For \gls{QAM}, signals which differ in their phase shift and also their amplitude, will be sent. For 16-\gls{QAM} a maximum of 4 bits per symbols and for 64-\gls{QAM} 6 bits per symbol can be achieved. 
+For 16-\gls{QAM} a maximum of 4 bits per symbols and for 64-\gls{QAM} 6 bits per symbol can be achieved. 
 
 \clearpage
 
@@ -104,32 +105,33 @@ with Y being the received symbols, X the send symbol and N the complex AWGN nois
 which can be depicted more detailed like this:
 \begin{equation}
 \label{eq:1.3}
-[Y_1,Y_2,...,Y_n] = [X_1,X_2,...,X_n] + [N_1,N_2,...,N_n]
+[Y_1,Y_2,...,Y_n] = [X_1,X_2,...,X_n] + [N_1,N_2,...,N_n],
 \end{equation}
+the lowercase n noting the length of the code word.
  The probability density function is defined as follows:
 \begin{equation}
 \label{eq:AWGNpdf}
-f(y|x) = \frac{1}{\pi\sigma^2}*e^{-\frac{(y-x)^2}{\sigma^2}},  
+f(y|x) = \frac{1}{\pi*\sigma^2}*e^{-\frac{(y-x)^2}{\sigma^2}},  
 \end{equation}
 with y being the acquired point,x the transmitted symbol and $\sigma^2$ the variance of the distribution.
-Gaussian noise, representing thermal noise and overlay with multiple users in a wireless system, is therefore used in all the simulations run in this thesis. In \fig{fig:AWGN} a depiction of the spectral power distribution of \gls{AWGN}, where it can clearly be seen that it is flat and spread evenly over the whole spectrum.
+Gaussian noise, representing thermal noise and overlay with multiple users in a wireless system, is therefore used in all the simulations run in this thesis. In \fig{fig:AWGNSP} a depiction of the spectral power distribution of \gls{AWGN}, where it can clearly be seen that it is flat and spread evenly over the whole spectrum.
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.95\textwidth]{AWGN.png}
 	\caption{Power spectral density in a AWGN channel}
-	\label{fig:AWGN}
+	\label{fig:AWGNSP}
 \end{figure}
 \newpage
 \subsection{Rayleigh Channel}
 \label{sec:rayleigh}
-Another common channel model used in communication theory is Rayleigh fading. Rayleigh fading simulates multipath reception, which means that for a receiver antenna in a wireless link there are many reflected and scattered signals reaching it (\fig{fig:interferences}). These kind of reflections are often seen in high-density urban areas. This results in construction or destruction of signal waves. The channel will now look like this:
+Another common channel model used in communication theory is Rayleigh fading. Rayleigh fading simulates multi path reception, which means that for a receiver antenna in a wireless link there are many reflected and scattered signals reaching it (\fig{fig:interferences}). These kind of reflections are often seen in high-density urban areas. This results in construction or destruction of signal waves. The channel will now look like this:
 \begin{equation}
 \label{eq:rayleigh1}
 Y = H * X + N,  
 \end{equation}
-which adds the new Rayleigh fading coefficient H. !!footnote explaining H!!
+which adds the new Rayleigh distributed fading coefficient H.
 \newline
-As shown before in the \gls{AWGN} channel the above \eq{eq:rayleigh1} can be expanded for a full transmission. Before that it needs to be clarified that not every symbol will be multiplied with a different fading coefficient H, but a block of symbols. This kind of transmission with Rayleigh fading is known as block fading:
+As shown before in the \gls{AWGN} channel the above \eq{eq:rayleigh1} can be expanded for a full transmission. Before that it needs to be clarified that not every symbol will be multiplied with a different fading coefficient H, but a whole block of symbols. This kind of transmission with Rayleigh fading is known as block fading:
 \begin{equation}
 \label{eq:rayleigh2}
 [Y_1,Y_2,...,Y_T] = H * [X_1,X_2,...,X_T] + [N_1,N_2,...,N_T],  
@@ -138,7 +140,7 @@ with the subscript T indicating the length of the block. The block length can be
 The PDF according to the calculations above is:
 \begin{equation}
 \label{eq:raypdf}
-f(y\sigma) = \frac{1}{\sigma^2}e^{-\frac{y^2}{2\sigma^2}},
+f(y\sigma) = \frac{1}{\sigma^2}e^{-\frac{y^2}{2*\sigma^2}},
 \end{equation}
 \newline
 The graphic (\fig{fig:rayleigh}) shows the power distribution over 12000 samples. Being Gaussian randomly distributed there are now these so called "deep fadings" where the power of the fading drops, which will also decrease the signal power of the received signal to drop significantly. This results in the so-called burst errors, which were mentioned in Chapter \eref{sec:interleaver}.
@@ -147,6 +149,6 @@ The graphic (\fig{fig:rayleigh}) shows the power distribution over 12000 samples
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.95\textwidth]{rayleigh.png}
-	\caption{Power spectral density in a rayleigh channel}
+	\caption{Power spectral density in a Rayleigh channel}
 	\label{fig:rayleigh}
 \end{figure}
