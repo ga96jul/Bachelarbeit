@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  12 JAN 2018 16:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  13 JAN 2018 14:53
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1055,18 +1055,18 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 (raychain.aux) (summary.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
 
 (C:\Users\Kevin\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1137,11 +1137,11 @@ ABD: EveryShipout initializing macros
 Package pgfplots notification 'compat/show suggested version=true': document ha
 s been generated with the most recent feature set (\pgfplotsset{compat=1.15}).
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 72.
+LaTeX Font Info:    Try loading font information for U+msa on input line 73.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 72.
+LaTeX Font Info:    Try loading font information for U+msb on input line 73.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1154,16 +1154,16 @@ Package epstopdf Info: Source file: <TUMlogo_tumcd.eps>
 (epstopdf)                    size: 2726 bytes
 (epstopdf)             Command: <epstopdf --outfile=TUMlogo_tumcd-eps-converted
 -to.pdf TUMlogo_tumcd.eps>
-(epstopdf)             \includegraphics on input line 72.
+(epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 <TUMlogo_tumcd-eps-converted-to.pdf, id=4, pagebox=cropbox, 270.00874pt x 142.5
 325pt>
 File: TUMlogo_tumcd-eps-converted-to.pdf Graphic file (type pdf)
 <use TUMlogo_tumcd-eps-converted-to.pdf>
 Package pdftex.def Info: TUMlogo_tumcd-eps-converted-to.pdf  used on input line
- 72. on input line 72.
+ 73. on input line 73.
 Package pdftex.def Info: Requested size: 88.93423pt x 46.94704pt on input line 
-72.
+73.
 Package epstopdf Info: Source file: <LNTlogo_tumcd.eps>
 (epstopdf)                    date: 2009-05-22 12:01:58
 (epstopdf)                    size: 5560 bytes
@@ -1172,16 +1172,16 @@ Package epstopdf Info: Source file: <LNTlogo_tumcd.eps>
 (epstopdf)                    size: 3578 bytes
 (epstopdf)             Command: <epstopdf --outfile=LNTlogo_tumcd-eps-converted
 -to.pdf LNTlogo_tumcd.eps>
-(epstopdf)             \includegraphics on input line 72.
+(epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
 <LNTlogo_tumcd-eps-converted-to.pdf, id=5, pagebox=cropbox, 32.12pt x 29.10875p
 t>
 File: LNTlogo_tumcd-eps-converted-to.pdf Graphic file (type pdf)
 <use LNTlogo_tumcd-eps-converted-to.pdf>
 Package pdftex.def Info: LNTlogo_tumcd-eps-converted-to.pdf  used on input line
- 72. on input line 72.
+ 73. on input line 73.
 Package pdftex.def Info: Requested size: 53.37894pt x 48.36967pt on input line 
-72.
+73.
  [1
 Non-PDF special ignored!
 
@@ -1191,7 +1191,7 @@ Non-PDF special ignored!
 umcd-eps-converted-to.pdf> <./LNTlogo_tumcd-eps-converted-to.pdf>] [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 
  []
 
@@ -1251,7 +1251,7 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
  (commchain.tex
 chapter 2.
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-Channelmodel.PNG, id=58, 1087.06125pt x 523.9575pt>
+Channelmodel.PNG, id=59, 1087.06125pt x 523.9575pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/Channelmodel.PNG Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1277,7 +1277,7 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 [4]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-interleaver.png, id=69, 349.305pt x 166.37157pt>
+interleaver.png, id=70, 349.305pt x 166.37157pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/interleaver.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1294,14 +1294,14 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 [5 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figur
 es/interleaver.png>]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-IQ.png, id=74, 938.75719pt x 590.205pt>
+IQ.png, id=75, 485.56406pt x 359.84438pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/IQ.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/IQ.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
 arbeit_LaTex/02_Figures/IQ.png  used on input line 50. on input line 50.
-Package pdftex.def Info: Requested size: 338.02007pt x 212.50966pt on input lin
+Package pdftex.def Info: Requested size: 338.02007pt x 250.50017pt on input lin
 e 50.
 
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
@@ -1327,7 +1327,7 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 [7]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-reflections.png, id=83, 1029.8475pt x 548.80031pt>
+reflections.png, id=84, 1029.8475pt x 548.80031pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/reflections.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1346,22 +1346,21 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
  <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures
 /reflections.png>]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-AWGN.png, id=88, 891.33pt x 292.09125pt>
+AWGN.png, id=89, 891.33pt x 292.09125pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/AWGN.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/AWGN.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/AWGN.png  used on input line 120. on input line 120.
+arbeit_LaTex/02_Figures/AWGN.png  used on input line 126. on input line 126.
 Package pdftex.def Info: Requested size: 401.39601pt x 131.53789pt on input lin
-e 120.
+e 126.
 
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[9 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figur
-es/AWGN.png (PNG copy)>]
-Overfull \hbox (7.64983pt too wide) in paragraph at lines 127--128
+[9]
+Overfull \hbox (7.64983pt too wide) in paragraph at lines 133--134
 \OT1/cmr/m/n/10.95 Another com-mon chan-nel model used in com-mu-ni-ca-tion the
 -ory is Rayleigh fad-ing. Rayleigh
  []
@@ -1373,15 +1372,16 @@ ures/rayleigh.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/rayleigh.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/rayleigh.png  used on input line 151. on input line 151
+arbeit_LaTex/02_Figures/rayleigh.png  used on input line 150. on input line 150
 .
 Package pdftex.def Info: Requested size: 401.39601pt x 301.05074pt on input lin
-e 151.
+e 150.
 )
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[10]
+[10 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
+res/AWGN.png (PNG copy)>]
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
@@ -1397,14 +1397,17 @@ res/rayleigh.png (PNG copy)>]
 ]
 chapter 3.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1028) has occurred while \output is active []
 
  [13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 70--74
+Underfull \hbox (badness 10000) in paragraph at lines 72--76
 
  []
 
@@ -1485,18 +1488,30 @@ LaTeX Font Warning: Command \mathversion invalid in math mode on input line 22.
 
 
 
-LaTeX Font Warning: Command \boldmath invalid in math mode on input line 27.
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
+(Font)              size <5> substituted on input line 23.
 
 
-LaTeX Font Warning: Command \mathversion invalid in math mode on input line 27.
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
+(Font)              size <5> substituted on input line 23.
 
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
+(Font)              size <5> substituted on input line 23.
 
 [19]
 
-LaTeX Font Warning: Command \boldmath invalid in math mode on input line 32.
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 37.
 
 
-LaTeX Font Warning: Command \mathversion invalid in math mode on input line 32.
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 37.
+
+
+
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 42.
+
+
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 42.
 
 
 
@@ -1505,15 +1520,15 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 [20]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-llr.png, id=139, 417.81094pt x 331.99031pt>
+llr.png, id=137, 519.44063pt x 371.13657pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/llr.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/llr.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/llr.png  used on input line 41. on input line 41.
-Package pdftex.def Info: Requested size: 338.02007pt x 268.60672pt on input lin
-e 41.
+arbeit_LaTex/02_Figures/llr.png  used on input line 51. on input line 51.
+Package pdftex.def Info: Requested size: 338.02007pt x 241.5134pt on input line
+ 51.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1560,7 +1575,7 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 chapter 5.
 [27]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-fadingChannel.png, id=166, 204.01219pt x 127.22531pt>
+fadingChannel.png, id=164, 204.01219pt x 127.22531pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/fadingChannel.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
@@ -1592,17 +1607,20 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [29]
-(C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-rayferfirst.tex
-Package pgfplots info on input line 34: Using 'lua backend=false' for axis: ymo
-de=log unsupported (yet).
-)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [30
 
 ]
+(C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
+rayferfirst.tex
+Package pgfplots info on input line 34: Using 'lua backend=false' for axis: ymo
+de=log unsupported (yet).
+)
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 rayfersec.tex
 Package pgfplots info on input line 35: Using 'lua backend=false' for axis: ymo
@@ -1617,6 +1635,9 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [31]
+Underfull \vbox (badness 3623) has occurred while \output is active []
+
+
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
@@ -1636,6 +1657,12 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 ]
 chapter 6.
 
+LaTeX Warning: Reference `eq:raychan2' on page 35 undefined on input line 13.
+
+
+LaTeX Warning: Reference `raychan2' on page 35 undefined on input line 13.
+
+[35]
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 AWGNFER.tex
 Package pgfplots info on input line 33: Using 'lua backend=false' for axis: ymo
@@ -1649,17 +1676,21 @@ de=log unsupported (yet).
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[35]
+
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
 [36]
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[37]
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 FERRAYCOMP.tex
 Package pgfplots info on input line 35: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
 )
-Overfull \hbox (17.37253pt too wide) in paragraph at lines 390--47
+Overfull \hbox (17.37253pt too wide) in paragraph at lines 390--54
  [][] 
  []
 
@@ -1667,28 +1698,24 @@ Overfull \hbox (17.37253pt too wide) in paragraph at lines 390--47
 Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 
 
-[37]
-Overfull \vbox (1.39674pt too high) has occurred while \output is active []
-
-
 [38]
 <C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
-FERTable.png, id=202, 561.59813pt x 155.07938pt>
+FERTable.png, id=200, 561.59813pt x 155.07938pt>
 File: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Fig
 ures/FERTable.png Graphic file (type png)
 <use C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figu
 res/FERTable.png>
 Package pdftex.def Info: C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelor
-arbeit_LaTex/02_Figures/FERTable.png  used on input line 61. on input line 61.
+arbeit_LaTex/02_Figures/FERTable.png  used on input line 73. on input line 73.
 Package pdftex.def Info: Requested size: 338.02007pt x 93.33939pt on input line
- 61.
+ 73.
 
 (C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/
 ErrorFloor.tex
 Package pgfplots info on input line 33: Using 'lua backend=false' for axis: ymo
 de=log unsupported (yet).
 )
-Overfull \hbox (14.63197pt too wide) in paragraph at lines 45--70
+Overfull \hbox (14.63197pt too wide) in paragraph at lines 45--82
  [][] 
  []
 
@@ -1726,63 +1753,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--13
 
 ] (thesis.bbl
 chapter without number
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 31.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 37.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 37.
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¶ in font cmr10!
 Missing character: There is no Ã in font cmr10!
 Missing character: There is no ¼ in font cmr10!
-) [1
+ [1
 
 
-] (thesis.aux
-(introduction.aux) (commchain.aux) (awgnchan.aux) (awgnchain.aux) (raychan.aux)
-(raychain.aux) (summary.aux))
+])
+Overfull \vbox (1.39674pt too high) has occurred while \output is active []
+
+
+[2] (thesis.aux (introduction.aux) (commchain.aux) (awgnchan.aux)
+(awgnchain.aux) (raychan.aux) (raychain.aux) (summary.aux))
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 4.5pt have occurred.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 34376 strings out of 493312
- 834729 string characters out of 3138899
- 1787549 words of memory out of 3000000
- 37164 multiletter control sequences out of 15000+200000
- 20952 words of font info for 80 fonts, out of 3000000 for 9000
+ 34391 strings out of 493312
+ 834921 string characters out of 3138899
+ 1787652 words of memory out of 3000000
+ 37177 multiletter control sequences out of 15000+200000
+ 21569 words of font info for 82 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  74i,20n,128p,8820b,2286s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb><C:/Prog
-ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
-/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pfb><C:/Progra
-m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis.pdf (53 pages, 715259 bytes).
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmmi6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mi8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb><C:/Program
+ Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/a
+msfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsl10.pf
+b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on thesis.pdf (54 pages, 705403 bytes).
 PDF statistics:
- 299 PDF objects out of 1000 (max. 8388607)
+ 294 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 

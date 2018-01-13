@@ -8,12 +8,12 @@
 \contentsline {section}{\numberline {2.3}Mapper/Demapper}{6}
 \contentsline {section}{\numberline {2.4}Channel}{8}
 \contentsline {subsection}{\numberline {2.4.1}AWGN Channel}{9}
-\contentsline {subsection}{\numberline {2.4.2}Rayleigh Channel}{10}
+\contentsline {subsection}{\numberline {2.4.2}Rayleigh Fading Channel}{10}
 \contentsline {chapter}{\numberline {3}Capacity in AWGN Channel}{13}
 \contentsline {section}{\numberline {3.1}Capacity and Monte-Carlo-Simulation}{13}
 \contentsline {section}{\numberline {3.2}Capacity for QPSK and M-QAM}{14}
 \contentsline {subsection}{\numberline {3.2.1}Monte-Carlo-Simulation}{15}
-\contentsline {subsection}{\numberline {3.2.2}Implementation in MATLAB}{15}
+\contentsline {subsection}{\numberline {3.2.2}Implementation in MATLAB}{16}
 \contentsline {section}{\numberline {3.3}Results}{16}
 \contentsline {chapter}{\numberline {4}Frame Error Rate for AWGN Channel}{19}
 \contentsline {section}{\numberline {4.1}LDPC and the Coded Modulation Library}{19}

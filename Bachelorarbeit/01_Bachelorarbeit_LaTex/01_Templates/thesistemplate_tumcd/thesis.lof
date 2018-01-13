@@ -6,15 +6,15 @@
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Example for constellation point with amplitude and phase shift angle ($\phi $)}}{6}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Modulation in I/Q planes for QPSK, 16-QAM and 64-QAM}}{7}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Interferences in a normal transmission between two devices}}{8}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Power spectral density in a AWGN channel}}{9}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Power spectral density in a AWGN channel}}{10}
 \contentsline {figure}{\numberline {2.7}{\ignorespaces Power spectral density in a Rayleigh channel}}{11}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM}}{16}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Capacity plot for general AWGN-channel, QPSK, 16-QAM and 64-QAM}}{17}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Depiction of soft demapper in I/Q-plane}}{21}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Capacity to FER comparison for QPSK}}{23}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Capacity to FER comparison for 16-QAM}}{24}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Capacity to FER comparison for 64-QAM}}{25}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Capacity and TX/RX-chain simulation for QPSK. Plotted points correspond FER of $10^{-3}$}}{23}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Capacity and TX/RX-chain simulation for 16-QAM. Plotted points correspond FER of $10^{-3}$}}{24}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Capacity and TX/RX-chain simulation for 64-QAM. Plotted points correspond FER of $10^{-3}$}}{25}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Power spectral density for a AWGN channel}}{28}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Scatter plot for constellation points with Rayleigh fading in I/Q-plane.}}{29}

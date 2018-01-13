@@ -5,8 +5,9 @@
 
 In this section we will discuss the capacity of a wireless channel with \gls{AWGN} noise interfering with the transmission between transmitter and receiver. 
 \newline
-In general capacity \textit{C} can be defined as the maximum data rate \textit{R} at which information can be reliably transmitted over a channel, that means the highest rate of transmission with a very low error probability rate. It is proven that any rate exceeding the maximum capacity rate of the channel will result in error rates deviating from zero \cite{Shannon}. In modern technology with the help of smart modulation schemes and coding methods a rate close to the capacity can be achieved. 
-All the capacities in the following simulations will be complex and also time-discrete. While time-continuous systems are analyzed for real world applications, most systems can be converted into a time-discrete model with same capacity results. The transformation will also be shown in the following sections. 
+In general, capacity \textit{C} can be defined as the maximum data rate \textit{R} at which information can be reliably transmitted over a channel, that means the highest rate of transmission with a very low error probability rate. It is proven that any rate exceeding the maximum capacity rate of the channel will result in error rates deviating from zero \cite{Shannon}. In modern technology with the help of smart modulation schemes and coding methods a rate close to the capacity can be achieved.
+All the capacities in the following simulations will be for complex and time-discrete channels. 
+While time-continuous systems are analyzed for real world applications, most systems can be converted into a time-discrete model with same capacity results \cite{Goldsmith08}. 
 \section{Capacity and Monte-Carlo-Simulation}
 \label{sec:capAWGN}
 
@@ -15,13 +16,8 @@ For a \gls{AWGN}-Channel the simple channel model already defined in \eq{eq:1.1}
 \label{eq:chanAWGN}
 Y = X + N,   
 \end{equation}
-with X $\sim$ \textit{N}(0,${\sigma_{T}}^2$) and N $\sim$ \textit{N}(0,1). The received signal Y will have a distribution of \mbox{Y $\sim$ \textit{N}(0,${\sigma_{T}}^2+1$)} under the condition that X and N being independently distributed.
-Now the capacity as a maximum of mutual information I between X and Y will be calculated:
-\begin{equation}
-\label{eq:cap}
-C = max(I(X;Y)),     
-\end{equation}
-with X and Y being two independent randomly normal distributed variables.
+with X $\sim \mathcal{N}_c(0,{\sigma_{x}}^2$) and N $\sim \mathcal{N}_c(0,1)$. The received signal Y will have a distribution of \mbox{Y $\sim \mathcal{N}_c(0,{\sigma_{x}}^2+1$)} under the condition that X and N being independently distributed.
+Now the capacity as a maximum of mutual information I between X and Y will be calculated, with X and Y being two independent randomly normal distributed variables.
 \newline
 For the mutual information further calculations will lead to the differential entropy:
 \begin{equation}
@@ -32,7 +28,7 @@ with N also being independent from X.
 \newline
 This further simplifies to 
 \begin{equation}
-h(Y) = h(X+N) = log(\pi*e^{\sigma^2+1}) \quad \textrm{and} \quad h(Y|X) = h(N) = log(\pi*e^{1}),
+h(Y) = h(X+N) = log(\pi e^{\sigma^2+1}) \quad \textrm{and} \quad h(Y|X) = h(N) = log(\pi e^{1}),
 \end{equation}
 which will lead us to the final equation for the capacity in an AWGN-channel:
 \begin{equation}
@@ -47,37 +43,60 @@ With this approach a good approximation of values for further calculations with 
 \section{Capacity for QPSK and M-QAM}
 Now the capacity will be calculated for the three above mentioned modulation schemes (Chapter \eref{sec:mapper}). The schemes will be plotted with the capacity calculations for the Gaussian channel to give us a overall comparison and overview.
 \newline
-Before the simulation or any calculation is done it can already be assumed how QPSK will behave for high SNR. As stated before QPSK (Chapter \eref{sec:mapper}) can transmit up to 2 bits per symbol, but no more without losing its reliability in transmission. So the plot will approach the 2 bit per symbol border for high SNR. The same assumption can be applied to both 16-QAM and 64-QAM.
+Before the simulation or any calculation is done it can already be assumed how QPSK will behave for high SNR. As stated before QPSK (Chapter \eref{sec:mapper}) can transmit up to 2 bits per symbol. So the plot will approach the 2 bit per symbol border for high SNR. The same assumption can be applied to both 16-QAM and 64-QAM.
 After creating a random codeword modulated with the fitting modulation scheme, noise is added to the signal, which is then received as the bit stream Y. The next step is to calculate the capacity. 
 \newline
 Starting with the mutual information again we get:
 \begin{equation}
 I(X_Q;Y) = h(Y) - h(Y|X_Q) = h(Y) - h(N).
 \end{equation}
-It is known that the signal is a normal randomly distributed variable and now the differential entropy for h(Y) has to be calculated: 
+Now the differential entropy for h(Y) has to be calculated: 
 \begin{equation}
-h(Y) = \int p(y) * [-log(p(y))] \mathrm{dx}
+\label{eq:MCEntropy}
+h(Y) = {\E}_Y[-log(p_Y(y)]
 \end{equation}
-Applying the Monte-Carlo-Simulation will simplify the above equation so it can be solved numerically, turning the time-continuous system into a time-discrete form. The Monte-Carlo-Simulation will be further explained in the following chapter (Ch. \ref{sec:MCS}).
+Applying the Monte-Carlo-Simulation will simplify the calculation giving us the expected value of the \eq{eq:MCEntropy}. The Monte-Carlo-Simulation will be further explained in the following chapter (Ch. \ref{sec:MCS}).
 \begin{equation}
 \label{eq:entropy1}
-h(Y) =  \sum_{i=0}^N(-log(p(y\textsubscript{i}))) * \frac{1}{N},
+h(Y) =  \frac{1}{N}\sum_{i=0}^N(-log(p(y\textsubscript{i}))),
 \end{equation} 
-with p(y) being the probability of y for a normal distributed variable and N the number of iterations. Now p(y) has to be further defined as it takes in consideration the possible input and output pairs $x \in X$ and $y \in Y$. The sum over all these pairs is taken:
+Now $p_Y(y)$ has to be calculated. $P_Y(y)$ takes in consideration the possible input and output pairs $x \in X$ and $y \in Y$. The sum over all these pairs is taken:
+\begin{equation}
+\label{eq:entropy2.1}
+p_Y(y) = \sum_{n=1}^{k}p_{Y|X}(y|x)p_X(x) = \frac{1}{k}\sum_{n=1}^{k}p_{Y|X}(y|x), 
+\end{equation}
+with $p_{Y|X}(y|x)$ already defined in \eq{eq:AWGNpdf} 
 \begin{equation}
 \label{eq:entropy2}
-p(y) = \frac{1}{k*\pi}*\sum_{n=1}^k(e^{y-x\textsubscript{n}}),
+p_Y(y) = \frac{1}{k}*\sum_{n=1}^{k}\frac{1}{\pi}(e^{y-x\textsubscript{n}}),
 \end{equation} 
 with x being the constellation points and y the received symbol.
 Here we only need to watch out for the number of symbols in the modulation scheme. For QPSK we have a \mbox{k = 4}, 16-QAM a k = 16 and 64-QAM a k = 64.
 \newline
 \subsection{Monte-Carlo-Simulation}
 \label{sec:MCS}
-Monte Carlo Simulation is widely used in stochastic to get solutions for random experiments. It is applied to solve analytical unsolvable problems numerically. MC is based upon the law of large numbers, which says that a large number of performing the same random experiment will lead the average of the results close to the expected value[Cite Law of Random Numbers!]. We take this as a base to get reliable results. The Monte Carlo simulations will be used for two calculations, once already used above for calculating the differential entropy and later once to calculate a theoretical Rayleigh fading curve out of the AWGN channel. 
+Monte Carlo Simulation is widely used in stochastic to get solutions for random experiments. It is applied to solve analytical unsolvable problems numerically. MC is based upon the law of large numbers, which says that a large number of performing the same random experiment will lead the average of the results close to the expected value[Cite Law of Random Numbers!]. 
+Applied to \eq{eq:MCEntropy}:
+\begin{equation}
+\label{eq:MCEntropy2}
+h(Y) = {\E}_Y[f(y)],
+\end{equation}
+with $f(y) = -log(p_Y(y))$. So we want to calculate the expected value from our function $f(y)$. 
+\newline
+Applying \gls{MC} with $N$ sample size:
+\begin{equation}
+\frac{1}{N}\sum_{i=1}^{N}f(y_i) 
+\end{equation}
+which after \gls{MC} equals to the expected value of our function $f(y)$.
+\begin{equation}
+\frac{1}{N}\sum_{i=1}^{N}f(y_i) = \E_Y[f(y)],
+\end{equation}
+which is also the answer for the initial \eq{eq:MCEntropy}.
+We take this as a base to get reliable results. The Monte Carlo simulations will be used for two calculations, once already used above for calculating the differential entropy and later once to calculate a theoretical Rayleigh fading curve out of the AWGN channel. 
 
 \subsection{Implementation in MATLAB}
 \label{AWGNMAT}
-We now implement the mentioned \eq{eq:entropy1} and \eref{eq:entropy2} in MATLAB and plot the results. The code has to take into consideration the modulation schemes used, the range of calculation (SNR range) and the sample size N. The code runs through the SNR range, here ranging from -10\,dB to 30\,dB in step sizes of 0.5\,dB. The sample size N also has to be large enough to apply the Monte-Carlo simulation reliably. In our simulation N has to be higher than 10000 samples to receive reliable results. First a random bit stream, functioning as the data, is initialized. The bit stream is passed through a modulator which assigns the corresponding symbol. We scale the created constellation point with the SNR value. After passing \underline{X} through the complex AWGN channel the resulting symbols \underline{Y} and \underline{X} are put into \eq{eq:entropy1} and \eref{eq:entropy2}. Done for every step size a resulting plot for the capacity over SNR is created.  
+We now implement the mentioned \eq{eq:entropy1} and \eref{eq:entropy2} in MATLAB and plot the results. The code has to take into consideration the modulation schemes used, the range of calculation (SNR range\footnote{SNR range is the difference between lowest SNR value to highest SNR value}) and the sample size N. The code runs through the SNR range, here ranging from -10\,dB to 30\,dB in step sizes of 0.5\,dB. The sample size N also has to be large enough to apply the Monte-Carlo simulation reliably. In our simulation N has to be higher than 10000 samples to receive reliable results. First a random bit stream, functioning as the data, is initialized. The bit stream is passed through a modulator which assigns the corresponding symbol. We scale the created constellation point with the SNR value. After passing \underline{X} through the complex AWGN channel the resulting symbols \underline{Y} and \underline{X} are put into \eq{eq:entropy1} and \eref{eq:entropy2}. Done for every step size a resulting plot for the capacity over SNR is created.  
     
 
 \section{Results}
@@ -92,7 +111,7 @@ We now implement the mentioned \eq{eq:entropy1} and \eref{eq:entropy2} in MATLAB
 The results of all the \gls{MC} for all the modulation schemes done in MATLAB are presented in \fig{fig:capmod}. The plot shows the capacity for a simple Gaussian channel and the three modulation schemes mentioned in Chapter \eqref{sec:mapper}. We plot the resulting capacity calculated over the corresponding SNR values. 
 It can be seen that for all three modulation schemes that for higher \gls{SNR} they will approach the expected maximum number of bits per symbol. For \gls{QPSK} to reach the maximum bit rate a \gls{SNR} of about 7.5\,db is needed. Similarly 16-QAM needs 15\,dB and 64-QAM 22\,dB. 
 \newline
-Also the Gaussian channel clearly outperforms the modulated channels, especially  after 0\,dB SNR. As already discussed before the Gaussian capacity is the upper bound with no modulation exceeding it the following results and plot can confirm the validity of the simulation. While these results look quite reassuring the \gls{AWGN} is not the only interference encountered in real world applications but only the most basic.
+Also the Gaussian distributed codeword clearly outperforms the modulated codeword, especially  after 0\,dB SNR. As already discussed before the Gaussian capacity is the upper bound with no modulation exceeding it the following results and plot can confirm the validity of the simulation.
 
 
 \clearpage

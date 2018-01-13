@@ -25,6 +25,12 @@
 A.~Goldsmith, \emph{Wireless Communications}, 1st~ed.\hskip 1em plus 0.5em
   minus 0.4em\relax New York: Cambridge University Press, 2008.
 
+\bibitem{WIMAX}
+\BIBentryALTinterwordspacing
+Wimax ldpc codes. [Online]. Available:
+  \url{http://www.uni-kl.de/channel-codes/channel-codes-database/wimax-ldpc/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Fabregas03}
 A.~M. Albert Guill\'en~i F\`abregas and G.~Caire, ``Bit-interleaved coded
   modulation,'' \emph{Foundations and Trends\textsuperscript{\textregistered}
@@ -71,10 +77,8 @@ T.~Richardson, ``Error floors of ldpc codes,'' Flarion Technologies,
 J.~G. Proakis and M.~Salehi, \emph{Fundamentals of Communication Systems},
   1st~ed.\hskip 1em plus 0.5em minus 0.4em\relax Prentice Hall, 2004.
 
-\bibitem{WIMAX}
-\BIBentryALTinterwordspacing
-Wimax ldpc codes. [Online]. Available:
-  \url{http://www.uni-kl.de/channel-codes/channel-codes-database/wimax-ldpc/}
-\BIBentrySTDinterwordspacing
+\bibitem{WiMaxTech}
+S.~Vaughan-Nichols, ``Achieving wireless boradband with wimax,'' \emph{IEEE
+  Computer}, July 2004.
 
 \end{thebibliography}

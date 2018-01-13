@@ -7,15 +7,22 @@ In this chapter we will discuss further simulations done to support the previous
 \section{Simulated Rayleigh FER with AWGN Channel}
 \label{RAYAWGN}
 
-In this section a simulation based on the AWGN channel will be done to create a theoretical \gls{FER} for a Rayleigh channel. This is done to have a reliable comparison for our simulation in Chapter 5. 
-With the AWGN channel the reliability of the channel has already been proven with the capacity calculations from chapter 3. In chapter 4 the \gls{FER} from the AWGN channel was in range of 0\,dB up to 5\,dB SNR. In this region a valid \gls{FER} was given with the number of frames set. 
-For this simulation first of all an AWGN channel will be simulated for the given range of 0\,dB to 5\,dB SNR. Then SNR from 0\,dB to 50\,dB SNR will be initialized. The SNR will be modulated with complex Gaussian noise to simulate the Rayleigh fading channel. For the now modulated SNR the corresponding \gls{FER} can now be picked out. To get reliable results the \gls{MC} will be applied again. For every step of SNR many independent fading coefficients will be created. The mean of all \gls{FER} values will be taken to get the final data point plotted for the corresponding \gls{SNR} value.    
-
+In this section a simulation based on the AWGN channel will be done to compute a theoretical \gls{FER} for a Rayleigh channel. This is done to have a reliable comparison for our simulation in Chapter 5. 
+With the AWGN channel the reliability of the channel has already been proven with the capacity calculations from chapter 3. In chapter 4 the \gls{FER} from the AWGN channel was in range of 0\,dB up to 5\,dB SNR. In this region a valid \gls{FER} was given with the number of frames set.
+As stated before the noise distribution of the \gls{AWGN} channel is Gaussian with the $N\sim\mathcal{N}_c(0,1)$. 
+The Rayleigh fading channel is related to the \gls{AWGN} in the sense that only the fading coefficient $H$ is added to the message (\eq{eq:raychan}). With the division with the fading coefficient we get the result from \eq{eq:raychan2}. Here the Rayleigh fading channel now has undeniable similarities to the \gls{AWGN} channel in \eq{eq:chanAWGN}. Only difference being the modified noise of in the Rayleigh fading channel. In this case the noise distribution for \eq{raychan2} is $\hat{N}\sim\mathcal{N}(0,\frac{1}{{\lvert H \rvert}^2})$.
+\newline
+The above stated will now be implemented. For this simulation first of all an AWGN channel will be simulated for the given range of 0\,dB to 5\,dB SNR. Then SNR from 0\,dB to 50\,dB SNR will be initialized. The SNR will be modulated with complex Gaussian noise to simulate the Rayleigh fading channel. For the now modulated SNR the corresponding \gls{FER} can now be picked out. To get reliable results the \gls{MC} will be applied again. For every step of SNR many independent fading coefficients will be created. The mean of all \gls{FER} values will be taken to get the final data point plotted for the corresponding \gls{SNR} value.  
+First of all the modified noise is created:  
 \begin{equation}
-SNR_{ray} = SNR_{AWGN} * \textbf{H}
+\hat{N} = \frac{N}{(\lvert{H}\rvert)^2}
+\end{equation}
+with the definition of SNR in \eq{eq:SNR} following result can be concluded:
+\begin{equation}
+\textrm{SNR}_{ray} = \textrm{SNR}_{AWGN} * {\lvert{H}\rvert}^2
 \end{equation}
 \begin{equation}
-FER_{ray} = FER_{AWGN}(SNR_{ray})
+\textrm{FER}_{ray} = \textrm{FER}_{AWGN}(SNR_{ray})
 \end{equation}
 
 \begin{figure}[!htb]
@@ -26,7 +33,7 @@ FER_{ray} = FER_{AWGN}(SNR_{ray})
     \caption{FER for a simulated AWGN channel}
     \label{fig:FERAWGN}
 \end{figure}
-In \fig{fig:FERAWGN} the \gls{FER} for the AWGN channel is depicted. As mentioned above the valid range is only for 0\,dB up to 5\,dB, which will be a problem for higher \gls{SNR} values. For higher SNR values an error floor must be initialized. The error floor is the lowest probability the \gls{FER} can take. It is proven that every transmission will have a small probability of failure, no transmission will have 0 \gls{FER} which would mean that a transmission can always be without any errors. In practical transmissions this is not achievable.
+In \fig{fig:FERAWGN} the \gls{FER} for the AWGN channel is depicted. As mentioned above the valid range is only for 0\,dB up to 5\,dB, which will be a problem for higher \gls{SNR} values. For higher SNR values an error floor must be initialized. The error floor is the point where the \gls{FER} slowly reaches a hold, meaning for increasing \gls{SNR} the \gls{FER} does not change significantly anymore. This will be further explained in chapter \ref{sec:ErrorFloor}.
 
 \begin{figure}[!h]
 	\setlength\fwidth{0.9\textwidth}
@@ -37,7 +44,7 @@ In \fig{fig:FERAWGN} the \gls{FER} for the AWGN channel is depicted. As mentione
 	\label{fig:FERAWGNRAY}
 \end{figure}
 \newpage
-In \fig{fig:FERAWGNRAY} the \gls{FER} of the AWGN channel is compared to the simulated \gls{FER} of the rayleigh channel with error floors of $0$ and $10^{-6}$. It can be observed that Rayleigh fading deteriorates the channel performace by a lot in comparison to the simple AWGN channel. Furthermore as seen in the graphic the value of the error floor also needs to be determined. There is a offset when simulating the \gls{FER} for different error floors, with the 0 error floor achieving way better \gls{FER} than the one with an error floor of $10^{-6}$. Comparing the now simulated theoretical Rayleigh \gls{FER} with the previously simulated Rayleigh channel in Chapter 5 a definite answer for the previously implemented Rayleigh channel can be given.
+In \fig{fig:FERAWGNRAY} the \gls{FER} of the AWGN channel is compared to the simulated \gls{FER} of the Rayleigh channel with error floors of $0$ and $10^{-6}$. It can be observed that Rayleigh fading deteriorates the channel performance by a lot in comparison to the simple AWGN channel. Furthermore as seen in the graphic the value of the error floor also needs to be determined. There is a offset when simulating the \gls{FER} for different error floors, with the 0 error floor achieving way better \gls{FER} than the one with an error floor of $10^{-6}$. Comparing the now simulated theoretical Rayleigh \gls{FER} with the previously simulated Rayleigh channel in Chapter 5 a definite answer for the previously implemented Rayleigh channel can be given.
 \newpage
 \begin{figure}[!htb]
 	\setlength\fwidth{0.95\textwidth}
@@ -52,6 +59,11 @@ As seen in the last \fig{fig:AWGNRAYCOMP} the simulated results based on the AWG
 \clearpage
 
 \section{Error Floor Calculation}
+\label{sec:ErrorFloor}
+
+ It is proven that every transmission will have a small probability of failure, no transmission will have 0 \gls{FER} which would mean that a transmission can always be without any errors. In practical transmissions this is not achievable.
+
+
 As mentioned in chapter \eref{RAYAWGN} the error floor should be determined to achieve proper results. In the previous simulation it was also determined that a deviation of a factor of 100 does not change the result of the plot by a lot. 
 In our case it should be determined that the previous error floor of $10^{-6}$ is valid. 
 \newline
