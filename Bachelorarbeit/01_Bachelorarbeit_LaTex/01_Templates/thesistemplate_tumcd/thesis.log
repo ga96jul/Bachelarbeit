@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  13 JAN 2018 16:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2017.12.4)  13 JAN 2018 20:24
 entering extended mode
 **./thesis.tex
 (thesis.tex
@@ -1657,9 +1657,6 @@ Overfull \vbox (1.39674pt too high) has occurred while \output is active []
 ]
 chapter 6.
 
-LaTeX Warning: Reference `eq:raychan2' on page 35 undefined on input line 13.
-
-
 LaTeX Warning: Reference `raychan2' on page 35 undefined on input line 13.
 
 [35]
@@ -1785,7 +1782,7 @@ LaTeX Warning: There were undefined references.
 Here is how much of TeX's memory you used:
  34391 strings out of 493312
  834921 string characters out of 3138899
- 1787615 words of memory out of 3000000
+ 1787626 words of memory out of 3000000
  37177 multiletter control sequences out of 15000+200000
  21569 words of font info for 82 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1811,7 +1808,7 @@ b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Fil
 es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis.pdf (54 pages, 705465 bytes).
+Output written on thesis.pdf (54 pages, 704951 bytes).
 PDF statistics:
  294 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
