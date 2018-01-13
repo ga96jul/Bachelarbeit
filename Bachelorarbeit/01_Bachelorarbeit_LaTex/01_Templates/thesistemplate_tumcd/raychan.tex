@@ -1,5 +1,5 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Capacity in a Rayleigh Channel} 
+\chapter{Capacity for Rayleigh Fading Channel} 
 \label{chap:raychan}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \graphicspath{{C:/Users/Kevin/Bachelarbeit/Bachelorarbeit/01_Bachelorarbeit_LaTex/02_Figures/}}
@@ -16,8 +16,8 @@ In the second scenario the information of the fading coefficient power will be u
 \section{Fading Channel}
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.95\textwidth]{fadingChannel.png}
-	\caption{Power spectral density for a AWGN channel}
+	\includegraphics[width=0.8\textwidth]{fadingChannel.png}
+	\caption{Fading channel}
 	\label{fig:AWGN}
 \end{figure}
 
@@ -46,7 +46,7 @@ label{eq:raychan2}
 with $\underline{\hat{Y}}$ being the new estimation of the received code word and $\underline{\hat{N}}$ the division of the noise with the fading coefficient.
 Although the fading has been removed from the initial sent code word the restored code word \textbf{$\underline{\hat{Y}}$} has still to be considered a fading channel because of $\underline{\hat{N}}$. It is expected that this channel has a decrease in performance in comparison to a normal AWGN channel.
 
-\section{Fading Estimation with Pilot Symbol}
+\section{Channel Estimation with Pilot Symbol}
 In this section the scenario is taken into consideration that the receiver does not know the fading coefficient, but still has the information of fading block length. Now a method of restoring the code word \textbf{$\underline{X}$} has to be found.
 \newline
 One common and simple method used is the addition of pilot symbols into the codeword \cite{Hassibi03}. To the code word additional pilot symbols will be added. In this simulation only one pilot symbol per block has been added. 

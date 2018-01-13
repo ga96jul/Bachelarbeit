@@ -61,10 +61,7 @@ As seen in the last \fig{fig:AWGNRAYCOMP} the simulated results based on the AWG
 \section{Error Floor Calculation}
 \label{sec:ErrorFloor}
 
- It is proven that every transmission will have a small probability of failure, no transmission will have 0 \gls{FER} which would mean that a transmission can always be without any errors. In practical transmissions this is not achievable.
-
-
-As mentioned in chapter \eref{RAYAWGN} the error floor should be determined to achieve proper results. In the previous simulation it was also determined that a deviation of a factor of 100 does not change the result of the plot by a lot. 
+As mentioned in chapter \eref{RAYAWGN} the error floor should be determined to achieve proper results.  It is proven that every transmission will have a small probability of failure, no transmission will have 0 \gls{FER} which would mean that a transmission can always be without any errors. In practical transmissions the \gls{FER} of 0 is not achievable.In the previous simulation it was also determined that a deviation of a factor of 100 does not change the result of the plot by a lot.
 In our case it should be determined that the previous error floor of $10^{-6}$ is valid. 
 \newline
 To determine the error floor the simulation of the \gls{AWGN} channel is run. Important for this simulation is that the number of frames need to be changed. As mentioned in chapter \eref{sec:FER} the validation of low \gls{FER} needs high number frames. In our case we need a total number of $10^{8}$ frames for every step of SNR.

@@ -6,7 +6,7 @@
 
 This section will further built upon the topics discussed in the previous chapters. We will now build a communication chain using the blocks discussed in Chapter 2. After the transmission the \gls{FER} will be determined. The \gls{FER}\footnote{FER = $\frac{\textrm{Number of faulty frames in a simulation}}{\textrm{Number of all frames in a simulation}}$} is the estimated rate of faulty transmissions in one whole simulation. We will be sending frames of code words each consisting of 576 up to 2048 bits. After comparison between the sent code word and the decoded code word at the receiver we determine a frame error. If the decoded codeword has any wrong bit the whole frame will be marked as a faulty frame. This will be done for a certain amount of frames.
 
-\section{LDPC and the Coded Modulation Library}
+\section{LDPC Codes and the Coded Modulation Library}
 Already explained in Chapter 1 the whole transmission will be done with the coding method of \gls{LDPC}. For the coding and decoding we will be using the Coded Modulation Library. This library and the functions used in this simulation will be further explained now.
 \newline
 The Iterative Solutions Coded Modulation Library (ISCML) is an open source toolbox for simulating capacity approaching codes in MATLAB\cite{CML}. The toolbox supports many different standard linear block codes and turbo codes. With many of the complex and computational heavy codes implemented in C and ported back to MATLAB as so called C-mex functions\cite{CML}.
@@ -38,7 +38,7 @@ The decoding will also be done by the \gls{CML} which again uses the parity-chec
 \end{equation}
 with $b^T$ being the received code word. This will be checked with typical graph solving algorithms. For LDPC the commonly used algorithm is the sum-product algorithm.
 With the \gls{CML} the first and last block of the full communication chain (\fig{fig:commchain}) is implemented.
-\section{Demapping after AWGN}
+\section{Demapping after AWGN Channel}
 Another big part of a functioning communication chain is the estimation of the code word from the received symbol stream $\boldmath\underline{Y}$, which passed the channel experiencing various kind of noises and fadings. There are two main forms of restoring the code word, namely hard-decision demapping and soft-decision demapping.
 \subsection{Hard-Decision Demapping vs. Soft-Decision Demapping}
 We will now discuss the benefits between hard-decision and soft-decision demapping. Hard-decision demapping makes a decision based on the decision boundary of the received symbol. While soft demapping will take into consideration all symbol constellations in the modulation scheme. For soft demapping a reliability of the decision can be given by computing the euclidean distance to every constellation symbol.
@@ -74,7 +74,7 @@ Getting back to \fig{fig:llr} it can be determined that $X_1$ and $X_4$ have $B_
 L = log\frac{P(Y|X_2)+P(Y|X_3)}{P(Y|X_1)+P(Y|X_4)}.
 \end{equation}
 With \eq{eq:AWGNpdf} the log likelihood for bit $B_1$ can now be calculated. The corresponding bit $B_2$ will also be determined analogous. In the end a code word is received as log likelihood ratios and provided to the channel decoder \cite{SoftDemapping}.
-\section{FER}
+\section{Frame Error Rate}
 \label{sec:FER}
 The \gls{FER} can now be determined with the help of the two previous sections. By dividing the number of faulty frames from the total number of frames we get the \gls{FER}. It should be noted that not every \gls{FER} calculated is a reliable result for our simulation. For a whole simulation run a certain amount of faulty frames is needed, usually at least 50 faulty frames need to be detected. It can be seen like this: A simulation run for 100 frames with 1 faulty frame does not give a confident result of a \gls{FER} of 0.01. While a simulation ran for 10000 frames with 100 faulty frames will be seen as a more reliable result for a \gls{FER} of 0.01. 
 \newline

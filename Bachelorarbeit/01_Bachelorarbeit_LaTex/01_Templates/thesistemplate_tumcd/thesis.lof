@@ -16,7 +16,7 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Capacity and TX/RX-chain simulation for 16-QAM. Plotted points correspond FER of $10^{-3}$}}{24}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Capacity and TX/RX-chain simulation for 64-QAM. Plotted points correspond FER of $10^{-3}$}}{25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Power spectral density for a AWGN channel}}{28}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Fading channel}}{28}
 \contentsline {figure}{\numberline {5.2}{\ignorespaces Scatter plot for constellation points with Rayleigh fading in I/Q-plane.}}{29}
 \contentsline {figure}{\numberline {5.3}{\ignorespaces Simulation for Rayleigh channel with known and estimated fading coefficient}}{31}
 \contentsline {figure}{\numberline {5.4}{\ignorespaces Simulation for Rayleigh channel with different block lengths}}{32}
